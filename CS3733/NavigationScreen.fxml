@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane layoutX="-1.0" layoutY="-1.0" prefHeight="768.0" prefWidth="770.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1088.0" prefWidth="1600.0">
+               <children>
+                  <ImageView fitHeight="1088.0" fitWidth="1600.0">
+                     <image>
+                        <Image url="@Icons/01_thefirstfloor.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="611.0" layoutY="283.0">
+                     <image>
+                        <Image url="@Icons/you-are-here-icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Slider layoutX="614.0" layoutY="20.0" showTickLabels="true" showTickMarks="true" />
+      <Button layoutX="770.0" layoutY="654.0" mnemonicParsing="false" prefHeight="114.0" prefWidth="254.0" style="-fx-background-color: #8bdb9c;" text="Find Path" underline="true">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+      <TextField layoutX="771.0" layoutY="127.0" prefHeight="42.0" prefWidth="200.0" promptText="Please Type In..." />
+      <Label layoutX="773.0" layoutY="96.0" text="Destination">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="770.0" layoutY="575.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="254.0" text="Add A Stop" underline="true">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+      <Button layoutX="18.0" layoutY="19.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="103.0" text="&lt;Back" />
+      <Button layoutX="972.0" layoutY="127.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="51.0" style="-fx-background-color: #baced5;" text="GO" />
+      <Accordion layoutX="770.0" layoutY="196.0" prefHeight="380.0" prefWidth="254.0">
+        <panes>
+          <TitledPane animated="false" prefWidth="254.0" text="Directions">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView layoutX="-1.0" layoutY="-3.0" prefHeight="334.0" prefWidth="254.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" prefHeight="0.0" prefWidth="202.0" text="Common Locations">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView layoutX="-1.0" prefHeight="330.0" prefWidth="254.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+        </panes>
+      </Accordion>
+      <CheckBox layoutX="771.0" layoutY="169.0" mnemonicParsing="false" text="Stairs" />
+      <CheckBox layoutX="840.0" layoutY="169.0" mnemonicParsing="false" text="Elevator" />
+      <TextField layoutX="771.0" layoutY="45.0" prefHeight="42.0" prefWidth="200.0" promptText="example@site.com" />
+      <Button layoutX="971.0" layoutY="45.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="51.0" style="-fx-background-color: #baced5;" text="Send" />
+      <Label layoutX="774.0" layoutY="15.0" text="Send by Text or E-mail">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
