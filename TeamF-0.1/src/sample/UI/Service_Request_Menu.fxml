@@ -15,16 +15,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.serviceRequestController">
   <children>
     <MenuBar prefWidth="1024.0" VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="Start">
+        <Menu mnemonicParsing="false" onAction="#backToStart" text="Start">
           <items>
             <MenuItem mnemonicParsing="false" text="Start Page" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Map">
+        <Menu mnemonicParsing="false" onAction="#backToAdmin" text="Map">
           <items>
             <MenuItem mnemonicParsing="false" text="Go to Maps" />
           </items>

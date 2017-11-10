@@ -13,6 +13,8 @@ public class AdminPageController {
     public void edit(){
 
     }
+    @FXML
+    public void serviceRequest() {Main.serviceScreen();}
 
     @FXML
     public void addUser(){
