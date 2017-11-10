@@ -27,10 +27,12 @@ public class NavigationPageController {
     }
 
     @FXML
-    public void sendMsg(){
+    public void sendMsg() throws Exception{
+        //EmailService emailService = new EmailService("teamFCS3733@gmail.com", "FuschiaFairiesSoftEng");
         EmailService emailService = new EmailService("teamFCS3733@gmail.com", "FuschiaFairiesSoftEng");
         emailService.sendEmail("Some directions", email.getText());
     }
+
     @FXML
     public void back(){
         Main.startScreen();

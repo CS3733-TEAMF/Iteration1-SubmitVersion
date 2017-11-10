@@ -5,6 +5,9 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+// Created by Stephanie and Floris
+// Note: Antivirus and firewalls can cause problems with sending emails
+// Purpose: Send directions to a user defined email
 public class EmailService {
         String userName;
         String passWord;
@@ -16,35 +19,43 @@ public class EmailService {
 
         // Purpose: Sending an email through google's SMTP Server
         // Parameters: String Directions, String receiver (email address)
-        public void sendEmail(String directions, String receiver) {
-            // Email Server Properties
-            Properties props = new Properties();
-            props.put("mail.smtp.auth", "true");
-            props.put("mail.smtp.starttls.enable", "true");
-            //server address
-            props.put("mail.smtp.host", "smtp.gmail.com");
-            //server ports
-            props.put("mail.smtp.port", "587");
+        public void sendEmail(String directions, String receiver) throws Exception, InvalidEmailException {
+            // Check to see if a valid email address was entered
+            if(receiver.length() < 4 || !(receiver.contains("@"))) {
+                // Work on the invalid email exception here
+                System.out.println("That is not a valid Email, try again!");
+                throw new InvalidEmailException();
+            } else {
+                // Email server properties
+                Properties props = new Properties();
+                props.put("mail.smtp.auth", "true");
+                props.put("mail.smtp.starttls.enable", "true");
+                //server address
+                props.put("mail.smtp.host", "smtp.gmail.com");
+                //server ports
+                props.put("mail.smtp.port", "587");
+                props.put("javax.net.ssl.trustStore", "C:/.keystore");
 
-            // Logging in to the google server
-            Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-                @Override
-                protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(userName, passWord);
+                // Logging in to the google server
+                Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(userName, passWord);
+                    }
+                });
+
+                try {
+                    // Composing the message
+                    Message msg = new MimeMessage(session);
+                    msg.setFrom(new InternetAddress("teamFCS3733@gmail.com")); // From
+                    msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiver)); // Target email addresses
+                    msg.setSubject("Your Directions for Brigham & Women's Hospital");
+                    msg.setContent(directions, "text/html; charset=utf-8"); // Enter
+                    Transport.send(msg);
+                    System.out.println("Sent message");
+                } catch (MessagingException e) {
+                    System.out.println("An error occurred while sending the message");
                 }
-            });
-
-            try {
-                // Composing the message
-                Message msg = new MimeMessage(session);
-                msg.setFrom(new InternetAddress("teamFCS3733@gmail.com")); // From
-                msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiver)); // Target email addresses
-                msg.setSubject("Testing");
-                msg.setContent( directions,"text/html; charset=utf-8"); // Enter
-                Transport.send(msg);
-                System.out.println("Sent message");
-            } catch (MessagingException e) {
-                System.out.println("An error occurred while sending the message");
             }
         }
     }
