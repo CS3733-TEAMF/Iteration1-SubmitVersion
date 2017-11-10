@@ -28,7 +28,8 @@ public class NavigationPageController {
 
     @FXML
     public void sendMsg(){
-
+        EmailService emailService = new EmailService("teamFCS3733@gmail.com", "FuschiaFairiesSoftEng");
+        emailService.sendEmail("Some directions", email.getText());
     }
     @FXML
     public void back(){
