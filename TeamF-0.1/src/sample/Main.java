@@ -52,6 +52,9 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        testEmbeddedDB db = new testEmbeddedDB();
+
         launch(args);
+
     }
 }
