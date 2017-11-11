@@ -9,4 +9,7 @@ public class serviceRequestController {
     public void backToStart() { Main.startScreen();}
     @FXML
     public void backToAdmin() {Main.adminScreen();}
+    @FXML
+    public void popUpTransportRequest() {Main.popTRScreen();}
+
 }

@@ -10,7 +10,6 @@
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -63,6 +62,11 @@
                         <Font size="24.0" />
                      </font>
                   </Button>
+                  <Button accessibleRole="TOGGLE_BUTTON" layoutY="99.0" mnemonicParsing="false" onAction="#popUpTransportRequest" prefHeight="75.0" prefWidth="297.0" text="Transport Request">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
                   <SplitMenuButton alignment="CENTER" layoutY="475.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="236.0" text="Destination" wrapText="true" AnchorPane.bottomAnchor="191.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="475.0">
                     <items>
                       <MenuItem mnemonicParsing="false" text="This Location" />
@@ -85,11 +89,6 @@
                         <Font size="24.0" />
                      </font>
                   </Button>
-                  <ToggleButton layoutX="-1.0" layoutY="98.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="297.0" text="Transport Request">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </ToggleButton>
           </children>
         </AnchorPane>
         <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
