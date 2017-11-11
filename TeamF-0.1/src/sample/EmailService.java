@@ -11,6 +11,8 @@ import javax.mail.internet.MimeMessage;
 public class EmailService {
         String userName;
         String passWord;
+        //Testing component, has a testable message to be used in junit
+        String status;
 
         public EmailService(String userName, String passWord) {
             this.userName = userName;
@@ -23,7 +25,8 @@ public class EmailService {
             // Check to see if a valid email address was entered
             if(receiver.length() < 4 || !(receiver.contains("@"))) {
                 // Work on the invalid email exception here
-                System.out.println("That is not a valid Email, try again!");
+                this.status = "That is not a valid Email, try again!";
+                System.out.println(this.status);
                 throw new InvalidEmailException();
             } else {
                 // Email server properties
@@ -52,9 +55,11 @@ public class EmailService {
                     msg.setSubject("Your Directions for Brigham & Women's Hospital");
                     msg.setContent(directions, "text/html; charset=utf-8"); // Enter
                     Transport.send(msg);
-                    System.out.println("Sent message");
+                    this.status = "Sent message";
+                    System.out.println(this.status);
                 } catch (MessagingException e) {
-                    System.out.println("An error occurred while sending the message");
+                    this.status = "An error occurred while sending the message";
+                    System.out.println(this.status);
                 }
             }
         }
