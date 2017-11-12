@@ -17,7 +17,7 @@ public class Main extends Application {
     private static Scene map;
     private static Scene admin;
     private static Scene service;
-    private static Scene popUpTR;//pop up transportation request.
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         stage = primaryStage;
@@ -26,7 +26,6 @@ public class Main extends Application {
         map = new Scene(FXMLLoader.load(getClass().getResource("UI/NavigationScreen.fxml")), 1024, 768);
         admin = new Scene(FXMLLoader.load(getClass().getResource("UI/AdminControls.fxml")), 1024, 768);
         service = new Scene(FXMLLoader.load(getClass().getResource("UI/Service_Request_Menu.fxml")), 1024, 768);
-        popUpTR = new Scene(FXMLLoader.load(getClass().getResource("UI/TransportationPopUp.fxml")), 500, 344);
         //Parent root = FXMLLoader.load(getClass().getResource("UI/StartPage.fxml"));
         stage.setTitle("Team F Hospital GPS");
         stage.setScene(start);
@@ -56,12 +55,6 @@ public class Main extends Application {
     }
     public static void serviceScreen() {
         stage.setScene(service);
-        stage.centerOnScreen();
-
-    }
-
-    public static void popTRScreen() {
-        stage.setScene(popUpTR);
         stage.centerOnScreen();
     }
 
