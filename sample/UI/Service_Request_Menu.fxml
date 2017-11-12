@@ -52,7 +52,7 @@
                   </Label>
                   <Accordion layoutY="100.0" maxHeight="1.7976931348623157E308" prefHeight="442.0" prefWidth="756.0">
                      <panes>
-                        <TitledPane fx:id="assistancePane" animated="false" onMouseClicked="#setAssistanceID" prefHeight="268.0" prefWidth="760.0" text="Assistance Request">
+                        <TitledPane fx:id="assistancePane" animated="false" onMouseClicked="#updateAssistance" prefHeight="268.0" prefWidth="760.0" text="Assistance Request">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -70,9 +70,9 @@
                                           <Label prefHeight="57.0" prefWidth="138.0" text="Service ID" />
                                           <Label prefHeight="75.0" prefWidth="188.0" text="Time" GridPane.rowIndex="1" />
                                           <Label prefHeight="35.0" prefWidth="171.0" text="Urgency Level" GridPane.rowIndex="2" />
-                                          <TextField fx:id="assistanceTime" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <TextField fx:id="assistanceUrgency" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                           <Label fx:id="assistanceID" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" />
+                                          <Label fx:id="assistanceTime" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
                                     <TextArea fx:id="assistanceDescription" layoutX="369.0" layoutY="12.0" prefHeight="198.0" prefWidth="341.0" promptText="Describe your request here.">
@@ -101,7 +101,7 @@
                               </AnchorPane>
                            </content>
                         </TitledPane>
-                        <TitledPane fx:id="foodPane" animated="false" onMouseClicked="#setFoodID" text="Food Request">
+                        <TitledPane fx:id="foodPane" animated="false" onMouseClicked="#updateFood" text="Food Request">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -122,12 +122,12 @@
                                           <Label prefHeight="75.0" prefWidth="188.0" text="Time" GridPane.rowIndex="1" />
                                           <Label prefHeight="35.0" prefWidth="171.0" text="Patient Name" GridPane.rowIndex="2" />
                                           <Label prefHeight="69.0" prefWidth="152.0" text="Food Order" GridPane.rowIndex="4" />
-                                          <TextField fx:id="foodTime" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <TextField fx:id="foodPatient" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                           <TextField fx:id="foodOrder" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                           <Label fx:id="foodID" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" />
                                           <Label prefHeight="35.0" prefWidth="171.0" text="Time To Be Served" GridPane.rowIndex="3" />
                                           <TextField fx:id="foodServingTime" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <Label fx:id="foodTime" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
                                     <TextArea fx:id="foodDescription" layoutX="369.0" layoutY="12.0" prefHeight="198.0" prefWidth="341.0" promptText="Describe your request here.">
@@ -156,7 +156,7 @@
                               </AnchorPane>
                            </content>
                         </TitledPane>
-                        <TitledPane fx:id="transportPane" animated="false" onMouseClicked="#setTransportID" prefHeight="310.0" prefWidth="756.0" text="Transport Request">
+                        <TitledPane fx:id="transportPane" animated="false" onMouseClicked="#updateTransport" prefHeight="310.0" prefWidth="756.0" text="Transport Request">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -176,10 +176,10 @@
                                           <Label prefHeight="75.0" prefWidth="188.0" text="Time" GridPane.rowIndex="1" />
                                           <Label prefHeight="35.0" prefWidth="171.0" text="Patient Name" GridPane.rowIndex="2" />
                                           <Label prefHeight="69.0" prefWidth="152.0" text="Transportation Type" GridPane.rowIndex="3" />
-                                          <TextField fx:id="transportTime" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <TextField fx:id="transportPatient" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                           <TextField fx:id="transportType" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                           <Label fx:id="transportID" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" />
+                                          <Label fx:id="transportTime" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
                                     <TextArea fx:id="transportDescription" layoutX="369.0" layoutY="12.0" prefHeight="198.0" prefWidth="341.0" promptText="Describe your request here.">
@@ -208,7 +208,7 @@
                               </AnchorPane>
                            </content>
                         </TitledPane>
-                        <TitledPane fx:id="cleanPane" animated="false" onMouseClicked="#setCleanID" prefHeight="189.0" prefWidth="334.0" text="Cleaning Request">
+                        <TitledPane fx:id="cleanPane" animated="false" onMouseClicked="#updateClean" prefHeight="189.0" prefWidth="334.0" text="Cleaning Request">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -226,9 +226,9 @@
                                           <Label prefHeight="57.0" prefWidth="138.0" text="Service ID" />
                                           <Label prefHeight="75.0" prefWidth="188.0" text="Time" GridPane.rowIndex="1" />
                                           <Label prefHeight="35.0" prefWidth="171.0" text="Urgency Level" GridPane.rowIndex="2" />
-                                          <TextField fx:id="cleanTime" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <TextField fx:id="cleanLevel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                           <Label fx:id="cleanID" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" />
+                                          <Label fx:id="cleanTime" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
                                     <TextArea fx:id="cleanDescription" layoutX="369.0" layoutY="12.0" prefHeight="198.0" prefWidth="341.0" promptText="Describe your request here.">
@@ -257,7 +257,7 @@
                               </AnchorPane>
                            </content>
                         </TitledPane>
-                        <TitledPane fx:id="securityPane" animated="false" onMouseClicked="#setSecurityID" text="Security Request">
+                        <TitledPane fx:id="securityPane" animated="false" onMouseClicked="#updateSecurity" text="Security Request">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -275,9 +275,9 @@
                                           <Label prefHeight="57.0" prefWidth="138.0" text="Service ID" />
                                           <Label prefHeight="75.0" prefWidth="188.0" text="Time" GridPane.rowIndex="1" />
                                           <Label prefHeight="35.0" prefWidth="171.0" text="Urgency Level" GridPane.rowIndex="2" />
-                                          <TextField fx:id="securityTime" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <TextField fx:id="securityLevel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                           <Label fx:id="securityID" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" />
+                                          <Label fx:id="securityTime" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
                                     <TextArea fx:id="securityDescription" layoutX="369.0" layoutY="12.0" prefHeight="198.0" prefWidth="341.0" promptText="Describe your request here.">
