@@ -2,7 +2,8 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import java.util.*;
+import java.util.Date;
+import java.text.*;
 
 public class serviceRequestController {
 
@@ -24,7 +25,7 @@ public class serviceRequestController {
     private Label assistanceID;
 
     @FXML
-    private TextField assistanceTime;
+    private Label assistanceTime;
 
     @FXML
     private TextField assistanceUrgency;
@@ -33,8 +34,11 @@ public class serviceRequestController {
     private TextArea assistanceDescription;
 
     @FXML
-    public void setAssistanceID(){
+    public void updateAssistance(){
         assistanceID.setText(Integer.toString(ID));
+        Date date = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat ("hh:mm a");
+        assistanceTime.setText(ft.format(date));;
     }
 
     @FXML
@@ -63,7 +67,7 @@ public class serviceRequestController {
     private Label foodID;
 
     @FXML
-    private TextField foodTime;
+    private Label foodTime;
 
     @FXML
     private TextField foodPatient;
@@ -78,8 +82,11 @@ public class serviceRequestController {
     private TextArea foodDescription;
 
     @FXML
-    public void setFoodID(){
+    public void updateFood(){
         foodID.setText(Integer.toString(ID));
+        Date date = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat ("hh:mm a");
+        foodTime.setText(ft.format(date));;
     }
 
     @FXML
@@ -106,7 +113,7 @@ public class serviceRequestController {
     private Label transportID;
 
     @FXML
-    private TextField transportTime;
+    private Label transportTime;
 
     @FXML
     private TextField transportPatient;
@@ -118,8 +125,11 @@ public class serviceRequestController {
     private TextArea transportDescription;
 
     @FXML
-    public void setTransportID(){
+    public void updateTransport(){
         transportID.setText(Integer.toString(ID));
+        Date date = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat ("hh:mm a");
+        transportTime.setText(ft.format(date));;
     }
 
     @FXML
@@ -147,7 +157,7 @@ public class serviceRequestController {
     private Label cleanID;
 
     @FXML
-    private TextField cleanTime;
+    private Label cleanTime;
 
     @FXML
     private TextField cleanLevel;
@@ -156,8 +166,11 @@ public class serviceRequestController {
     private TextArea cleanDescription;
 
     @FXML
-    public void setCleanID(){
+    public void updateClean(){
         cleanID.setText(Integer.toString(ID));
+        Date date = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat ("hh:mm a");
+        cleanTime.setText(ft.format(date));;
     }
 
     @FXML
@@ -185,7 +198,7 @@ public class serviceRequestController {
     private Label securityID;
 
     @FXML
-    private TextField securityTime;
+    private Label securityTime;
 
     @FXML
     private TextField securityLevel;
@@ -194,8 +207,11 @@ public class serviceRequestController {
     private TextArea securityDescription;
 
     @FXML
-    public void setSecurityID(){
+    public void updateSecurity(){
         securityID.setText(Integer.toString(ID));
+        Date date = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat ("hh:mm a");
+        securityTime.setText(ft.format(date));;
     }
 
     @FXML
