@@ -39,10 +39,24 @@ public class NavigationPageController {
     //sends the email message by using user input
     @FXML
     public void sendMsg() throws Exception{
-        boolean success = true;
-        //EmailService emailService = new EmailService("teamFCS3733@gmail.com", "FuschiaFairiesSoftEng");
+        Vector<Node> msgVec = new Vector<Node>(10);
+
+        //here we would add the node elements to the thing however it goes, rn I'm adding manually
+        Node n1 = new Node("FDEPT00101", 1614, 829, 1, "Tower", "DEPT", "Center for International Medecine", "CIM", 'F');
+        msgVec.addElement(n1);
+        Node n2 = new Node("FHALL00201", 1640, 850, 1, "Tower", "HALL", "Chapel Hall Point 1", "CHP1", 'F');
+        msgVec.addElement(n2);
+        Node n3 = new Node("FHALL00301", 1788, 850, 1, "Tower", "HALL", "Chapel Hall Point 2", "CHP2", 'F');
+        msgVec.addElement(n3);
+        Node n4 = new Node("FHALL00701", 1759, 900, 1, "Tower", "HALL", "Chapel Hall Entrance", "CHE", 'F');
+        msgVec.addElement(n4);
+        Node n5 = new Node("FHALL01301", 1760, 952, 1, "Tower", "HALL", "International Hall Point 2", "IHP2", 'F');
+        msgVec.addElement(n5);
+        Node n6 = new Node("FSERV00101", 1724, 930, 1, "Tower", "SERV", "Multifaith Chapel", "MFC", 'F');
+        msgVec.addElement(n6);
+
         EmailService emailService = new EmailService("teamFCS3733@gmail.com", "FuschiaFairiesSoftEng");
-        emailService.sendEmail("Some directions", email.getText());
+        emailService.sendEmail(NavigationPageController.directions(msgVec), email.getText());
     }
 
     @FXML
