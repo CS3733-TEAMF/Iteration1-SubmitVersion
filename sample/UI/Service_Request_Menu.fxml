@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -39,7 +40,7 @@
       </MenuBar>
       <SplitPane dividerPositions="0.5" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="546.0" prefWidth="1024.0" VBox.vgrow="ALWAYS">
          <items>
-            <AnchorPane maxHeight="2000.0" maxWidth="760.0" prefHeight="743.0" prefWidth="760.0">
+            <AnchorPane maxHeight="2000.0" maxWidth="1.7976931348623157E308" prefHeight="743.0" prefWidth="760.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" layoutY="2.0" minWidth="60.0" prefHeight="85.0" prefWidth="334.0" style="&#10;" text="Service Request Options" wrapText="true">
                      <font>
@@ -49,7 +50,7 @@
                         <Insets left="4.0" />
                      </padding>
                   </Label>
-                  <Accordion layoutY="100.0" prefHeight="442.0" prefWidth="756.0">
+                  <Accordion layoutY="100.0" maxHeight="1.7976931348623157E308" prefHeight="442.0" prefWidth="756.0">
                      <panes>
                         <TitledPane animated="false" prefHeight="268.0" prefWidth="760.0" text="Assistance Request">
                            <content>
@@ -327,6 +328,7 @@
                   </TableView>
                   <Button layoutX="48.0" layoutY="654.0" mnemonicParsing="false" text="Accept" />
                   <Button layoutX="152.0" layoutY="653.0" mnemonicParsing="false" text="Delete" />
+                  <ScrollBar layoutX="226.0" layoutY="108.0" orientation="VERTICAL" prefHeight="530.0" prefWidth="14.0" />
                </children>
             </AnchorPane>
          </items>
