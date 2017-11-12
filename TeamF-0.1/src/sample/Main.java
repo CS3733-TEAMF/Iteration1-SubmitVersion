@@ -9,6 +9,8 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 
+import java.util.Vector;
+
 public class Main extends Application {
 
     private static Stage stage;
@@ -52,6 +54,31 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        Vector<Node> Vec = new Vector<Node>(10);
+        Node n1 = new Node("FDEPT00101", 1614, 829, 1, "Tower", "DEPT", "Center for International Medecine", "CIM", 'F');
+        Vec.addElement(n1);
+        Node n2 = new Node("FHALL00201", 1640, 850, 1, "Tower", "HALL", "Chapel Hall Point 1", "CHP1", 'F');
+        Vec.addElement(n2);
+        Node n3 = new Node("FHALL00301", 1788, 850, 1, "Tower", "HALL", "Chapel Hall Point 2", "CHP2", 'F');
+        Vec.addElement(n3);
+        Node n4 = new Node("FHALL00701", 1759, 900, 1, "Tower", "HALL", "Chapel Hall Entrance", "CHE", 'F');
+        Vec.addElement(n4);
+        Node n5 = new Node("FHALL01301", 1760, 952, 1, "Tower", "HALL", "International Hall Point 2", "IHP2", 'F');
+        Vec.addElement(n5);
+        Node n6 = new Node("FSERV00101", 1724, 930, 1, "Tower", "SERV", "Multifaith Chapel", "MFC", 'F');
+        Vec.addElement(n6);
+
+        Vector<Node> InverseVec = new Vector<Node>(10);
+        InverseVec.addElement(n6);
+        InverseVec.addElement(n5);
+        InverseVec.addElement(n4);
+        InverseVec.addElement(n3);
+        InverseVec.addElement(n3);
+        InverseVec.addElement(n2);
+        InverseVec.addElement(n1);
+
+        System.out.print(NavigationPageController.directions(Vec));
+        System.out.print(NavigationPageController.directions(InverseVec));
         launch(args);
     }
 }
