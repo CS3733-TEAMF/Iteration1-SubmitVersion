@@ -9,6 +9,7 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Vector;
 
 public class Main extends Application {
@@ -53,7 +54,7 @@ public class Main extends Application {
         stage.centerOnScreen();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
         Vector<Node> Vec = new Vector<Node>(10);
         Node n1 = new Node("FDEPT00101", 1614, 829, 1, "Tower", "DEPT", "Center for International Medecine", "CIM", 'F');
         Vec.addElement(n1);
@@ -79,6 +80,8 @@ public class Main extends Application {
 
         System.out.print(NavigationPageController.directions(Vec));
         System.out.print(NavigationPageController.directions(InverseVec));
+        NavigationPageController controller = new NavigationPageController();
+        controller.drawDirections(Vec);
         launch(args);
     }
 }

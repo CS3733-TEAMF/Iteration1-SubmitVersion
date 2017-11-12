@@ -2,6 +2,15 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Vector;
 
 public class NavigationPageController {
@@ -21,8 +30,9 @@ public class NavigationPageController {
     private static Label invalidEmailText;
 
     @FXML
-    public void go(){
-
+    public void go() throws IOException{
+        Vector<Node> nodes = new Vector<Node>();
+        drawDirections(nodes);
     }
 
     @FXML
@@ -98,4 +108,22 @@ public class NavigationPageController {
         return out;
     }
 
+    public void drawDirections(Vector<Node> path) throws IOException {
+        // Opening the image
+        BufferedImage firstFloor = ImageIO.read(getClass().getResource("/sample/UI/Icons/01_thefirstfloorCOPY.png"));
+        Graphics2D pathImage =  firstFloor.createGraphics();
+        pathImage.setStroke(new BasicStroke(5));
+        pathImage.setColor(Color.getHSBColor(207, 99, 70));
+
+        int length = path.size();
+        for(int i = 0; i < length ; i++) {
+            Node node = path.get(i);
+            pathImage.drawOval(node.x,node.y,20,20);
+            if(i + 1 < length){
+                Node node2 = path.get(i+1);
+                pathImage.drawLine(node.x,node.y,node2.x,node2.y);
+            }
+        }
+        ImageIO.write(firstFloor, "PNG", new File("TEST.png"));
+    }
 }
