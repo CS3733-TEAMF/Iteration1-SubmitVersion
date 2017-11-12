@@ -17,11 +17,13 @@ public class EmailService {
         public EmailService(String userName, String passWord) {
             this.userName = userName;
             this.passWord = passWord;
+            this.status = "Setting up email services...";
         }
 
         // Purpose: Sending an email through google's SMTP Server
         // Parameters: String Directions, String receiver (email address)
         public void sendEmail(String directions, String receiver) throws InvalidEmailException {
+            System.out.println(status);
             // Check to see if a valid email address was entered
             if(receiver.length() < 4 || !(receiver.contains("@"))) {
                 // Work on the invalid email exception here
