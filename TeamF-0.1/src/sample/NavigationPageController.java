@@ -72,8 +72,8 @@ public class NavigationPageController {
         }
         a = in.get(0);
         b = in.get(1);
-        out = out.concat("Start at " + a.longName+"\n");
-        out = out.concat("Go towards " + b.longName+"\n");
+        out = out.concat("Start at " + a.longName+"<br>");
+        out = out.concat("Go towards " + b.longName+"<br>");
 
         for(int i = 2; i < in.size(); i++){
             a = in.get(i-2);
@@ -93,7 +93,7 @@ public class NavigationPageController {
                 turn = "sharply left";
             }
 
-            out = out.concat("When you arrive at " + b.longName + " go " + turn + " towards " + c.longName + "\n");
+            out = out.concat("When you arrive at " + b.longName + " go " + turn + " towards " + c.longName + "<br>");
         }
         return out;
     }
