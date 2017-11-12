@@ -52,7 +52,7 @@
                   </Label>
                   <Accordion layoutY="100.0" maxHeight="1.7976931348623157E308" prefHeight="442.0" prefWidth="756.0">
                      <panes>
-                        <TitledPane animated="false" prefHeight="268.0" prefWidth="760.0" text="Assistance Request">
+                        <TitledPane fx:id="assistancePane" animated="false" onMouseClicked="#setAssistanceID" prefHeight="268.0" prefWidth="760.0" text="Assistance Request">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -70,20 +70,20 @@
                                           <Label prefHeight="57.0" prefWidth="138.0" text="Service ID" />
                                           <Label prefHeight="75.0" prefWidth="188.0" text="Time" GridPane.rowIndex="1" />
                                           <Label prefHeight="35.0" prefWidth="171.0" text="Urgency Level" GridPane.rowIndex="2" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <Label maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" />
+                                          <TextField fx:id="assistanceTime" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <TextField fx:id="assistanceUrgency" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label fx:id="assistanceID" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" />
                                        </children>
                                     </GridPane>
-                                    <TextArea layoutX="369.0" layoutY="12.0" prefHeight="198.0" prefWidth="341.0" promptText="Describe your request here.">
+                                    <TextArea fx:id="assistanceDescription" layoutX="369.0" layoutY="12.0" prefHeight="198.0" prefWidth="341.0" promptText="Describe your request here.">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </TextArea>
                                     <SplitMenuButton alignment="CENTER" layoutX="107.0" layoutY="235.0" mnemonicParsing="false" prefHeight="25.6" prefWidth="210.0" text="Location" wrapText="true">
                                        <items>
-                                          <MenuItem mnemonicParsing="false" text="This Location" />
-                                          <MenuItem mnemonicParsing="false" text="Select Location on Map" />
+                                          <MenuItem mnemonicParsing="false" onAction="#assistanceThisLocation" text="This Location" />
+                                          <MenuItem mnemonicParsing="false" onAction="#assistanceChooseLocation" text="Select Location on Map" />
                                        </items>
                                        <font>
                                           <Font size="24.0" />
@@ -92,7 +92,7 @@
                                           <Insets />
                                        </opaqueInsets>
                                     </SplitMenuButton>
-                                    <Button layoutX="369.0" layoutY="233.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="287.0" text="Send Service Request">
+                                    <Button layoutX="369.0" layoutY="233.0" mnemonicParsing="false" onAction="#assistanceSendRequest" prefHeight="55.0" prefWidth="287.0" text="Send Service Request">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -101,7 +101,7 @@
                               </AnchorPane>
                            </content>
                         </TitledPane>
-                        <TitledPane animated="false" text="Food Request">
+                        <TitledPane fx:id="foodPane" animated="false" onMouseClicked="#setFoodID" text="Food Request">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -122,23 +122,23 @@
                                           <Label prefHeight="75.0" prefWidth="188.0" text="Time" GridPane.rowIndex="1" />
                                           <Label prefHeight="35.0" prefWidth="171.0" text="Patient Name" GridPane.rowIndex="2" />
                                           <Label prefHeight="69.0" prefWidth="152.0" text="Food Order" GridPane.rowIndex="4" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                          <Label maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" />
+                                          <TextField fx:id="foodTime" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <TextField fx:id="foodPatient" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <TextField fx:id="foodOrder" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <Label fx:id="foodID" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" />
                                           <Label prefHeight="35.0" prefWidth="171.0" text="Time To Be Served" GridPane.rowIndex="3" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <TextField fx:id="foodServingTime" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
-                                    <TextArea layoutX="369.0" layoutY="12.0" prefHeight="198.0" prefWidth="341.0" promptText="Describe your request here.">
+                                    <TextArea fx:id="foodDescription" layoutX="369.0" layoutY="12.0" prefHeight="198.0" prefWidth="341.0" promptText="Describe your request here.">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </TextArea>
                                     <SplitMenuButton alignment="CENTER" layoutX="107.0" layoutY="235.0" mnemonicParsing="false" prefHeight="25.6" prefWidth="210.0" text="Location" wrapText="true">
                                        <items>
-                                          <MenuItem mnemonicParsing="false" text="This Location" />
-                                          <MenuItem mnemonicParsing="false" text="Select Location on Map" />
+                                          <MenuItem mnemonicParsing="false" onAction="#foodThisLocation" text="This Location" />
+                                          <MenuItem mnemonicParsing="false" onAction="#foodChooseLocation" text="Select Location on Map" />
                                        </items>
                                        <font>
                                           <Font size="24.0" />
@@ -147,7 +147,7 @@
                                           <Insets />
                                        </opaqueInsets>
                                     </SplitMenuButton>
-                                    <Button layoutX="369.0" layoutY="233.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="287.0" text="Send Service Request">
+                                    <Button layoutX="369.0" layoutY="233.0" mnemonicParsing="false" onAction="#foodSendRequest" prefHeight="55.0" prefWidth="287.0" text="Send Service Request">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -156,7 +156,7 @@
                               </AnchorPane>
                            </content>
                         </TitledPane>
-                        <TitledPane animated="false" prefHeight="310.0" prefWidth="756.0" text="Transport Request">
+                        <TitledPane fx:id="transportPane" animated="false" onMouseClicked="#setTransportID" prefHeight="310.0" prefWidth="756.0" text="Transport Request">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -176,21 +176,21 @@
                                           <Label prefHeight="75.0" prefWidth="188.0" text="Time" GridPane.rowIndex="1" />
                                           <Label prefHeight="35.0" prefWidth="171.0" text="Patient Name" GridPane.rowIndex="2" />
                                           <Label prefHeight="69.0" prefWidth="152.0" text="Transportation Type" GridPane.rowIndex="3" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                          <Label maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" />
+                                          <TextField fx:id="transportTime" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <TextField fx:id="transportPatient" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <TextField fx:id="transportType" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <Label fx:id="transportID" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" />
                                        </children>
                                     </GridPane>
-                                    <TextArea layoutX="369.0" layoutY="12.0" prefHeight="198.0" prefWidth="341.0" promptText="Describe your request here.">
+                                    <TextArea fx:id="transportDescription" layoutX="369.0" layoutY="12.0" prefHeight="198.0" prefWidth="341.0" promptText="Describe your request here.">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </TextArea>
                                     <SplitMenuButton alignment="CENTER" layoutX="107.0" layoutY="235.0" mnemonicParsing="false" prefHeight="25.6" prefWidth="210.0" text="Location" wrapText="true">
                                        <items>
-                                          <MenuItem mnemonicParsing="false" text="This Location" />
-                                          <MenuItem mnemonicParsing="false" text="Select Location on Map" />
+                                          <MenuItem mnemonicParsing="false" onAction="#transportThisLocation" text="This Location" />
+                                          <MenuItem mnemonicParsing="false" onAction="#transportChooseLocation" text="Select Location on Map" />
                                        </items>
                                        <font>
                                           <Font size="24.0" />
@@ -199,7 +199,7 @@
                                           <Insets />
                                        </opaqueInsets>
                                     </SplitMenuButton>
-                                    <Button layoutX="369.0" layoutY="233.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="287.0" text="Send Service Request">
+                                    <Button layoutX="369.0" layoutY="233.0" mnemonicParsing="false" onAction="#transportSendRequest" prefHeight="55.0" prefWidth="287.0" text="Send Service Request">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -208,7 +208,7 @@
                               </AnchorPane>
                            </content>
                         </TitledPane>
-                        <TitledPane animated="false" prefHeight="189.0" prefWidth="334.0" text="Cleaning Request">
+                        <TitledPane fx:id="cleanPane" animated="false" onMouseClicked="#setCleanID" prefHeight="189.0" prefWidth="334.0" text="Cleaning Request">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -226,20 +226,20 @@
                                           <Label prefHeight="57.0" prefWidth="138.0" text="Service ID" />
                                           <Label prefHeight="75.0" prefWidth="188.0" text="Time" GridPane.rowIndex="1" />
                                           <Label prefHeight="35.0" prefWidth="171.0" text="Urgency Level" GridPane.rowIndex="2" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <Label maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" />
+                                          <TextField fx:id="cleanTime" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <TextField fx:id="cleanLevel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label fx:id="cleanID" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" />
                                        </children>
                                     </GridPane>
-                                    <TextArea layoutX="369.0" layoutY="12.0" prefHeight="198.0" prefWidth="341.0" promptText="Describe your request here.">
+                                    <TextArea fx:id="cleanDescription" layoutX="369.0" layoutY="12.0" prefHeight="198.0" prefWidth="341.0" promptText="Describe your request here.">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </TextArea>
                                     <SplitMenuButton alignment="CENTER" layoutX="107.0" layoutY="235.0" mnemonicParsing="false" prefHeight="25.6" prefWidth="210.0" text="Location" wrapText="true">
                                        <items>
-                                          <MenuItem mnemonicParsing="false" text="This Location" />
-                                          <MenuItem mnemonicParsing="false" text="Select Location on Map" />
+                                          <MenuItem mnemonicParsing="false" onAction="#cleanThisLocation" text="This Location" />
+                                          <MenuItem mnemonicParsing="false" onAction="#cleanChooseLocation" text="Select Location on Map" />
                                        </items>
                                        <font>
                                           <Font size="24.0" />
@@ -248,7 +248,7 @@
                                           <Insets />
                                        </opaqueInsets>
                                     </SplitMenuButton>
-                                    <Button layoutX="369.0" layoutY="233.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="287.0" text="Send Service Request">
+                                    <Button layoutX="369.0" layoutY="233.0" mnemonicParsing="false" onAction="#cleanSendRequest" prefHeight="55.0" prefWidth="287.0" text="Send Service Request">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -257,7 +257,7 @@
                               </AnchorPane>
                            </content>
                         </TitledPane>
-                        <TitledPane animated="false" text="Security Request">
+                        <TitledPane fx:id="securityPane" animated="false" onMouseClicked="#setSecurityID" text="Security Request">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -275,20 +275,20 @@
                                           <Label prefHeight="57.0" prefWidth="138.0" text="Service ID" />
                                           <Label prefHeight="75.0" prefWidth="188.0" text="Time" GridPane.rowIndex="1" />
                                           <Label prefHeight="35.0" prefWidth="171.0" text="Urgency Level" GridPane.rowIndex="2" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <Label maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" />
+                                          <TextField fx:id="securityTime" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <TextField fx:id="securityLevel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label fx:id="securityID" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="0.0" GridPane.columnIndex="1" />
                                        </children>
                                     </GridPane>
-                                    <TextArea layoutX="369.0" layoutY="12.0" prefHeight="198.0" prefWidth="341.0" promptText="Describe your request here.">
+                                    <TextArea fx:id="securityDescription" layoutX="369.0" layoutY="12.0" prefHeight="198.0" prefWidth="341.0" promptText="Describe your request here.">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </TextArea>
                                     <SplitMenuButton alignment="CENTER" layoutX="107.0" layoutY="235.0" mnemonicParsing="false" prefHeight="25.6" prefWidth="210.0" text="Location" wrapText="true">
                                        <items>
-                                          <MenuItem mnemonicParsing="false" text="This Location" />
-                                          <MenuItem mnemonicParsing="false" text="Select Location on Map" />
+                                          <MenuItem mnemonicParsing="false" onAction="#securityThisLocation" text="This Location" />
+                                          <MenuItem mnemonicParsing="false" onAction="#securityChooseLocation" text="Select Location on Map" />
                                        </items>
                                        <font>
                                           <Font size="24.0" />
@@ -297,7 +297,7 @@
                                           <Insets />
                                        </opaqueInsets>
                                     </SplitMenuButton>
-                                    <Button layoutX="369.0" layoutY="233.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="287.0" text="Send Service Request">
+                                    <Button layoutX="369.0" layoutY="233.0" mnemonicParsing="false" onAction="#securitySendRequest" prefHeight="55.0" prefWidth="287.0" text="Send Service Request">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
