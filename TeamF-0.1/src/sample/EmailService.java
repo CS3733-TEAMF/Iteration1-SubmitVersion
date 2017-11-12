@@ -21,13 +21,13 @@ public class EmailService {
 
         // Purpose: Sending an email through google's SMTP Server
         // Parameters: String Directions, String receiver (email address)
-        public void sendEmail(String directions, String receiver) throws Exception, InvalidEmailException {
+        public void sendEmail(String directions, String receiver) throws InvalidEmailException {
             // Check to see if a valid email address was entered
             if(receiver.length() < 4 || !(receiver.contains("@"))) {
                 // Work on the invalid email exception here
                 this.status = "That is not a valid Email, try again!";
                 System.out.println(this.status);
-                throw new InvalidEmailException();
+                throw new InvalidEmailException(receiver);
             } else {
                 // Email server properties
                 Properties props = new Properties();

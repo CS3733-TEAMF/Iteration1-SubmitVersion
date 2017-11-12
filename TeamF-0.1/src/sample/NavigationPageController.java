@@ -17,6 +17,9 @@ public class NavigationPageController {
     private  CheckBox elevator;
 
     @FXML
+    private static Label invalidEmailText;
+
+    @FXML
     public void go(){
 
     }
@@ -26,8 +29,16 @@ public class NavigationPageController {
 
     }
 
+    //sets invalid email label when necessary for errorhandling
+    @FXML
+    public static void setInvalidEmail(){
+        invalidEmailText.setVisible(true);
+    }
+
+    //sends the email message by using user input
     @FXML
     public void sendMsg() throws Exception{
+        boolean success = true;
         //EmailService emailService = new EmailService("teamFCS3733@gmail.com", "FuschiaFairiesSoftEng");
         EmailService emailService = new EmailService("teamFCS3733@gmail.com", "FuschiaFairiesSoftEng");
         emailService.sendEmail("Some directions", email.getText());
