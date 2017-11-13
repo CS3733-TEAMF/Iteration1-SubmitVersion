@@ -20,6 +20,7 @@ public class ItErrorController {
     @FXML
     public void yesRequest(){
         Main.itRequestScreen();
+        ServiceRequestController.updateIt();
     }
 
     @FXML
