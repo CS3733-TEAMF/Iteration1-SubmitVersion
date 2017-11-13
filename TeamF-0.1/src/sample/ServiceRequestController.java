@@ -303,20 +303,24 @@ public class ServiceRequestController {
         itID.setText(Integer.toString(ID));
         Date date = new Date();
         SimpleDateFormat ft = new SimpleDateFormat ("hh:mm a");
-        itID.setText(ft.format(date));;
+        itTime.setText(ft.format(date));
     }
 
     @FXML
     public void itSendRequest() {
-        ItRequest newAssist = new ItRequest(null, itDescription.getText(),
+        ItRequest newIt = new ItRequest(null, itDescription.getText(),
                 Integer.parseInt(itID.getText()), itTime.getText(), 00000,
-                "assistance", Integer.parseInt(itUrgency.getText()));
-        requestList.addRequest(newAssist);
-
+                "it", Integer.parseInt(itUrgency.getText()));
+        requestList.addRequest(newIt);
         itUrgency.clear();
         itDescription.clear();
         ID++;
         itID.setText(Integer.toString(ID));
+        assistanceID.setText(Integer.toString(ID));
+        foodID.setText(Integer.toString(ID));
+        transportID.setText(Integer.toString(ID));
+        cleanID.setText(Integer.toString(ID));
+        securityID.setText(Integer.toString(ID));
     }
 
 }
