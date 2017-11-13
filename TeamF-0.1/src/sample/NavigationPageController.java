@@ -1,6 +1,5 @@
 package sample;
 
-
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
@@ -8,7 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 
 import javax.imageio.ImageIO;
-import javax.swing.text.html.ImageView;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -17,27 +15,52 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Vector;
 
-import static javafx.embed.swing.SwingFXUtils.toFXImage;
-
 public class NavigationPageController {
+
+    // Contains the user zoom setting
+    @FXML
+    private Slider zoom;
+
+    // Contains the user email entry
     @FXML
     private TextField email;
 
+    // Contains the map, object path is necessary otherwise the wrong imageview loads -F
     @FXML
     private javafx.scene.image.ImageView map;
 
+    // Contains the desired user destination
     @FXML
     private TextField destination;
 
+    // Contains stairs option
     @FXML
     private CheckBox stairs;
 
+    // Contains the elevator option
     @FXML
     private  CheckBox elevator;
 
+    // Contains the Invalid email error message
     @FXML
     private static Label invalidEmailText;
 
+    @FXML
+    public void dragMap(){
+        //map.setX();
+        //map.setY();
+    }
+
+    // Purpose: Zoom the map ImageView
+    @FXML
+    public void zoomMap(){
+        System.out.println("Zooming ");
+        double sliderSetting = zoom.getValue();
+        map.setScaleX(sliderSetting * 0.1);
+        map.setScaleY(sliderSetting * 0.1);
+    }
+
+    // The go button next to the destination text field, starts pathfinding algorithm, direction print, map drawing
     @FXML
     public void go() throws IOException,InterruptedException{
         Vector<Node> Vec = new Vector<Node>(10);
@@ -66,9 +89,10 @@ public class NavigationPageController {
         drawDirections(Vec);
     }
 
+    // Method to clear the path on the map when the user presses clear map
     @FXML
-    public void clear(){
-
+    public void clear() throws FileNotFoundException{
+        map.setImage(new Image(new FileInputStream("./src/sample/UI/Icons/01_thefirstfloor.png")));
     }
 
     //sets invalid email label when necessary for errorhandling
@@ -77,7 +101,7 @@ public class NavigationPageController {
         invalidEmailText.setVisible(true);
     }
 
-    //sends the email message by using user input
+    // User clicks send email button
     @FXML
     public void sendMsg() throws Exception{
         Vector<Node> msgVec = new Vector<Node>(10);
@@ -100,11 +124,13 @@ public class NavigationPageController {
         emailService.sendEmail(NavigationPageController.directions(msgVec), email.getText());
     }
 
+    // Button to return to the welcome screen
     @FXML
     public void back(){
         Main.startScreen();
     }
 
+    // Purpose: Print out directions for a path of nodes
     public static String directions(Vector<Node> in){
         String out = "";
         Node a, b, c;
@@ -139,6 +165,7 @@ public class NavigationPageController {
         return out;
     }
 
+    // Purpose: Draw a path on the map
     @FXML
     public void drawDirections(Vector<Node> path) throws IOException,InterruptedException {
         String nameDep = path.get(0).shortName;
@@ -146,11 +173,11 @@ public class NavigationPageController {
         String nameDest = path.get(length - 1).shortName;
 
         // Opening the image
-        BufferedImage firstFloor = ImageIO.read(getClass().getResource("/sample/UI/Icons/01_thefirstfloorCOPY.png"));
+        BufferedImage firstFloor = ImageIO.read(getClass().getResource("/sample/UI/Icons/01_thefirstfloor.png"));
         Graphics2D pathImage =  firstFloor.createGraphics();
 
         // Setting up the proper color settings
-        pathImage.setStroke(new BasicStroke(5)); // Controlling the width of the shapes drawn
+        pathImage.setStroke(new BasicStroke(7)); // Controlling the width of the shapes drawn
         pathImage.setColor( new java.awt.Color(2,97,187)); // This color is the same blue as logo
 
         // Iterate through all the path nodes to draw the path
@@ -167,7 +194,7 @@ public class NavigationPageController {
 
         // Saving the image in a new file, uses the departure location and destination in the name of the map
         ImageIO.write(firstFloor, "PNG", new File("./src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png"));
-        Thread.sleep(5000); // Wait before reading and setting the image as the new map
+        Thread.sleep(500); // Wait before reading and setting the image as the new map
         // Set the saved image as the new map
         map.setImage(new Image(new FileInputStream("./src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png")));
         System.out.println("Image edited and saved");
