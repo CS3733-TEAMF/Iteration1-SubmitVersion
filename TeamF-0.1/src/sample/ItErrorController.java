@@ -19,14 +19,12 @@ public class ItErrorController {
 
     @FXML
     public void yesRequest(){
-        System.out.println("yes");
         Main.itRequestScreen();
     }
 
     @FXML
     public void noRequest(){
-       System.out.println("no");
-       Main.mapScreen();
+       Main.startScreen();
     }
 
 }

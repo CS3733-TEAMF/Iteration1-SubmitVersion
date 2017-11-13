@@ -41,6 +41,7 @@ public class ServiceRequestController {
     @FXML
     private TextArea assistanceDescription;
 
+
     @FXML
     public void updateAssistance(){
         assistanceID.setText(Integer.toString(ID));
@@ -276,5 +277,46 @@ public class ServiceRequestController {
         securityID.setText(Integer.toString(ID));
     }
 
+
+    //it requests
+    @FXML
+    private Label itRequestLabel;
+
+    @FXML
+    private TextArea itDescription;
+
+    @FXML
+    private Button sendItRequest;
+
+    @FXML
+    private TextField itUrgency;
+
+    @FXML
+    private Label itID;
+
+    @FXML
+    private Label itTime;
+
+
+    @FXML
+    public void updateIt(){
+        itID.setText(Integer.toString(ID));
+        Date date = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat ("hh:mm a");
+        itID.setText(ft.format(date));;
+    }
+
+    @FXML
+    public void itSendRequest() {
+        ItRequest newAssist = new ItRequest(null, itDescription.getText(),
+                Integer.parseInt(itID.getText()), itTime.getText(), 00000,
+                "assistance", Integer.parseInt(itUrgency.getText()));
+        requestList.addRequest(newAssist);
+
+        itUrgency.clear();
+        itDescription.clear();
+        ID++;
+        itID.setText(Integer.toString(ID));
+    }
 
 }

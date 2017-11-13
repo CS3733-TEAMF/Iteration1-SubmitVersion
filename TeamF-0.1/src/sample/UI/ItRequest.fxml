@@ -7,10 +7,13 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ItRequestController">
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ServiceRequestController">
    <children>
       <MenuBar>
         <menus>
@@ -29,12 +32,75 @@
             <Insets left="65.0" top="5.0" />
          </VBox.margin>
       </Label>
-      <TextArea fx:id="itRequestDescription" prefHeight="200.0" prefWidth="200.0" promptText="Describe your issue here.">
+      <HBox>
+         <children>
+            <Label prefHeight="35.0" prefWidth="171.0" text="Service ID">
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="itID" prefHeight="35.0" prefWidth="171.0">
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="100.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <HBox>
+         <children>
+            <Label prefHeight="35.0" prefWidth="171.0" text="Time">
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="itTime" prefHeight="35.0" prefWidth="171.0">
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="100.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <HBox>
+         <children>
+            <Label prefHeight="35.0" prefWidth="171.0" text="Urgency Level">
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="itUrgency">
+               <HBox.margin>
+                  <Insets left="100.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <TextArea fx:id="itDescription" prefHeight="200.0" prefWidth="200.0" promptText="Describe your issue here.">
          <VBox.margin>
             <Insets left="20.0" right="20.0" top="5.0" />
          </VBox.margin>
       </TextArea>
-      <Button fx:id="sendItRequest" mnemonicParsing="false" prefHeight="55.0" prefWidth="287.0" text="Send Request">
+      <Button fx:id="itSendRequest" mnemonicParsing="false" onAction="#itSendRequest" prefHeight="55.0" prefWidth="287.0" text="Send Request">
          <font>
             <Font size="24.0" />
          </font>
