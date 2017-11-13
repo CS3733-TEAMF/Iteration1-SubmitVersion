@@ -10,7 +10,7 @@ public class testEmbeddedDB {
     Connection c;
 
 
-    public testEmbeddedDB(){
+    private testEmbeddedDB(){
 
 
         try{
