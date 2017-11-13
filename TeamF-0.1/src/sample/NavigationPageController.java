@@ -86,13 +86,13 @@ public class NavigationPageController {
         InverseVec.addElement(n3);
         InverseVec.addElement(n2);
         InverseVec.addElement(n1);
-        drawDirections(Vec);
+        drawDirections(InverseVec);
     }
 
     // Method to clear the path on the map when the user presses clear map
     @FXML
     public void clear() throws FileNotFoundException{
-        map.setImage(new Image(new FileInputStream("./src/sample/UI/Icons/01_thefirstfloor.png")));
+        map.setImage(new Image(new FileInputStream(".src.sample.UI.Icons.01_thefirstfloor.png")));
     }
 
     //sets invalid email label when necessary for errorhandling
@@ -139,15 +139,15 @@ public class NavigationPageController {
         }
         a = in.get(0);
         b = in.get(1);
-        out = out.concat("Start at " + a.longName+"<br>");
-        out = out.concat("Go towards " + b.longName+"<br>");
+        out = out.concat("Start at " + a.getLongName()+"<br>");
+        out = out.concat("Go towards " + b.getLongName()+"<br>");
 
         for(int i = 2; i < in.size(); i++){
             a = in.get(i-2);
             b = in.get(i-1);
             c = in.get(i);
             String turn = "";
-            double angle = NodeMath.findAngle(a.x, a.y, b.x, b.y, c.x, c.y);
+            double angle = NodeMath.findAngle(a.getxCoordinate(), a.getyCoordinate(), b.getxCoordinate(), b.getyCoordinate(), c.getxCoordinate(), c.getyCoordinate());
             if(angle<45){
                 turn = "sharply right";
             }else if(angle < 135){
@@ -160,7 +160,7 @@ public class NavigationPageController {
                 turn = "sharply left";
             }
 
-            out = out.concat("When you arrive at " + b.longName + " go " + turn + " towards " + c.longName + "<br>");
+            out = out.concat("When you arrive at " + b.getLongName() + " go " + turn + " towards " + c.getLongName() + "<br>");
         }
         return out;
     }
@@ -168,9 +168,9 @@ public class NavigationPageController {
     // Purpose: Draw a path on the map
     @FXML
     public void drawDirections(Vector<Node> path) throws IOException,InterruptedException {
-        String nameDep = path.get(0).shortName;
+        String nameDep = path.get(0).getShortName();
         int length = path.size();
-        String nameDest = path.get(length - 1).shortName;
+        String nameDest = path.get(length - 1).getShortName();
 
         // Opening the image
         BufferedImage firstFloor = ImageIO.read(getClass().getResource("/sample/UI/Icons/01_thefirstfloor.png"));
@@ -183,20 +183,22 @@ public class NavigationPageController {
         // Iterate through all the path nodes to draw the path
         for(int i = 0; i < length ; i++) {
             Node node = path.get(i);
-            pathImage.drawOval(node.x - 10,node.y - 10,20,20);
-            pathImage.fillOval(node.x - 10,node.y - 10,20,20);
+            pathImage.drawOval(node.getxCoordinate() - 10,node.getyCoordinate() - 10,20,20);
+            pathImage.fillOval(node.getxCoordinate() - 10,node.getyCoordinate() - 10,20,20);
             if(i + 1 < length){
                 Node node2 = path.get(i+1);
                 // Lines are drawn offset,
-                pathImage.drawLine(node.x, node.y,node2.x ,node2.y);
+                pathImage.drawLine(node.getxCoordinate(), node.getyCoordinate(),node2.getxCoordinate() ,node2.getyCoordinate());
             }
         }
 
         // Saving the image in a new file, uses the departure location and destination in the name of the map
-        ImageIO.write(firstFloor, "PNG", new File("./src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png"));
+        ImageIO.write(firstFloor, "PNG", new File("path" + nameDep + "-" + nameDest + ".png"));
         Thread.sleep(500); // Wait before reading and setting the image as the new map
         // Set the saved image as the new map
-        map.setImage(new Image(new FileInputStream("./src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png")));
+        map.setImage(new Image(new FileInputStream("path" + nameDep + "-" + nameDest + ".png")));
         System.out.println("Image edited and saved");
     }
 }
+/*sample.UI.GeneratedImages ".sample.UI.GeneratedImages.path"
+        src\sample\UI\GeneratedImages*/

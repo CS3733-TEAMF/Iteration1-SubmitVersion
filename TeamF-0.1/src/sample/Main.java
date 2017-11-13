@@ -19,6 +19,8 @@ public class Main extends Application {
     private static Scene login;
     private static Scene map;
     private static Scene admin;
+    private static Scene service;
+
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -27,6 +29,7 @@ public class Main extends Application {
         login = new Scene(FXMLLoader.load(getClass().getResource("UI/Login.fxml")), 640, 480);
         map = new Scene(FXMLLoader.load(getClass().getResource("UI/NavigationScreen.fxml")), 1024, 768);
         admin = new Scene(FXMLLoader.load(getClass().getResource("UI/AdminControls.fxml")), 1024, 768);
+        service = new Scene(FXMLLoader.load(getClass().getResource("UI/Service_Request_Menu.fxml")), 1024, 768);
         //Parent root = FXMLLoader.load(getClass().getResource("UI/StartPage.fxml"));
         stage.setTitle("Team F Hospital GPS");
         stage.setScene(start);
@@ -55,6 +58,11 @@ public class Main extends Application {
         stage.centerOnScreen();
     }
 
+    public static void serviceScreen(){
+        stage.setScene(admin);
+        stage.centerOnScreen();
+    }
+
     public static void main(String[] args) throws IOException{
         Vector<Node> Vec = new Vector<Node>(10);
         Node n1 = new Node("FDEPT00101", 1614, 829, 1, "Tower", "DEPT", "Center for International Medecine", "CIM", 'F');
@@ -71,7 +79,6 @@ public class Main extends Application {
         Vec.addElement(n6);
 
         Vector<Node> InverseVec = new Vector<Node>(10);
-
         InverseVec.addElement(n6);
         InverseVec.addElement(n5);
         InverseVec.addElement(n4);
@@ -80,8 +87,9 @@ public class Main extends Application {
         InverseVec.addElement(n2);
         InverseVec.addElement(n1);
 
-        System.out.print(NavigationPageController.directions(Vec));
-        System.out.print(NavigationPageController.directions(InverseVec));
+        //System.out.print(NavigationPageController.directions(Vec));
+        //System.out.print(NavigationPageController.directions(InverseVec));
+
         NavigationPageController controller = new NavigationPageController();
         //controller.drawDirections(Vec);
         launch(args);
