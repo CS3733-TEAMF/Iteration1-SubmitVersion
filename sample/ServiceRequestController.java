@@ -20,10 +20,10 @@ public class ServiceRequestController {
     public void backToAdmin() {Main.adminScreen();}
 
 
-    public int ID = 1;
-    PriorityQueue<ServiceRequest>  priorityQueue = new PriorityQueue<ServiceRequest>(1000,
-            Comparator.comparing(ServiceRequest::getServiceID));
-    ServiceRequestList requestList = new ServiceRequestList(priorityQueue);
+    public int ID = 1;   //service ID counter
+    PriorityQueue<ServiceRequest>  priorityQueue = new PriorityQueue<ServiceRequest>(100,
+            Comparator.comparing(ServiceRequest::getServiceID));             //creates priority queue of
+    ServiceRequestList requestList = new ServiceRequestList(priorityQueue);  //service requests
 
 
     //assistance requests
@@ -43,11 +43,11 @@ public class ServiceRequestController {
     private TextArea assistanceDescription;
 
     @FXML
-    public void updateAssistance(){
-        assistanceID.setText(Integer.toString(ID));
+    public void updateAssistance(){                                      //when a request menu is opened
+        assistanceID.setText(Integer.toString(ID));                      //sets correct service ID
         Date date = new Date();
-        SimpleDateFormat ft = new SimpleDateFormat ("h:mm a");
-        assistanceTime.setText(ft.format(date));;
+        SimpleDateFormat ft = new SimpleDateFormat ("h:mm a");    //for correct time format
+        assistanceTime.setText(ft.format(date));;                        //sets current time
     }
 
     @FXML
@@ -58,16 +58,16 @@ public class ServiceRequestController {
     }
 
     @FXML
-    public void assistanceSendRequest() {
+    public void assistanceSendRequest() {                              //when the Send button is pressed
         AssistanceRequest newAssist = new AssistanceRequest(null, assistanceDescription.getText(),
                 Integer.parseInt(assistanceID.getText()), assistanceTime.getText(), 00000,
                 "assistance", Integer.parseInt(assistanceUrgency.getText()));
-        requestList.addRequest(newAssist);
+        requestList.addRequest(newAssist);               //new service request is made and added to priority queue
 
-        assistanceUrgency.clear();
+        assistanceUrgency.clear();                      //clears textfields
         assistanceDescription.clear();
-        ID++;
-        assistancePane.setExpanded(false);
+        ID++;                                           //increments service ID counter
+        assistancePane.setExpanded(false);              //closes the request menu
     }
 
 
