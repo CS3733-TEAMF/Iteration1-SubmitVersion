@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="resouces">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/TeamF-0.1/src/sample/resouces/opencsv-4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TeamF-0.1/src/sample/resouces/commons-lang3-3.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
