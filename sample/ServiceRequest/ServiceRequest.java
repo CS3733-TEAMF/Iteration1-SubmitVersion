@@ -8,11 +8,11 @@ public abstract class ServiceRequest {
     protected Node destination;
     protected String description;
     protected int serviceID;
-    protected int serviceTime;
+    protected String serviceTime;
     protected int serviceEmployeeID;
     protected String typeOfRequest;
 
-    public ServiceRequest(Node destination, String description, int serviceID, int serviceTime, int serviceEmployeeID, String typeOfRequest) {
+    public ServiceRequest(Node destination, String description, int serviceID, String serviceTime, int serviceEmployeeID, String typeOfRequest) {
         this.destination = destination;
         this.description = description;
         this.serviceID = serviceID;
@@ -34,7 +34,7 @@ public abstract class ServiceRequest {
     public int getServiceID() {
         return this.serviceID;
     }
-    public int getServiceTime() {
+    public String getServiceTime() {
         return this.serviceTime;
     }
     public int getServiceEmployeeID() {

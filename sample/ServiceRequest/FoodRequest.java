@@ -3,14 +3,14 @@ package sample.ServiceRequest;
 import javax.xml.soap.Node;
 
 public class FoodRequest extends ServiceRequest {
-    public FoodRequest(Node destination, String description, int serviceID, int serviceTime, int serviceEmployeeID, String typeOfRequest) {
+    public FoodRequest(Node destination, String description, int serviceID, String serviceTime, int serviceEmployeeID, String typeOfRequest) {
         super(destination, description, serviceID, serviceTime, serviceEmployeeID, typeOfRequest);
     }
     private String patientName;
-    private int timeToBeServed;
+    private String timeToBeServed;
     private String foodOrder;
 
-    public FoodRequest(Node destination, String description, int serviceID, int serviceTime, int serviceEmployeeID, String typeOfRequest, String patientName, int timeToBeServed, String foodOrder) {
+    public FoodRequest(Node destination, String description, int serviceID, String serviceTime, int serviceEmployeeID, String typeOfRequest, String patientName, String timeToBeServed, String foodOrder) {
         super(destination, description, serviceID, serviceTime, serviceEmployeeID, typeOfRequest);
         this.patientName = patientName;
         this.timeToBeServed = timeToBeServed;
@@ -20,7 +20,7 @@ public class FoodRequest extends ServiceRequest {
     public String getPatientName() {
         return this.patientName;
     }
-    public int getServingTime() {
+    public String getServingTime() {
         return this.timeToBeServed;
     }
 
