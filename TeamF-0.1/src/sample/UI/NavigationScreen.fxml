@@ -93,5 +93,6 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Label fx:id="invalidEmailText" layoutX="790.0" layoutY="87.0" opacity="0.34" prefHeight="18.0" prefWidth="156.0" text="Please enter in a valid email." textFill="#e20505" visible="false" />
    </children>
 </AnchorPane>
