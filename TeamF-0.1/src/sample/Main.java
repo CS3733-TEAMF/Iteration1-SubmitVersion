@@ -19,6 +19,7 @@ public class Main extends Application {
     private static Scene login;
     private static Scene map;
     private static Scene admin;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         stage = primaryStage;
@@ -70,6 +71,7 @@ public class Main extends Application {
         Vec.addElement(n6);
 
         Vector<Node> InverseVec = new Vector<Node>(10);
+
         InverseVec.addElement(n6);
         InverseVec.addElement(n5);
         InverseVec.addElement(n4);
@@ -81,7 +83,7 @@ public class Main extends Application {
         System.out.print(NavigationPageController.directions(Vec));
         System.out.print(NavigationPageController.directions(InverseVec));
         NavigationPageController controller = new NavigationPageController();
-        controller.drawDirections(Vec);
+        //controller.drawDirections(Vec);
         launch(args);
     }
 }
