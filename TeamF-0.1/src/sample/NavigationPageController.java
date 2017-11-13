@@ -1,21 +1,30 @@
 package sample;
 
+
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 
 import javax.imageio.ImageIO;
+import javax.swing.text.html.ImageView;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Vector;
 
+import static javafx.embed.swing.SwingFXUtils.toFXImage;
+
 public class NavigationPageController {
     @FXML
     private TextField email;
+
+    @FXML
+    private javafx.scene.image.ImageView map;
 
     @FXML
     private TextField destination;
@@ -30,9 +39,31 @@ public class NavigationPageController {
     private static Label invalidEmailText;
 
     @FXML
-    public void go() throws IOException{
-        Vector<Node> nodes = new Vector<Node>();
-        drawDirections(nodes);
+    public void go() throws IOException,InterruptedException{
+        Vector<Node> Vec = new Vector<Node>(10);
+        Node n1 = new Node("FDEPT00101", 1614, 829, 1, "Tower", "DEPT", "Center for International Medecine", "CIM", 'F');
+        Vec.addElement(n1);
+        Node n2 = new Node("FHALL00201", 1640, 850, 1, "Tower", "HALL", "Chapel Hall Point 1", "CHP1", 'F');
+        Vec.addElement(n2);
+        Node n3 = new Node("FHALL00301", 1788, 850, 1, "Tower", "HALL", "Chapel Hall Point 2", "CHP2", 'F');
+        Vec.addElement(n3);
+        Node n4 = new Node("FHALL00701", 1759, 900, 1, "Tower", "HALL", "Chapel Hall Entrance", "CHE", 'F');
+        Vec.addElement(n4);
+        Node n5 = new Node("FHALL01301", 1760, 952, 1, "Tower", "HALL", "International Hall Point 2", "IHP2", 'F');
+        Vec.addElement(n5);
+        Node n6 = new Node("FSERV00101", 1724, 930, 1, "Tower", "SERV", "Multifaith Chapel", "MFC", 'F');
+        Vec.addElement(n6);
+
+        Vector<Node> InverseVec = new Vector<Node>(10);
+
+        InverseVec.addElement(n6);
+        InverseVec.addElement(n5);
+        InverseVec.addElement(n4);
+        InverseVec.addElement(n3);
+        InverseVec.addElement(n3);
+        InverseVec.addElement(n2);
+        InverseVec.addElement(n1);
+        drawDirections(Vec);
     }
 
     @FXML
@@ -108,22 +139,37 @@ public class NavigationPageController {
         return out;
     }
 
-    public void drawDirections(Vector<Node> path) throws IOException {
+    @FXML
+    public void drawDirections(Vector<Node> path) throws IOException,InterruptedException {
+        String nameDep = path.get(0).shortName;
+        int length = path.size();
+        String nameDest = path.get(length - 1).shortName;
+
         // Opening the image
         BufferedImage firstFloor = ImageIO.read(getClass().getResource("/sample/UI/Icons/01_thefirstfloorCOPY.png"));
         Graphics2D pathImage =  firstFloor.createGraphics();
-        pathImage.setStroke(new BasicStroke(5));
-        pathImage.setColor(Color.getHSBColor(207, 99, 70));
 
-        int length = path.size();
+        // Setting up the proper color settings
+        pathImage.setStroke(new BasicStroke(5)); // Controlling the width of the shapes drawn
+        pathImage.setColor( new java.awt.Color(2,97,187)); // This color is the same blue as logo
+
+        // Iterate through all the path nodes to draw the path
         for(int i = 0; i < length ; i++) {
             Node node = path.get(i);
-            pathImage.drawOval(node.x,node.y,20,20);
+            pathImage.drawOval(node.x - 10,node.y - 10,20,20);
+            pathImage.fillOval(node.x - 10,node.y - 10,20,20);
             if(i + 1 < length){
                 Node node2 = path.get(i+1);
-                pathImage.drawLine(node.x,node.y,node2.x,node2.y);
+                // Lines are drawn offset,
+                pathImage.drawLine(node.x, node.y,node2.x ,node2.y);
             }
         }
-        ImageIO.write(firstFloor, "PNG", new File("TEST.png"));
+
+        // Saving the image in a new file, uses the departure location and destination in the name of the map
+        ImageIO.write(firstFloor, "PNG", new File("./src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png"));
+        Thread.sleep(5000); // Wait before reading and setting the image as the new map
+        // Set the saved image as the new map
+        map.setImage(new Image(new FileInputStream("./src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png")));
+        System.out.println("Image edited and saved");
     }
 }
