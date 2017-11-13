@@ -3,12 +3,12 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import sample.ServiceRequest.*;
-
 import java.util.Comparator;
 import java.util.Date;
 import java.text.*;
 import java.util.PriorityQueue;
+
+
 
 public class ServiceRequestController {
 
@@ -21,9 +21,10 @@ public class ServiceRequestController {
 
 
     public int ID = 1;   //service ID counter
+    Node n1 = new Node("FDEPT00101", 1614, 829, 1, "Tower", "DEPT", "Center for International Medecine", "CIM", 'F');
     PriorityQueue<ServiceRequest>  priorityQueue = new PriorityQueue<ServiceRequest>(100,
             Comparator.comparing(ServiceRequest::getServiceID));             //creates priority queue of
-    ServiceRequestList requestList = new ServiceRequestList(priorityQueue);  //service requests
+    ServiceRequestList requestList = new ServiceRequestList(priorityQueue);  //service requests, ordered by ID
 
 
     //assistance requests
@@ -59,7 +60,7 @@ public class ServiceRequestController {
 
     @FXML
     public void assistanceSendRequest() {                              //when the Send button is pressed
-        AssistanceRequest newAssist = new AssistanceRequest(null, assistanceDescription.getText(),
+        AssistanceRequest newAssist = new AssistanceRequest(n1, assistanceDescription.getText(),
                 Integer.parseInt(assistanceID.getText()), assistanceTime.getText(), 00000,
                 "assistance", Integer.parseInt(assistanceUrgency.getText()));
         requestList.addRequest(newAssist);               //new service request is made and added to priority queue
@@ -109,7 +110,7 @@ public class ServiceRequestController {
 
     @FXML
     public void foodSendRequest() {
-        FoodRequest newFood = new FoodRequest(null, foodDescription.getText(), Integer.parseInt(foodID.getText()),
+        FoodRequest newFood = new FoodRequest(n1, foodDescription.getText(), Integer.parseInt(foodID.getText()),
                 foodTime.getText(), 00000, "food", foodPatient.getText(),
                         foodServingTime.getText(), foodOrder.getText());
         requestList.addRequest(newFood);
@@ -157,7 +158,7 @@ public class ServiceRequestController {
 
     @FXML
     public void transportSendRequest() {
-        TransportRequest newTransport = new TransportRequest(null, transportDescription.getText(),
+        TransportRequest newTransport = new TransportRequest(n1, transportDescription.getText(),
                 Integer.parseInt(transportID.getText()), transportTime.getText(), 00000,
                 "transport", false, transportPatient.getText(), transportType.getText());
         requestList.addRequest(newTransport);
@@ -202,7 +203,7 @@ public class ServiceRequestController {
 
     @FXML
     public void cleanSendRequest() {
-        CleaningRequest newClean = new CleaningRequest(null, cleanDescription.getText(),
+        CleaningRequest newClean = new CleaningRequest(n1, cleanDescription.getText(),
                 Integer.parseInt(cleanID.getText()), cleanTime.getText(), 00000,
                 "cleaning", Integer.parseInt(cleanLevel.getText()));
         requestList.addRequest(newClean);
@@ -246,7 +247,7 @@ public class ServiceRequestController {
 
     @FXML
     public void securitySendRequest() {
-        SecurityRequest newSecurity = new SecurityRequest(null, securityDescription.getText(),
+        SecurityRequest newSecurity = new SecurityRequest(n1, securityDescription.getText(),
                 Integer.parseInt(securityID.getText()), securityTime.getText(), 00000,
                 "security", Integer.parseInt(securityLevel.getText()));
         requestList.addRequest(newSecurity);
@@ -262,5 +263,7 @@ public class ServiceRequestController {
     private TableColumn<ServiceRequest, String> requests;
 
     @FXML
-    private TableColumn<String, String> status;*/
+    private TableColumn<String, String> status;
+
+    public void initialize(URL, url)*/
 }
