@@ -1,3 +1,6 @@
+/*It Request Work - Floris and Steph
+* Purpose: to add additional Request for IT personell */
+
 package sample;
 
 import javafx.fxml.FXML;
@@ -72,6 +75,7 @@ public class ServiceRequestController {
         transportID.setText(Integer.toString(ID));
         cleanID.setText(Integer.toString(ID));
         securityID.setText(Integer.toString(ID));
+        itID.setText(Integer.toString(ID));
     }
 
 
@@ -128,6 +132,7 @@ public class ServiceRequestController {
         transportID.setText(Integer.toString(ID));
         cleanID.setText(Integer.toString(ID));
         securityID.setText(Integer.toString(ID));
+        itID.setText(Integer.toString(ID));
     }
 
 
@@ -179,6 +184,7 @@ public class ServiceRequestController {
         transportID.setText(Integer.toString(ID));
         cleanID.setText(Integer.toString(ID));
         securityID.setText(Integer.toString(ID));
+        itID.setText(Integer.toString(ID));
     }
 
 
@@ -227,6 +233,7 @@ public class ServiceRequestController {
         transportID.setText(Integer.toString(ID));
         cleanID.setText(Integer.toString(ID));
         securityID.setText(Integer.toString(ID));
+        itID.setText(Integer.toString(ID));
     }
 
 
@@ -275,6 +282,7 @@ public class ServiceRequestController {
         transportID.setText(Integer.toString(ID));
         cleanID.setText(Integer.toString(ID));
         securityID.setText(Integer.toString(ID));
+        itID.setText(Integer.toString(ID));
     }
 
 
@@ -312,15 +320,11 @@ public class ServiceRequestController {
                 Integer.parseInt(itID.getText()), itTime.getText(), 00000,
                 "it", Integer.parseInt(itUrgency.getText()));
         requestList.addRequest(newIt);
+
         itUrgency.clear();
         itDescription.clear();
         ID++;
         itID.setText(Integer.toString(ID));
-        assistanceID.setText(Integer.toString(ID));
-        foodID.setText(Integer.toString(ID));
-        transportID.setText(Integer.toString(ID));
-        cleanID.setText(Integer.toString(ID));
-        securityID.setText(Integer.toString(ID));
     }
 
 }
