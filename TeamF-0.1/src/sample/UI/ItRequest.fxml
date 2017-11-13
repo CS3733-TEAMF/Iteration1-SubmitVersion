@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ItRequestController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ItRequestController">
    <children>
       <MenuBar>
         <menus>
@@ -35,7 +34,7 @@
             <Insets left="20.0" right="20.0" top="5.0" />
          </VBox.margin>
       </TextArea>
-      <Button fx:id="sendItRequest" mnemonicParsing="false" onAction="#foodSendRequest" prefHeight="55.0" prefWidth="287.0" text="Send Request">
+      <Button fx:id="sendItRequest" mnemonicParsing="false" prefHeight="55.0" prefWidth="287.0" text="Send Request">
          <font>
             <Font size="24.0" />
          </font>

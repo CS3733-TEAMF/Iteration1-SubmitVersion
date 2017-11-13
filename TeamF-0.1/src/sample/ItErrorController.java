@@ -17,4 +17,16 @@ public class ItErrorController {
     @FXML
     private Button noIt;
 
+    @FXML
+    public void yesRequest(){
+        System.out.println("yes");
+        Main.itRequestScreen();
+    }
+
+    @FXML
+    public void noRequest(){
+       System.out.println("no");
+       Main.mapScreen();
+    }
+
 }

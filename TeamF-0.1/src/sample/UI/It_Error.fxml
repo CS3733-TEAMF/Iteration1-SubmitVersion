@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="202.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ItErrorController">
    <children>
       <MenuBar>
@@ -43,12 +42,12 @@
       </Label>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="yesIt" mnemonicParsing="false" prefHeight="41.0" prefWidth="75.0" text="Yes">
+            <Button fx:id="yesIt" mnemonicParsing="false" onAction="#yesRequest" prefHeight="41.0" prefWidth="75.0" text="Yes">
                <HBox.margin>
                   <Insets left="20.0" right="75.0" />
                </HBox.margin>
             </Button>
-          <Button fx:id="noIt" mnemonicParsing="false" prefHeight="41.0" prefWidth="75.0" text="No" textAlignment="CENTER">
+          <Button fx:id="noIt" mnemonicParsing="false" onAction="#noRequest" prefHeight="41.0" prefWidth="75.0" text="No" textAlignment="CENTER">
                <HBox.margin>
                   <Insets left="125.0" right="20.0" />
                </HBox.margin>
