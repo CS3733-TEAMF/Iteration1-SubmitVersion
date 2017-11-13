@@ -72,15 +72,15 @@ public class NavigationPageController {
         }
         a = in.get(0);
         b = in.get(1);
-        out = out.concat("Start at " + a.longName+"<br>");
-        out = out.concat("Go towards " + b.longName+"<br>");
+        out = out.concat("Start at " + a.getLongName()+"<br>");
+        out = out.concat("Go towards " + b.getLongName()+"<br>");
 
         for(int i = 2; i < in.size(); i++){
             a = in.get(i-2);
             b = in.get(i-1);
             c = in.get(i);
             String turn = "";
-            double angle = NodeMath.findAngle(a.x, a.y, b.x, b.y, c.x, c.y);
+            double angle = NodeMath.findAngle(a.getxCoordinate(), a.getyCoordinate(), b.getxCoordinate(), b.getyCoordinate(), c.getxCoordinate(), c.getyCoordinate());
             if(angle<45){
                 turn = "sharply right";
             }else if(angle < 135){
@@ -93,7 +93,7 @@ public class NavigationPageController {
                 turn = "sharply left";
             }
 
-            out = out.concat("When you arrive at " + b.longName + " go " + turn + " towards " + c.longName + "<br>");
+            out = out.concat("When you arrive at " + b.getLongName() + " go " + turn + " towards " + c.getLongName() + "<br>");
         }
         return out;
     }

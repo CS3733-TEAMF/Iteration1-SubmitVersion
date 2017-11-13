@@ -85,8 +85,9 @@ public class Main extends Application {
         InverseVec.addElement(n2);
         InverseVec.addElement(n1);
 
-        System.out.print(NavigationPageController.directions(Vec));
-        System.out.print(NavigationPageController.directions(InverseVec));
+        //System.out.print(NavigationPageController.directions(Vec));
+        //System.out.print(NavigationPageController.directions(InverseVec));
+
         launch(args);
     }
 }
