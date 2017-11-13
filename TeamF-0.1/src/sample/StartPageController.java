@@ -8,6 +8,9 @@ public class StartPageController {
     private TextField searchBox;
 
     @FXML
+    private Button helpButton;
+
+    @FXML
     public void search(){
         System.out.print(searchBox.getText());
         Main.mapScreen();
