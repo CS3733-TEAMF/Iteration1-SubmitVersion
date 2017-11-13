@@ -18,15 +18,29 @@ public class testEmbeddedDB {
             final String url = "jdbc:derby:Skynet";
             c = DriverManager.getConnection(url);
 
-            testEmbeddedDB.dropTables();
+            //testEmbeddedDB.dropTables();
 
-            testEmbeddedDB.createTable();
+            //testEmbeddedDB.createTable();
 
-            testEmbeddedDB.fillNodesTable();
+            //testEmbeddedDB.fillNodesTable();
 
             //testEmbeddedDB.createPrimKey();
 
-            testEmbeddedDB.fillEdgesTable();
+            //testEmbeddedDB.fillEdgesTable();
+
+            //testEmbeddedDB.dropServiceRequests();
+
+            //testEmbeddedDB.createServiceRequestTable();
+
+            testEmbeddedDB.addFoodRequest("dickbutt", "penis", 6969, "6969",
+                    420, "gimme the g00dSucc", "Joseph Stalin",
+                    14411, "the Bourgoisies head");
+
+            testEmbeddedDB.addAssistanceRequest("assistance", "not a penis", 68686, "4444",
+                    823450, "assistance", 4);
+
+            testEmbeddedDB.addTransportRequest("test", "test", 1123, "234234",
+                    2, "test", true, "bob");
 
             //testEmbeddedDB.writeToCSV();
 
@@ -70,6 +84,112 @@ public class testEmbeddedDB {
         } catch (Exception e){
             System.out.println("error: " + e.getMessage());
         }
+    }
+
+    public static void dropServiceRequests(){
+        try{
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement s = c.createStatement();
+            s.execute("DROP TABLE SERVICEREQUESTS");
+
+        } catch (Exception e){
+            System.out.println("error: " + e.getMessage());
+        }
+    }
+
+    public static void createServiceRequestTable(){
+        try{
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement s = c.createStatement();
+
+            s.execute("CREATE TABLE ServiceRequests (" +
+                    "destination CHAR(25) NOT NULL ," +
+                    "description CHAR(60) NOT NULL ," +
+                    "serviceID INTEGER NOT NULL," +
+                    "serviceTime CHAR(20) NOT NULL ," +
+                    "serviceEmployeeID INTEGER NOT NULL ," +
+                    "typeOfReqest CHAR(30) NOT NULL ," +
+                    "patientName CHAR(40) DEFAULT NULL ," +
+                    "timeToBeServed INTEGER DEFAULT NULL ," +
+                    "foodOrder CHAR(30) DEFAULT NULL ," +
+                    "urgency INTEGER DEFAULT NULL ," +
+                    "arrival BOOLEAN DEFAULT FALSE ," +
+                    "typeOfTransport CHAR(60) DEFAULT NULL ," +
+                    "PRIMARY KEY (serviceID))");
+
+            s.close();
+
+        } catch (Exception e){
+            System.out.println("error: " + e.getMessage());
+        }
+    }
+
+    public static void addFoodRequest(String nodeID, String desc, int serviceID, String  serviceTime,
+                                      int serviceEmployeeId, String reqType, String patientName,
+                                      int timeToBeServed, String order){
+
+        try{
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement eee = c.createStatement();
+
+            eee.execute("INSERT into SERVICEREQUESTS (DESTINATION, DESCRIPTION, SERVICEID, " +
+                    "SERVICETIME, SERVICEEMPLOYEEID, TYPEOFREQEST, PATIENTNAME, TIMETOBESERVED,FOODORDER) " +
+                    "VALUES ('" + nodeID + "', '" + desc + "', " + serviceID + ", '" + serviceTime + "'," +
+                    serviceEmployeeId + ",'" + reqType + "','" + patientName + "', " + timeToBeServed + ",'" +
+                    order + "')");
+
+            eee.close();
+
+        } catch (Exception e){
+            System.out.println("error: " + e.getMessage());
+        }
+
+    }
+
+    public static void addAssistanceRequest(String nodeID, String desc, int serviceID, String serviceTime,
+                                      int serviceEmployeeId, String reqType, int urgency){
+
+        try{
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement q = c.createStatement();
+
+            q.execute("INSERT into SERVICEREQUESTS (DESTINATION, DESCRIPTION, SERVICEID, " +
+                    "SERVICETIME, SERVICEEMPLOYEEID, TYPEOFREQEST, URGENCY) " +
+                    "VALUES ('" + nodeID + "', '" + desc + "', " + serviceID + ", '" + serviceTime + "'," +
+                    serviceEmployeeId + ",'" + reqType + "',"+ urgency+ ")");
+
+            q.close();
+
+        } catch (Exception e){
+            System.out.println("error: " + e.getMessage());
+        }
+
+    }
+
+    public static void addTransportRequest(String nodeID, String desc, int serviceID, String  serviceTime,
+                                            int serviceEmployeeId, String reqType, boolean arrival,
+                                           String patName){
+
+        try{
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement eee = c.createStatement();
+
+            eee.execute("INSERT into SERVICEREQUESTS (DESTINATION, DESCRIPTION, SERVICEID, " +
+                    "SERVICETIME, SERVICEEMPLOYEEID, TYPEOFREQEST, ARRIVAL, PATIENTNAME) " +
+                    "VALUES ('" + nodeID + "', '" + desc + "', " + serviceID + ", '" + serviceTime + "'," +
+                    serviceEmployeeId + ",'" + reqType + "'," + arrival + ", '" + patName + "')");
+
+            eee.close();
+
+        } catch (Exception e){
+            System.out.println("error: " + e.getMessage());
+        }
+
     }
 
     public static void createTable(){
