@@ -18,6 +18,8 @@ public class Main extends Application {
     private static Scene login;
     private static Scene map;
     private static Scene admin;
+    private static Scene service;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         stage = primaryStage;
@@ -25,6 +27,7 @@ public class Main extends Application {
         login = new Scene(FXMLLoader.load(getClass().getResource("UI/Login.fxml")), 640, 480);
         map = new Scene(FXMLLoader.load(getClass().getResource("UI/NavigationScreen.fxml")), 1024, 768);
         admin = new Scene(FXMLLoader.load(getClass().getResource("UI/AdminControls.fxml")), 1024, 768);
+        service = new Scene(FXMLLoader.load(getClass().getResource("UI/Service_Request_Menu.fxml")), 1024, 768);
         //Parent root = FXMLLoader.load(getClass().getResource("UI/StartPage.fxml"));
         stage.setTitle("Team F Hospital GPS");
         stage.setScene(start);
@@ -50,6 +53,11 @@ public class Main extends Application {
 
     public static void adminScreen(){
         stage.setScene(admin);
+        stage.centerOnScreen();
+    }
+
+    public static void serviceScreen() {
+        stage.setScene(service);
         stage.centerOnScreen();
     }
 
