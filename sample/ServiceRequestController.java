@@ -20,7 +20,7 @@ public class ServiceRequestController {
     public void backToAdmin() {Main.adminScreen();}
 
 
-    public int ID = 0;
+    public int ID = 1;
     PriorityQueue<ServiceRequest>  priorityQueue = new PriorityQueue<ServiceRequest>(1000,
             Comparator.comparing(ServiceRequest::getServiceID));
     ServiceRequestList requestList = new ServiceRequestList(priorityQueue);
@@ -65,12 +65,7 @@ public class ServiceRequestController {
 
         assistanceUrgency.clear();
         assistanceDescription.clear();
-        ID++;
-        assistanceID.setText(Integer.toString(ID));
-        foodID.setText(Integer.toString(ID));
-        transportID.setText(Integer.toString(ID));
-        cleanID.setText(Integer.toString(ID));
-        securityID.setText(Integer.toString(ID));
+        assistanceID.setText(Integer.toString(++ID));
     }
 
 
@@ -121,12 +116,7 @@ public class ServiceRequestController {
         foodServingTime.clear();
         foodOrder.clear();
         foodDescription.clear();
-        ID++;
-        assistanceID.setText(Integer.toString(ID));
-        foodID.setText(Integer.toString(ID));
-        transportID.setText(Integer.toString(ID));
-        cleanID.setText(Integer.toString(ID));
-        securityID.setText(Integer.toString(ID));
+        foodID.setText(Integer.toString(++ID));
     }
 
 
@@ -172,12 +162,7 @@ public class ServiceRequestController {
         transportPatient.clear();
         transportType.clear();
         transportDescription.clear();
-        ID++;
-        assistanceID.setText(Integer.toString(ID));
-        foodID.setText(Integer.toString(ID));
-        transportID.setText(Integer.toString(ID));
-        cleanID.setText(Integer.toString(ID));
-        securityID.setText(Integer.toString(ID));
+        transportID.setText(Integer.toString(++ID));
     }
 
 
@@ -220,12 +205,7 @@ public class ServiceRequestController {
 
         cleanLevel.clear();
         cleanDescription.clear();
-        ID++;
-        assistanceID.setText(Integer.toString(ID));
-        foodID.setText(Integer.toString(ID));
-        transportID.setText(Integer.toString(ID));
-        cleanID.setText(Integer.toString(ID));
-        securityID.setText(Integer.toString(ID));
+        cleanID.setText(Integer.toString(++ID));
     }
 
 
@@ -268,12 +248,7 @@ public class ServiceRequestController {
 
         securityLevel.clear();
         securityDescription.clear();
-        ID++;
-        assistanceID.setText(Integer.toString(ID));
-        foodID.setText(Integer.toString(ID));
-        transportID.setText(Integer.toString(ID));
-        cleanID.setText(Integer.toString(ID));
-        securityID.setText(Integer.toString(ID));
+        securityID.setText(Integer.toString(++ID));
     }
 
 
