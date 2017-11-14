@@ -1,6 +1,4 @@
-package sample.ServiceRequest;
-
-import javax.xml.soap.Node;
+package sample;
 
 public class AssistanceRequest extends ServiceRequest {
     private int urgency;

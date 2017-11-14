@@ -1,6 +1,4 @@
-package sample.ServiceRequest;
-
-import javax.xml.soap.Node;
+package sample;
 
 public class FoodRequest extends ServiceRequest {
     public FoodRequest(Node destination, String description, int serviceID, String serviceTime, int serviceEmployeeID, String typeOfRequest) {

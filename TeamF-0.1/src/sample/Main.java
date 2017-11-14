@@ -59,7 +59,7 @@ public class Main extends Application {
     }
 
     public static void serviceScreen(){
-        stage.setScene(admin);
+        stage.setScene(service);
         stage.centerOnScreen();
     }
 

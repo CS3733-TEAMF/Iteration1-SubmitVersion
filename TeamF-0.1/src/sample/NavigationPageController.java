@@ -120,8 +120,8 @@ public class NavigationPageController {
         Node n6 = new Node("FSERV00101", 1724, 930, 1, "Tower", "SERV", "Multifaith Chapel", "MFC", 'F');
         msgVec.addElement(n6);
 
-        EmailService emailService = new EmailService("teamFCS3733@gmail.com", "FuschiaFairiesSoftEng");
-        emailService.sendEmail(NavigationPageController.directions(msgVec), email.getText());
+        //EmailService emailService = new EmailService("teamFCS3733@gmail.com", "FuschiaFairiesSoftEng");
+        //emailService.sendEmail(NavigationPageController.directions(msgVec), email.getText());
     }
 
     // Button to return to the welcome screen

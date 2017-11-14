@@ -1,6 +1,6 @@
-package sample.ServiceRequest;
+package sample;
 
-import javax.xml.soap.Node;
+//import javax.xml.soap.Node;
 
 //Talal and willis
 public abstract class ServiceRequest {
