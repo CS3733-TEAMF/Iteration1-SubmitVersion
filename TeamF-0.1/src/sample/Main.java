@@ -63,8 +63,7 @@ public class Main extends Application {
         stage.centerOnScreen();
     }
 
-    public static void main(String[] args) throws IOException{
-        testEmbeddedDB t = new testEmbeddedDB();
+    public static void main(String[] args) throws IOException, Exception{
         Vector<Node> Vec = new Vector<Node>(10);
         Node n1 = new Node("FDEPT00101", 1614, 829, 1, "Tower", "DEPT", "Center for International Medecine", "CIM", 'F');
         Vec.addElement(n1);
@@ -89,8 +88,8 @@ public class Main extends Application {
         InverseVec.addElement(n1);
 
 
-        //System.out.print(NavigationPageController.directions(Vec));
-        //System.out.print(NavigationPageController.directions(InverseVec));
+        System.out.print(NavigationPageController.directions(Vec));
+        System.out.print(NavigationPageController.directions(InverseVec));
 
         NavigationPageController controller = new NavigationPageController();
         //controller.drawDirections(Vec);
