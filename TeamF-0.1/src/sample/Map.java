@@ -55,7 +55,6 @@ public class Map {
 
 
 
-
     //Testing Functions
     public void addToMap(Node N){
 
@@ -67,6 +66,26 @@ public class Map {
         Edges.add(E);
     }
 
+
+    /**
+     * This is the Euclidean Distance function, it is a helper method for A*
+     * </p>
+     * @param   Path  list of nodes
+     * @return  Returns the total
+     */
+
+    public double TotalDistance(Vector<Node> Path){
+
+        double totalDist =0;
+
+        for(int i =0; i<Path.size()-1; i++) {
+
+            totalDist += HeuristicCost(Path.get(i), Path.get(i+1));
+        }
+
+        return  totalDist;
+
+    }
 
 
 
