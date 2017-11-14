@@ -131,11 +131,12 @@ public class NavigationPageController {
     }
 
     // Purpose: Print out directions for a path of nodes
-    public static String directions(Vector<Node> in){
+    public static String directions(Vector<Node> in) throws Exception{
         String out = "";
         Node a, b, c;
         if(in.size()<2){
             out = out.concat("Path too short");
+            throw new PathException();
         }
         a = in.get(0);
         b = in.get(1);
