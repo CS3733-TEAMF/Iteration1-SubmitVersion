@@ -31,8 +31,8 @@ public class Main extends Application {
         map = new Scene(FXMLLoader.load(getClass().getResource("UI/NavigationScreen.fxml")), 1024, 768);
         admin = new Scene(FXMLLoader.load(getClass().getResource("UI/AdminControls.fxml")), 1024, 768);
         service = new Scene(FXMLLoader.load(getClass().getResource("UI/Service_Request_Menu.fxml")), 1024, 768);
-        itError = new Scene(FXMLLoader.load(getClass().getResource("UI/It_Error.fxml")), 500, 202);
-        itRequest = new Scene(FXMLLoader.load(getClass().getResource("UI/ItRequest.fxml")), 500, 500);
+//        itError = new Scene(FXMLLoader.load(getClass().getResource("UI/It_Error.fxml")), 500, 202);
+//        itRequest = new Scene(FXMLLoader.load(getClass().getResource("UI/ItRequest.fxml")), 500, 500);
         //Parent root = FXMLLoader.load(getClass().getResource("UI/StartPage.fxml"));
         stage.setTitle("Team F Hospital GPS");
         stage.setScene(start);

@@ -221,7 +221,7 @@ public class testEmbeddedDB {
                 String nodeID = r.getString("nodeID");
                 int xcord = r.getInt("xcoord");
                 int ycoord = r.getInt("ycoord");
-                int floor = Integer.parseInt(r.getString("floor"));
+                int floor = Integer.parseInt(Character.toString(r.getString("floor").charAt(0)));
                 String building = r.getString("building");
                 String nodetype = r.getString("nodeType");
                 String longname = r.getString("longname");
@@ -258,7 +258,7 @@ public class testEmbeddedDB {
                 String ID = r.getString("nodeID");
                 int xcord = r.getInt("xcoord");
                 int ycoord = r.getInt("ycoord");
-                int floor = Integer.parseInt(r.getString("floor"));
+                int floor = Integer.parseInt(Character.toString(r.getString("floor").charAt(0)));
                 String building = r.getString("building");
                 String nodetype = r.getString("nodeType");
                 String longname = r.getString("longname");
