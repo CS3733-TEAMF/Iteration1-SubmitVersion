@@ -255,7 +255,6 @@ public class EmailService {
             System.out.println(status);
             // Check to see if a valid email address was entered
             if(receiver.length() < 4 || !(receiver.contains("@"))) {
-                // Work on the invalid email exception here
                 this.status = "That is not a valid Email, try again!";
                 System.out.println(this.status);
                 throw new InvalidEmailException(receiver);
