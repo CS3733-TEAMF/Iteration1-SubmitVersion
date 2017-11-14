@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ad36d277-1e8a-4ae6-b300-016a42a6099b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamF-0.1/TeamF-0.1.iml" afterPath="$PROJECT_DIR$/TeamF-0.1/TeamF-0.1.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamF-0.1/src/sample/Edge.java" afterPath="$PROJECT_DIR$/TeamF-0.1/src/sample/Edge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamF-0.1/src/sample/Main.java" afterPath="$PROJECT_DIR$/TeamF-0.1/src/sample/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeamF-0.1/src/sample/testEmbeddedDB.java" afterPath="$PROJECT_DIR$/TeamF-0.1/src/sample/testEmbeddedDB.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/derby.log" afterPath="$PROJECT_DIR$/derby.log" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -420,12 +415,12 @@
       <workItem from="1510535070474" duration="1742000" />
       <workItem from="1510538347143" duration="840000" />
       <workItem from="1510551544276" duration="765000" />
-      <workItem from="1510607971897" duration="7935000" />
+      <workItem from="1510607971897" duration="8340000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26077000" />
+    <option name="totallyTimeSpent" value="26482000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="20" y="23" width="1231" height="716" extended-state="0" />
