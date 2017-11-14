@@ -20,6 +20,8 @@ public class Main extends Application {
     private static Scene map;
     private static Scene admin;
     private static Scene service;
+    private static Scene itError;
+    private static Scene itRequest;
 
 
     @Override
@@ -30,6 +32,8 @@ public class Main extends Application {
         map = new Scene(FXMLLoader.load(getClass().getResource("UI/NavigationScreen.fxml")), 1024, 768);
         admin = new Scene(FXMLLoader.load(getClass().getResource("UI/AdminControls.fxml")), 1024, 768);
         service = new Scene(FXMLLoader.load(getClass().getResource("UI/Service_Request_Menu.fxml")), 1024, 768);
+        itError = new Scene(FXMLLoader.load(getClass().getResource("UI/It_Error.fxml")), 500, 202);
+        itRequest = new Scene(FXMLLoader.load(getClass().getResource("UI/ItRequest.fxml")), 500, 500);
         //Parent root = FXMLLoader.load(getClass().getResource("UI/StartPage.fxml"));
         stage.setTitle("Team F Hospital GPS");
         stage.setScene(start);
@@ -59,7 +63,17 @@ public class Main extends Application {
     }
 
     public static void serviceScreen(){
-        stage.setScene(admin);
+        stage.setScene(service);
+        stage.centerOnScreen();
+    }
+
+    public static void itErrorScreen() {
+        stage.setScene(itError);
+        stage.centerOnScreen();
+    }
+
+    public static void itRequestScreen(){
+        stage.setScene(itRequest);
         stage.centerOnScreen();
     }
 
@@ -87,8 +101,8 @@ public class Main extends Application {
         InverseVec.addElement(n2);
         InverseVec.addElement(n1);
 
-        //System.out.print(NavigationPageController.directions(Vec));
-        //System.out.print(NavigationPageController.directions(InverseVec));
+        System.out.print(NavigationPageController.directions(Vec));
+        System.out.print(NavigationPageController.directions(InverseVec));
 
         NavigationPageController controller = new NavigationPageController();
         //controller.drawDirections(Vec);

@@ -1,4 +1,4 @@
-package sample.ServiceRequest;
+package sample;
 
 import java.util.PriorityQueue;
 
