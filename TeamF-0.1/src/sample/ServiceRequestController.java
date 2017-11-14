@@ -1,3 +1,7 @@
+/*It Request Work - Floris and Steph
+* Purpose: to add additional Request for IT personell */
+
+
 package sample;
 
 import javafx.fxml.FXML;
@@ -20,7 +24,7 @@ public class ServiceRequestController {
     public void backToAdmin() {Main.adminScreen();}
 
 
-    public int ID = 1;   //service ID counter
+    public static int ID = 1;   //service ID counter
     Node n1 = new Node("FDEPT00101", 1614, 829, 1, "Tower", "DEPT", "Center for International Medecine", "CIM", 'F');
     PriorityQueue<ServiceRequest>  priorityQueue = new PriorityQueue<ServiceRequest>(100,
             Comparator.comparing(ServiceRequest::getServiceID));             //creates priority queue of
@@ -59,7 +63,7 @@ public class ServiceRequestController {
     }
 
     @FXML
-    public void assistanceSendRequest() {                              //when the Send button is pressed
+    public void assistanceSendRequest() throws MissingFieldException{    //when the Send button is pressed
         AssistanceRequest newAssist = new AssistanceRequest(n1, assistanceDescription.getText(),
                 Integer.parseInt(assistanceID.getText()), assistanceTime.getText(), 00000,
                 "assistance", Integer.parseInt(assistanceUrgency.getText()));
@@ -109,7 +113,7 @@ public class ServiceRequestController {
     public void foodChooseLocation() {}
 
     @FXML
-    public void foodSendRequest() {
+    public void foodSendRequest() throws MissingFieldException{
         FoodRequest newFood = new FoodRequest(n1, foodDescription.getText(), Integer.parseInt(foodID.getText()),
                 foodTime.getText(), 00000, "food", foodPatient.getText(),
                         foodServingTime.getText(), foodOrder.getText());
@@ -157,7 +161,7 @@ public class ServiceRequestController {
     public void transportChooseLocation() {}
 
     @FXML
-    public void transportSendRequest() {
+    public void transportSendRequest() throws MissingFieldException{
         TransportRequest newTransport = new TransportRequest(n1, transportDescription.getText(),
                 Integer.parseInt(transportID.getText()), transportTime.getText(), 00000,
                 "transport", false, transportPatient.getText(), transportType.getText());
@@ -202,7 +206,7 @@ public class ServiceRequestController {
     public void cleanChooseLocation() {}
 
     @FXML
-    public void cleanSendRequest() {
+    public void cleanSendRequest() throws MissingFieldException{
         CleaningRequest newClean = new CleaningRequest(n1, cleanDescription.getText(),
                 Integer.parseInt(cleanID.getText()), cleanTime.getText(), 00000,
                 "cleaning", Integer.parseInt(cleanLevel.getText()));
@@ -246,7 +250,7 @@ public class ServiceRequestController {
     public void securityChooseLocation() {}
 
     @FXML
-    public void securitySendRequest() {
+    public void securitySendRequest() throws MissingFieldException{
         SecurityRequest newSecurity = new SecurityRequest(n1, securityDescription.getText(),
                 Integer.parseInt(securityID.getText()), securityTime.getText(), 00000,
                 "security", Integer.parseInt(securityLevel.getText()));
@@ -256,6 +260,47 @@ public class ServiceRequestController {
         securityDescription.clear();
         ID++;
         securityPane.setExpanded(false);
+    }
+
+    @FXML
+    private Label itRequestLabel;
+
+    @FXML
+    private TextArea itDescription;
+
+    @FXML
+    private Button sendItRequest;
+
+    @FXML
+    private TextField itUrgency;
+
+    @FXML
+    private static Label itID;
+
+    @FXML
+    private static Label itTime;
+
+    @FXML
+    public static Label missingField;
+
+    @FXML
+    public static void updateIt(){
+        itID.setText(Integer.toString(ID));
+        Date date = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat ("h:mm a");
+        itTime.setText(ft.format(date));
+    }
+
+    @FXML
+    public void itSendRequest() throws MissingFieldException{
+        ItRequest newIt = new ItRequest(n1, itDescription.getText(),
+                Integer.parseInt(itID.getText()), itTime.getText(), 00000,
+                "it", Integer.parseInt(itUrgency.getText()));
+        requestList.addRequest(newIt);
+
+        itUrgency.clear();
+        itDescription.clear();
+        ID++;
     }
 
 /*

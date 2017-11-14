@@ -111,7 +111,18 @@ public class Node {
         return this.Neighbors;
     }
 
+    public boolean  isType(String input )
+    {
+        return true;
+    }
 
+    public boolean isLocation(String input ){
+        return true;
+    }
+
+    public double distance( int x, int y){
+        return 7;
+    }
 
     /**
      * This function adds a node to the neighbor's vector of this node
