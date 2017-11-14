@@ -1,3 +1,5 @@
 .idea
 out
 .DS_Store
+.idea/
+TeamF-0.1.iml
