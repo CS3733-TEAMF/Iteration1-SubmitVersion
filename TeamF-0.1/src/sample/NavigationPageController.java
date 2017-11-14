@@ -202,3 +202,4 @@ public class NavigationPageController {
 }
 /*sample.UI.GeneratedImages ".sample.UI.GeneratedImages.path"
         src\sample\UI\GeneratedImages*/
+//sample/UI/GeneratedImages/pathMFC-CIM.png

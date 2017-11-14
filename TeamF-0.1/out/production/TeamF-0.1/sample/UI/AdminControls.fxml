@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AdminPageController">
+<AnchorPane maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AdminPageController">
    <children>
       <ScrollPane layoutX="-1.0" layoutY="-1.0" prefHeight="768.0" prefWidth="770.0">
          <content>
@@ -25,12 +25,12 @@
       <Slider layoutX="614.0" layoutY="20.0" showTickLabels="true" showTickMarks="true" />
       <Button layoutX="769.0" layoutY="422.0" mnemonicParsing="false" onAction="#addUser" prefHeight="114.0" prefWidth="254.0" style="-fx-background-color: #baced5;" text="Add Users" underline="true">
          <font>
-            <Font size="36.0" />
+            <Font size="24.0" />
          </font>
       </Button>
       <Button layoutX="769.0" layoutY="307.0" mnemonicParsing="false" onAction="#edit" prefHeight="114.0" prefWidth="254.0" text="Edit Map" underline="true">
          <font>
-            <Font size="36.0" />
+            <Font size="24.0" />
          </font>
       </Button>
       <Button layoutX="769.0" layoutY="1.0" mnemonicParsing="false" onAction="#logout" prefHeight="67.0" prefWidth="254.0" text="Log Out" underline="true">
@@ -45,7 +45,12 @@
       </Button>
       <Button layoutX="769.0" layoutY="537.0" mnemonicParsing="false" onAction="#removeUser" prefHeight="114.0" prefWidth="254.0" text="Remove Users" underline="true">
          <font>
-            <Font size="33.0" />
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="769.0" layoutY="192.0" mnemonicParsing="false" onAction="#serviceRequest" prefHeight="114.0" prefWidth="254.0" style="-fx-background-color: #baced5;" text="Service Requests" underline="true">
+         <font>
+            <Font size="24.0" />
          </font>
       </Button>
    </children>
