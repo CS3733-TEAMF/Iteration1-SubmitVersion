@@ -1,35 +1,23 @@
 package sample;
 
-
-//import com.sun.mail.smtp  MTPMessage;
-
 import com.sun.mail.smtp.SMTPMessage;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
 
-//import javax.activation.DataSource;
-//import javax.activation.FileDataSource;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
-import javax.imageio.ImageIO;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import static javafx.embed.swing.SwingFXUtils.fromFXImage;
-
-// Created by Stephanie and Floris
+// Created by Stephanie and Floris, updated 11/14/17 to include images
 // Note: Antivirus and firewalls can cause problems with sending emails
-// Purpose: Send directions to a user defined email
+// Purpose: Send directions to a user defined email with image directions
 public class EmailService implements Data {
     String userName;
     String passWord;
@@ -42,6 +30,7 @@ public class EmailService implements Data {
         this.status = "Setting up email services...";
     }
 
+    // HTML Email format, copy and paste as necessary
     private static String formatEmail(String directions) {
         String email = "<!DOCTYPE html>\n" +
                 "<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\">\n" +
@@ -245,7 +234,7 @@ public class EmailService implements Data {
                 "                                                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;border-spacing:0px;\" align=\"center\" border=\"0\">\n" +
                 "                                                                    <tbody>\n" +
                 "                                                                        <tr>\n" +
-                "                                                                            <td style=\"width:144px;\"><img alt=\"\" title=\"\" height=\"auto\" src=\"cid:image\" style=\"border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:auto;\" width=\"144\"></td>\n" +
+                "                                                                            <td style=\"width:720px;\"><img alt=\"\" title=\"\" height=\"auto\" src=\"cid:image\" style=\"border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:auto;\" width=\"720\"></td>\n" +
                 "                                                                        </tr>\n" +
                 "                                                                    </tbody>\n" +
                 "                                                                </table>\n" +
@@ -297,6 +286,7 @@ public class EmailService implements Data {
         }
     }
 
+    // Building the message with the approperiate content and image
     private static Message buildMessage(javax.mail.Session session, String directions, String receiver) throws MessagingException, IOException {
         // Composing the message
         SMTPMessage msg = new SMTPMessage(session);
@@ -325,6 +315,7 @@ public class EmailService implements Data {
         return  msg;
     }
 
+    // Building the Session with the approperiate settings for connection
     public static Session buildSession(String userName, String passWord) {
         // Email server properties
         Properties props = new Properties();

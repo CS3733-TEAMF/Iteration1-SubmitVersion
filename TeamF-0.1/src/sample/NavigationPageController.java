@@ -192,7 +192,7 @@ public class NavigationPageController implements Data {
             }
         }
         // Saving the image in a new file, uses the departure location and destination in the name of the map
-        ImageIO.write(firstFloor, "PNG", new File("./TeamF-0.1/src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png"));
+        ImageIO.write(firstFloor, "PNG", new File("path" + nameDep + "-" + nameDest + ".png"));
 
         //clearFile("./TeamF-0.1/src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png");
         /*FileWriter data = new FileWriter("./TeamF-0.1/src/sample/Data/Data.txt", false);
@@ -202,9 +202,9 @@ public class NavigationPageController implements Data {
         data.close();*/
         // Set the saved image as the new map
         Data.data.map = map.getImage();
-        Data.data.currentMap = "./TeamF-0.1/src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png";
+        Data.data.currentMap = "path" + nameDep + "-" + nameDest + ".png";
         Thread.sleep(2000); // Wait before reading and setting the image as the new map
-        map.setImage(new Image(new FileInputStream("./TeamF-0.1/src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png")));
+        map.setImage(new Image(new FileInputStream("path" + nameDep + "-" + nameDest + ".png")));
         System.out.println("Image edited and saved");
     }
 
