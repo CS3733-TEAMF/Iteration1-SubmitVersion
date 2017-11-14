@@ -64,6 +64,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) throws IOException{
+        testEmbeddedDB t = new testEmbeddedDB();
         Vector<Node> Vec = new Vector<Node>(10);
         Node n1 = new Node("FDEPT00101", 1614, 829, 1, "Tower", "DEPT", "Center for International Medecine", "CIM", 'F');
         Vec.addElement(n1);
@@ -86,6 +87,7 @@ public class Main extends Application {
         InverseVec.addElement(n3);
         InverseVec.addElement(n2);
         InverseVec.addElement(n1);
+
 
         //System.out.print(NavigationPageController.directions(Vec));
         //System.out.print(NavigationPageController.directions(InverseVec));
