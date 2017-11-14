@@ -3,12 +3,12 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import sample.ServiceRequest.*;
-
 import java.util.Comparator;
 import java.util.Date;
 import java.text.*;
 import java.util.PriorityQueue;
+
+
 
 public class ServiceRequestController {
 
@@ -20,10 +20,12 @@ public class ServiceRequestController {
     public void backToAdmin() {Main.adminScreen();}
 
 
-    public int ID = 0;
-    PriorityQueue<ServiceRequest>  priorityQueue = new PriorityQueue<ServiceRequest>(1000,
-            Comparator.comparing(ServiceRequest::getServiceID));
-    ServiceRequestList requestList = new ServiceRequestList(priorityQueue);
+    public int ID = 1;   //service ID counter
+    Node n1 = new Node("FDEPT00101", 1614, 829, 1, "Tower", "DEPT", "Center for International Medecine", "CIM", 'F');
+    PriorityQueue<ServiceRequest>  priorityQueue = new PriorityQueue<ServiceRequest>(100,
+            Comparator.comparing(ServiceRequest::getServiceID));             //creates priority queue of
+    ServiceRequestList requestList = new ServiceRequestList(priorityQueue);  //service requests, ordered by ID
+
 
     //assistance requests
     @FXML
@@ -42,11 +44,11 @@ public class ServiceRequestController {
     private TextArea assistanceDescription;
 
     @FXML
-    public void updateAssistance(){
-        assistanceID.setText(Integer.toString(ID));
+    public void updateAssistance(){                                      //when a request menu is opened
+        assistanceID.setText(Integer.toString(ID));                      //sets correct service ID
         Date date = new Date();
-        SimpleDateFormat ft = new SimpleDateFormat ("hh:mm a");
-        assistanceTime.setText(ft.format(date));;
+        SimpleDateFormat ft = new SimpleDateFormat ("h:mm a");    //for correct time format
+        assistanceTime.setText(ft.format(date));;                        //sets current time
     }
 
     @FXML
@@ -57,20 +59,16 @@ public class ServiceRequestController {
     }
 
     @FXML
-    public void assistanceSendRequest() {
-        AssistanceRequest newAssist = new AssistanceRequest(null, assistanceDescription.getText(),
+    public void assistanceSendRequest() {                              //when the Send button is pressed
+        AssistanceRequest newAssist = new AssistanceRequest(n1, assistanceDescription.getText(),
                 Integer.parseInt(assistanceID.getText()), assistanceTime.getText(), 00000,
                 "assistance", Integer.parseInt(assistanceUrgency.getText()));
-        requestList.addRequest(newAssist);
+        requestList.addRequest(newAssist);               //new service request is made and added to priority queue
 
-        assistanceUrgency.clear();
+        assistanceUrgency.clear();                      //clears textfields
         assistanceDescription.clear();
-        ID++;
-        assistanceID.setText(Integer.toString(ID));
-        foodID.setText(Integer.toString(ID));
-        transportID.setText(Integer.toString(ID));
-        cleanID.setText(Integer.toString(ID));
-        securityID.setText(Integer.toString(ID));
+        ID++;                                           //increments service ID counter
+        assistancePane.setExpanded(false);              //closes the request menu
     }
 
 
@@ -100,7 +98,7 @@ public class ServiceRequestController {
     public void updateFood(){
         foodID.setText(Integer.toString(ID));
         Date date = new Date();
-        SimpleDateFormat ft = new SimpleDateFormat ("hh:mm a");
+        SimpleDateFormat ft = new SimpleDateFormat ("h:mm a");
         foodTime.setText(ft.format(date));;
     }
 
@@ -112,7 +110,7 @@ public class ServiceRequestController {
 
     @FXML
     public void foodSendRequest() {
-        FoodRequest newFood = new FoodRequest(null, foodDescription.getText(), Integer.parseInt(foodID.getText()),
+        FoodRequest newFood = new FoodRequest(n1, foodDescription.getText(), Integer.parseInt(foodID.getText()),
                 foodTime.getText(), 00000, "food", foodPatient.getText(),
                         foodServingTime.getText(), foodOrder.getText());
         requestList.addRequest(newFood);
@@ -122,11 +120,7 @@ public class ServiceRequestController {
         foodOrder.clear();
         foodDescription.clear();
         ID++;
-        assistanceID.setText(Integer.toString(ID));
-        foodID.setText(Integer.toString(ID));
-        transportID.setText(Integer.toString(ID));
-        cleanID.setText(Integer.toString(ID));
-        securityID.setText(Integer.toString(ID));
+        foodPane.setExpanded(false);
     }
 
 
@@ -152,7 +146,7 @@ public class ServiceRequestController {
     public void updateTransport(){
         transportID.setText(Integer.toString(ID));
         Date date = new Date();
-        SimpleDateFormat ft = new SimpleDateFormat ("hh:mm a");
+        SimpleDateFormat ft = new SimpleDateFormat ("h:mm a");
         transportTime.setText(ft.format(date));;
     }
 
@@ -164,7 +158,7 @@ public class ServiceRequestController {
 
     @FXML
     public void transportSendRequest() {
-        TransportRequest newTransport = new TransportRequest(null, transportDescription.getText(),
+        TransportRequest newTransport = new TransportRequest(n1, transportDescription.getText(),
                 Integer.parseInt(transportID.getText()), transportTime.getText(), 00000,
                 "transport", false, transportPatient.getText(), transportType.getText());
         requestList.addRequest(newTransport);
@@ -173,11 +167,7 @@ public class ServiceRequestController {
         transportType.clear();
         transportDescription.clear();
         ID++;
-        assistanceID.setText(Integer.toString(ID));
-        foodID.setText(Integer.toString(ID));
-        transportID.setText(Integer.toString(ID));
-        cleanID.setText(Integer.toString(ID));
-        securityID.setText(Integer.toString(ID));
+        transportPane.setExpanded(false);
     }
 
 
@@ -201,7 +191,7 @@ public class ServiceRequestController {
     public void updateClean(){
         cleanID.setText(Integer.toString(ID));
         Date date = new Date();
-        SimpleDateFormat ft = new SimpleDateFormat ("hh:mm a");
+        SimpleDateFormat ft = new SimpleDateFormat ("h:mm a");
         cleanTime.setText(ft.format(date));;
     }
 
@@ -213,7 +203,7 @@ public class ServiceRequestController {
 
     @FXML
     public void cleanSendRequest() {
-        CleaningRequest newClean = new CleaningRequest(null, cleanDescription.getText(),
+        CleaningRequest newClean = new CleaningRequest(n1, cleanDescription.getText(),
                 Integer.parseInt(cleanID.getText()), cleanTime.getText(), 00000,
                 "cleaning", Integer.parseInt(cleanLevel.getText()));
         requestList.addRequest(newClean);
@@ -221,11 +211,7 @@ public class ServiceRequestController {
         cleanLevel.clear();
         cleanDescription.clear();
         ID++;
-        assistanceID.setText(Integer.toString(ID));
-        foodID.setText(Integer.toString(ID));
-        transportID.setText(Integer.toString(ID));
-        cleanID.setText(Integer.toString(ID));
-        securityID.setText(Integer.toString(ID));
+        cleanPane.setExpanded(false);
     }
 
 
@@ -249,7 +235,7 @@ public class ServiceRequestController {
     public void updateSecurity(){
         securityID.setText(Integer.toString(ID));
         Date date = new Date();
-        SimpleDateFormat ft = new SimpleDateFormat ("hh:mm a");
+        SimpleDateFormat ft = new SimpleDateFormat ("h:mm a");
         securityTime.setText(ft.format(date));;
     }
 
@@ -261,7 +247,7 @@ public class ServiceRequestController {
 
     @FXML
     public void securitySendRequest() {
-        SecurityRequest newSecurity = new SecurityRequest(null, securityDescription.getText(),
+        SecurityRequest newSecurity = new SecurityRequest(n1, securityDescription.getText(),
                 Integer.parseInt(securityID.getText()), securityTime.getText(), 00000,
                 "security", Integer.parseInt(securityLevel.getText()));
         requestList.addRequest(newSecurity);
@@ -269,12 +255,15 @@ public class ServiceRequestController {
         securityLevel.clear();
         securityDescription.clear();
         ID++;
-        assistanceID.setText(Integer.toString(ID));
-        foodID.setText(Integer.toString(ID));
-        transportID.setText(Integer.toString(ID));
-        cleanID.setText(Integer.toString(ID));
-        securityID.setText(Integer.toString(ID));
+        securityPane.setExpanded(false);
     }
 
+/*
+    @FXML
+    private TableColumn<ServiceRequest, String> requests;
 
+    @FXML
+    private TableColumn<String, String> status;
+
+    public void initialize(URL, url)*/
 }
