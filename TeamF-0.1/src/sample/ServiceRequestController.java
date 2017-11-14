@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.text.*;
 import java.util.PriorityQueue;
-
+import java.util.Vector;
 
 
 public class ServiceRequestController {
@@ -121,6 +121,8 @@ public class ServiceRequestController {
         foodDescription.clear();
         ID++;
         foodPane.setExpanded(false);
+
+        //Vector<ServiceRequest> v = testEmbeddedDB.getAllServiceRequests();
     }
 
 

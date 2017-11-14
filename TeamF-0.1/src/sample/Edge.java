@@ -3,12 +3,12 @@ package sample;
 public class Edge {
 
     //Fields
-    private int EdgeID;
+    private String EdgeID;
     private Node Start;
     private Node End;
 
     //Constructor
-    public Edge(int EdgeID,Node Start, Node End) {
+    public Edge(String EdgeID,Node Start, Node End) {
 
         this.EdgeID = EdgeID;
         this.Start = Start;
@@ -16,11 +16,11 @@ public class Edge {
     }
 
     // Getters and Setters
-    public int getEdgeID() {
+    public String  getEdgeID() {
         return EdgeID;
     }
 
-    public void setEdgeID(int edgeID) {
+    public void setEdgeID(String edgeID) {
         this.EdgeID = edgeID;
     }
 

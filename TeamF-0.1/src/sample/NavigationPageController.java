@@ -39,7 +39,7 @@ public class NavigationPageController {
 
     // Contains the elevator option
     @FXML
-    private  CheckBox elevator;
+    private CheckBox elevator;
 
     // Contains the Invalid email error message
     @FXML

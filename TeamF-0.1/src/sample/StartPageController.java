@@ -7,6 +7,8 @@ public class StartPageController {
     @FXML
     private TextField searchBox;
 
+//    @FXML
+//    private ChoiceBox langbox;
     @FXML
     public void search(){
         System.out.print(searchBox.getText());

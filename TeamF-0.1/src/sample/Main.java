@@ -21,7 +21,6 @@ public class Main extends Application {
     private static Scene admin;
     private static Scene service;
 
-
     @Override
     public void start(Stage primaryStage) throws Exception{
         stage = primaryStage;
