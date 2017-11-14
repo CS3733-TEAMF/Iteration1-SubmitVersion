@@ -89,6 +89,8 @@ public class Main extends Application {
         //System.out.print(NavigationPageController.directions(Vec));
         //System.out.print(NavigationPageController.directions(InverseVec));
 
+        testEmbeddedDB.removeEdge("dickbutt");
+
         launch(args);
     }
 }

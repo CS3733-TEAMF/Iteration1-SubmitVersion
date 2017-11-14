@@ -1,8 +1,12 @@
 package sample;
 
 import com.opencsv.CSVWriter;
+import org.omg.CORBA.NO_IMPLEMENT;
+
 import java.io.FileWriter;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Vector;
 
 
 public class testEmbeddedDB {
@@ -32,7 +36,7 @@ public class testEmbeddedDB {
 
             //testEmbeddedDB.createServiceRequestTable();
 
-            testEmbeddedDB.addFoodRequest("dickbutt", "penis", 6969, "6969",
+            /*testEmbeddedDB.addFoodRequest("dickbutt", "penis", 6969, "6969",
                     420, "gimme the g00dSucc", "Joseph Stalin",
                     14411, "the Bourgoisies head");
 
@@ -40,7 +44,7 @@ public class testEmbeddedDB {
                     823450, "assistance", 4);
 
             testEmbeddedDB.addTransportRequest("test", "test", 1123, "234234",
-                    2, "test", true, "bob");
+                    2, "test", true, "bob");*/
 
             //testEmbeddedDB.writeToCSV();
 
@@ -124,6 +128,108 @@ public class testEmbeddedDB {
         } catch (Exception e){
             System.out.println("error: " + e.getMessage());
         }
+    }
+
+    public static Vector<Node> getAllNodes(){
+        //ArrayList<Node> allNodes = new ArrayList<Node>();
+        Vector<Node> allNodes = new Vector<Node>();
+        try{
+            Node n;
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement s = c.createStatement();
+
+            ResultSet r = s.executeQuery("SELECT * FROM NODES");
+
+            while(r.next()) {
+                String nodeID = r.getString("nodeID");
+                int xcord = r.getInt("xcoord");
+                int ycoord = r.getInt("ycoord");
+                int floor = Integer.parseInt(r.getString("floor"));
+                String building = r.getString("building");
+                String nodetype = r.getString("nodeType");
+                String longname = r.getString("longname");
+                String shortname = r.getString("shortname");
+                char team = r.getString("teamassigned").charAt(0);
+
+                n = new Node(nodeID, xcord, ycoord, floor, building, nodetype, longname, shortname, team);
+
+                n = testEmbeddedDB.getNode(r.getString("nodeID"));
+
+                allNodes.add(n);
+                //System.out.println("nodeID: " + name);
+            }
+
+        } catch (Exception e){
+            System.out.println("error: " + e.getMessage());
+        }
+
+        return allNodes;
+
+    }
+
+    public static Node getNode(String nodeID){
+        Node n = null;
+
+        try{
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement s = c.createStatement();
+
+            ResultSet r = s.executeQuery("SELECT * FROM NODES WHERE NODEID = '"+ nodeID + "'");
+
+            while(r.next()){
+                String ID = r.getString("nodeID");
+                int xcord = r.getInt("xcoord");
+                int ycoord = r.getInt("ycoord");
+                int floor = Integer.parseInt(r.getString("floor"));
+                String building = r.getString("building");
+                String nodetype = r.getString("nodeType");
+                String longname = r.getString("longname");
+                String shortname = r.getString("shortname");
+                char team = r.getString("teamassigned").charAt(0);
+
+                n = new Node(ID, xcord, ycoord, floor, building, nodetype, longname, shortname, team);
+            }
+
+        } catch (Exception e){
+            System.out.println("error: " + e.getMessage());
+        }
+
+        return n;
+    }
+
+    public static Vector<Edge> getAllEdges(){
+        //ArrayList<Node> allNodes = new ArrayList<Node>();
+        Vector<Edge> allEdges = new Vector<Edge>();
+        try{
+            Edge e;
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement s = c.createStatement();
+
+            ResultSet r = s.executeQuery("SELECT * FROM EDGES");
+
+            while(r.next()) {
+                String edgeID = r.getString("edgeid");
+                String start = r.getString("startnode");
+                String end = r.getString("endnode");
+
+                Node startNode = testEmbeddedDB.getNode(start);
+                Node endNode = testEmbeddedDB.getNode(end);
+
+                e = new Edge(edgeID, startNode, endNode);
+
+                allEdges.add(e);
+                //System.out.println("nodeID: " + name);
+            }
+
+        } catch (Exception e){
+            System.out.println("error: " + e.getMessage());
+        }
+
+        return allEdges;
+
     }
 
     public static void addFoodRequest(String nodeID, String desc, int serviceID, String  serviceTime,
