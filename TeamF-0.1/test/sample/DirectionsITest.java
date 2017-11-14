@@ -42,7 +42,7 @@ public class DirectionsITest {
         successNode.addElement(n2);
         successNode.addElement(n3);
 
-        //sets up invalid vector
+        //sets up inverse vector
         inverseNode.addElement(n3);
         inverseNode.addElement(n2);
         inverseNode.addElement(n1);
