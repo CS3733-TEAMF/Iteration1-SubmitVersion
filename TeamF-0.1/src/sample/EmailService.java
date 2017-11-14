@@ -3,7 +3,7 @@ package sample;
 
 //import com.sun.mail.smtp  MTPMessage;
 
-import com.sun.mail.smtp.SMTPMessage;
+//import com.sun.mail.smtp.SMTPMessage;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
