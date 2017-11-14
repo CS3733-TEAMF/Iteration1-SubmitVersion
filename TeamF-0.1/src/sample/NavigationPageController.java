@@ -5,17 +5,17 @@ import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Vector;
 
-public class NavigationPageController {
+public class NavigationPageController implements Data {
+
+    public String currentImage = "";
 
     // Contains the user zoom setting
     @FXML
@@ -191,14 +191,29 @@ public class NavigationPageController {
                 pathImage.drawLine(node.getxCoordinate(), node.getyCoordinate(),node2.getxCoordinate() ,node2.getyCoordinate());
             }
         }
-
         // Saving the image in a new file, uses the departure location and destination in the name of the map
         ImageIO.write(firstFloor, "PNG", new File("./TeamF-0.1/src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png"));
-        Thread.sleep(500); // Wait before reading and setting the image as the new map
+
+        //clearFile("./TeamF-0.1/src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png");
+        /*FileWriter data = new FileWriter("./TeamF-0.1/src/sample/Data/Data.txt", false);
+        PrintWriter writer2 = new PrintWriter(data);
+        writer2.printf("%s","./TeamF-0.1/src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png");
+        writer2.close();
+        data.close();*/
         // Set the saved image as the new map
+        Data.data.map = map.getImage();
+        Data.data.currentMap = "./TeamF-0.1/src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png";
+        Thread.sleep(2000); // Wait before reading and setting the image as the new map
         map.setImage(new Image(new FileInputStream("./TeamF-0.1/src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png")));
         System.out.println("Image edited and saved");
     }
+
+    /*
+    private static void clearFile(String fileName) throws IOException{
+        FileWriter fwOb = new FileWriter(fileName, false);
+        PrintWriter pwOb = new PrintWriter(fwOb, false);
+        pwOb.flush();
+        pwOb.close();
+        fwOb.close();
+    }*/
 }
-/*sample.UI.GeneratedImages ".sample.UI.GeneratedImages.path"
-        src\sample\UI\GeneratedImages*/
