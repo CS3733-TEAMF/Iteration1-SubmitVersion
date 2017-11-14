@@ -14,8 +14,7 @@ public class testEmbeddedDB {
     Connection c;
 
 
-    private testEmbeddedDB(){
-
+    public testEmbeddedDB(){
 
         try{
 
@@ -32,19 +31,21 @@ public class testEmbeddedDB {
 
             //testEmbeddedDB.fillEdgesTable();
 
-            //testEmbeddedDB.dropServiceRequests();
+            testEmbeddedDB.dropServiceRequests();
 
-            //testEmbeddedDB.createServiceRequestTable();
+            testEmbeddedDB.createServiceRequestTable();
 
-            /*testEmbeddedDB.addFoodRequest("dickbutt", "penis", 6969, "6969",
+            testEmbeddedDB.addFoodRequest("dickbutt", "penis", 6969, "6969",
                     420, "gimme the g00dSucc", "Joseph Stalin",
-                    14411, "the Bourgoisies head");
+                    "14411", "the Bourgoisies head");
 
             testEmbeddedDB.addAssistanceRequest("assistance", "not a penis", 68686, "4444",
                     823450, "assistance", 4);
 
             testEmbeddedDB.addTransportRequest("test", "test", 1123, "234234",
-                    2, "test", true, "bob");*/
+                    2, "test", true, "bob");
+
+            testEmbeddedDB.getAllServiceRequests();
 
             //testEmbeddedDB.writeToCSV();
 
@@ -114,9 +115,9 @@ public class testEmbeddedDB {
                     "serviceID INTEGER NOT NULL," +
                     "serviceTime CHAR(20) NOT NULL ," +
                     "serviceEmployeeID INTEGER NOT NULL ," +
-                    "typeOfReqest CHAR(30) NOT NULL ," +
+                    "typeOfRequest CHAR(30) NOT NULL ," +
                     "patientName CHAR(40) DEFAULT NULL ," +
-                    "timeToBeServed INTEGER DEFAULT NULL ," +
+                    "timeToBeServed CHAR(20) DEFAULT NULL ," +
                     "foodOrder CHAR(30) DEFAULT NULL ," +
                     "urgency INTEGER DEFAULT NULL ," +
                     "arrival BOOLEAN DEFAULT FALSE ," +
@@ -128,6 +129,67 @@ public class testEmbeddedDB {
         } catch (Exception e){
             System.out.println("error: " + e.getMessage());
         }
+    }
+
+    public static Vector<ServiceRequest> getAllServiceRequests(){
+        Vector<ServiceRequest> requests = new Vector<ServiceRequest>();
+
+        try{
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement s = c.createStatement();
+
+            ResultSet r = s.executeQuery("SELECT * FROM SERVICEREQUESTS");
+
+            while(r.next()){
+                ServiceRequest req = null;
+                Node n;
+                String dest = r.getString("destination");
+                String desc = r.getString("description");
+                int serviceID = r.getInt("serviceid");
+                String serviceTime = r.getString("servicetime");
+                int serviceEmployeeID = r.getInt("serviceemployeeid");
+                String typeofreq = r.getString("typeofrequest");
+                String patName = r.getString("patientname");
+                String timeToBeServed = r.getString("timetobeserved");
+                String order = r.getString("foodorder");
+                int urgency = r.getInt("urgency");
+                boolean arrival = r.getBoolean("arrival");
+                String typeOfTransport = r.getString("typeoftransport");
+
+                n = testEmbeddedDB.getNode(dest);
+
+                if(typeofreq.equals("food")){
+                    req = new FoodRequest(n, desc, serviceID, serviceTime, serviceEmployeeID,
+                            typeofreq, patName, timeToBeServed, order);
+
+                } else if(typeofreq.equals("assistance")){
+                    req = new AssistanceRequest(n, desc, serviceID, serviceTime, serviceEmployeeID,
+                            typeofreq, urgency);
+
+                } else if(typeofreq.equals("transport")){
+                    req = new TransportRequest(n, desc, serviceID, serviceTime, serviceEmployeeID,
+                            typeofreq, arrival, patName, typeOfTransport);
+
+                } else if(typeofreq.equals("cleaning")){
+                    req = new CleaningRequest(n, desc, serviceID, serviceTime, serviceEmployeeID,
+                            typeofreq, urgency);
+
+                } else if(typeofreq.equals("security")){
+                    req = new SecurityRequest(n, desc, serviceID, serviceTime, serviceEmployeeID,
+                            typeofreq, urgency);
+                }
+
+                requests.add(req);
+
+            }
+
+
+        } catch (Exception e){
+            System.out.println("error: " + e.getMessage());
+        }
+
+        return requests;
     }
 
     public static Vector<Node> getAllNodes(){
@@ -234,7 +296,7 @@ public class testEmbeddedDB {
 
     public static void addFoodRequest(String nodeID, String desc, int serviceID, String  serviceTime,
                                       int serviceEmployeeId, String reqType, String patientName,
-                                      int timeToBeServed, String order){
+                                      String timeToBeServed, String order){
 
         try{
             final String url = "jdbc:derby:Skynet";
@@ -242,9 +304,9 @@ public class testEmbeddedDB {
             Statement eee = c.createStatement();
 
             eee.execute("INSERT into SERVICEREQUESTS (DESTINATION, DESCRIPTION, SERVICEID, " +
-                    "SERVICETIME, SERVICEEMPLOYEEID, TYPEOFREQEST, PATIENTNAME, TIMETOBESERVED,FOODORDER) " +
+                    "SERVICETIME, SERVICEEMPLOYEEID, TYPEOFREQUEST, PATIENTNAME, TIMETOBESERVED,FOODORDER) " +
                     "VALUES ('" + nodeID + "', '" + desc + "', " + serviceID + ", '" + serviceTime + "'," +
-                    serviceEmployeeId + ",'" + reqType + "','" + patientName + "', " + timeToBeServed + ",'" +
+                    serviceEmployeeId + ",'" + reqType + "','" + patientName + "', '" + timeToBeServed + "','" +
                     order + "')");
 
             eee.close();
@@ -264,7 +326,7 @@ public class testEmbeddedDB {
             Statement q = c.createStatement();
 
             q.execute("INSERT into SERVICEREQUESTS (DESTINATION, DESCRIPTION, SERVICEID, " +
-                    "SERVICETIME, SERVICEEMPLOYEEID, TYPEOFREQEST, URGENCY) " +
+                    "SERVICETIME, SERVICEEMPLOYEEID, TYPEOFREQUEST, URGENCY) " +
                     "VALUES ('" + nodeID + "', '" + desc + "', " + serviceID + ", '" + serviceTime + "'," +
                     serviceEmployeeId + ",'" + reqType + "',"+ urgency+ ")");
 
@@ -286,7 +348,7 @@ public class testEmbeddedDB {
             Statement eee = c.createStatement();
 
             eee.execute("INSERT into SERVICEREQUESTS (DESTINATION, DESCRIPTION, SERVICEID, " +
-                    "SERVICETIME, SERVICEEMPLOYEEID, TYPEOFREQEST, ARRIVAL, PATIENTNAME) " +
+                    "SERVICETIME, SERVICEEMPLOYEEID, TYPEOFREQUEST, ARRIVAL, PATIENTNAME) " +
                     "VALUES ('" + nodeID + "', '" + desc + "', " + serviceID + ", '" + serviceTime + "'," +
                     serviceEmployeeId + ",'" + reqType + "'," + arrival + ", '" + patName + "')");
 
