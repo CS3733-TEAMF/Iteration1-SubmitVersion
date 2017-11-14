@@ -1,3 +1,4 @@
+
 package sample;
 
 import java.io.FileNotFoundException;
@@ -10,11 +11,13 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.opencsv.*;
 
+
 /**
  * 
  * @author viralpatel.net
  * 
  */
+
 public class CSVLoader {
 
 	private static final 
@@ -32,13 +35,15 @@ public class CSVLoader {
 	 * or failure.
 	 * @param connection
 	 */
+
 	public CSVLoader(Connection connection) {
 		this.connection = connection;
 		//Set default separator
 		this.seprator = ',';
 	}
 	
-	/**
+
+/**
 	 * Parse CSV file using OpenCSV library and load in 
 	 * given database table. 
 	 * @param csvFile Input CSV file
@@ -47,6 +52,7 @@ public class CSVLoader {
 	 * 			new records.
 	 * @throws Exception
 	 */
+
 	public void loadCSV(String csvFile, String tableName,
 			boolean truncateBeforeLoad) throws Exception {
 
@@ -145,3 +151,4 @@ public class CSVLoader {
 	}
 
 }
+
