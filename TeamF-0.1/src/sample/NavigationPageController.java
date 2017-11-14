@@ -92,7 +92,7 @@ public class NavigationPageController {
     // Method to clear the path on the map when the user presses clear map
     @FXML
     public void clear() throws FileNotFoundException{
-        map.setImage(new Image(new FileInputStream(".src.sample.UI.Icons.01_thefirstfloor.png")));
+        map.setImage(new Image(new FileInputStream("./TeamF-0.1/src/sample/UI/Icons/01_thefirstfloor.png")));
     }
 
     //sets invalid email label when necessary for errorhandling
@@ -193,10 +193,10 @@ public class NavigationPageController {
         }
 
         // Saving the image in a new file, uses the departure location and destination in the name of the map
-        ImageIO.write(firstFloor, "PNG", new File("path" + nameDep + "-" + nameDest + ".png"));
+        ImageIO.write(firstFloor, "PNG", new File("./TeamF-0.1/src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png"));
         Thread.sleep(500); // Wait before reading and setting the image as the new map
         // Set the saved image as the new map
-        map.setImage(new Image(new FileInputStream("path" + nameDep + "-" + nameDest + ".png")));
+        map.setImage(new Image(new FileInputStream("./TeamF-0.1/src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png")));
         System.out.println("Image edited and saved");
     }
 }
