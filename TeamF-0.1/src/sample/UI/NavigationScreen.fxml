@@ -6,8 +6,10 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
@@ -15,11 +17,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.NavigationPageController">
+<AnchorPane maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.NavigationPageController">
    <children>
       <ScrollPane layoutX="-1.0" layoutY="-1.0" prefHeight="768.0" prefWidth="770.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1088.0" prefWidth="1600.0">
+          <AnchorPane fx:id="mapAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="1088.0" prefWidth="1600.0">
                <children>
                   <ImageView fx:id="map" fitHeight="1088.0" fitWidth="1600.0">
                      <image>
@@ -39,6 +41,19 @@
         </content>
       </ScrollPane>
       <Slider fx:id="zoom" layoutX="614.0" layoutY="20.0" showTickLabels="true" showTickMarks="true" />
+      <SplitMenuButton fx:id="floorselector" alignment="CENTER" layoutX="150.0" layoutY="20.0" minHeight="32.0" minWidth="150.0" mnemonicParsing="false" onContextMenuRequested="#switchMap" prefHeight="32.0" prefWidth="100.0" text="Floor">
+        <items>
+            <MenuItem fx:id="thirdfloor" mnemonicParsing="false" onAction="#thirdflooractivate" text="Third Floor" />
+            <MenuItem fx:id="secondfloor" mnemonicParsing="false" onAction="#secondflooractivate" text="Second Floor" />
+            <MenuItem fx:id="firstfloor" mnemonicParsing="false" onAction="#firstflooractivate" text="First Floor" />
+            <MenuItem fx:id="groundfloor" mnemonicParsing="false" onAction="#groundflooractivate" text="Ground Floor" />
+          <MenuItem fx:id="basementone" mnemonicParsing="false" onAction="#basementoneactivate" text="Basement Level 1" />
+          <MenuItem fx:id="basementtwo" mnemonicParsing="false" onAction="#basementtwoactivate" text="Basement Level 2" />
+        </items>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </SplitMenuButton>
       <Button layoutX="770.0" layoutY="654.0" mnemonicParsing="false" onAction="#go" prefHeight="114.0" prefWidth="254.0" style="-fx-background-color: #8bdb9c;" text="Find Path" underline="true">
          <font>
             <Font size="36.0" />

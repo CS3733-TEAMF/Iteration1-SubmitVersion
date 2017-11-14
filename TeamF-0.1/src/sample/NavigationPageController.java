@@ -1,7 +1,15 @@
 package sample;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.*;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+
+
+import javax.swing.text.html.ImageView;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Vector;
 
 public class NavigationPageController {
@@ -20,6 +28,73 @@ public class NavigationPageController {
     @FXML
     private static Label invalidEmailText;
 
+    // These fxml things were added by Andrew S.
+    @FXML
+    private SplitMenuButton floorselector;
+
+    @FXML
+    private MenuItem thirdfloor;
+
+    @FXML
+    private MenuItem secondfloor;
+
+    @FXML
+    private MenuItem firstfloor;
+
+    @FXML
+    private MenuItem groundfloor;
+
+    @FXML
+    private MenuItem basementone;
+
+    @FXML
+    private MenuItem basementtwo;
+
+    @FXML
+    private javafx.scene.image.ImageView map;
+
+    @FXML
+    private void thirdflooractivate() throws FileNotFoundException
+    {
+        String path = ".\\TeamF-0.1\\src\\sample\\UI\\Icons\\03_thethirdfloor.png";
+        map.setImage(new Image(new FileInputStream(path)));
+    }
+
+    @FXML
+    private void secondflooractivate() throws FileNotFoundException
+    {
+        String path = ".\\TeamF-0.1\\src\\sample\\UI\\Icons\\02_thesecondfloor.png";
+        map.setImage(new Image(new FileInputStream(path)));
+    }
+
+    @FXML
+    private void firstflooractivate() throws FileNotFoundException
+    {
+        String path = ".\\TeamF-0.1\\src\\sample\\UI\\Icons\\01_thefirstfloor.png";
+        map.setImage(new Image(new FileInputStream(path)));
+    }
+
+    @FXML
+    private void groundflooractivate() throws FileNotFoundException
+    {
+        String path = ".\\TeamF-0.1\\src\\sample\\UI\\Icons\\00_thegroundfloor.png";
+        map.setImage(new Image(new FileInputStream(path)));
+    }
+
+    @FXML
+    private void basementoneactivate() throws FileNotFoundException
+    {
+        String path = ".\\TeamF-0.1\\src\\sample\\UI\\Icons\\00_thelowerlevel1.png";
+        map.setImage(new Image(new FileInputStream(path)));
+    }
+
+    @FXML
+    private void basementtwoactivate() throws FileNotFoundException
+    {
+        String path = "D:\\SoftEng\\Iteration_One\\Iteration1-SubmitVersion\\TeamF-0.1\\src\\sample\\UI\\Icons\\00_thelowerlevel2.png";
+        map.setImage(new Image(new FileInputStream(path)));
+    }
+
     @FXML
     public void go(){
 
@@ -27,6 +102,31 @@ public class NavigationPageController {
 
     @FXML
     public void clear(){
+
+    }
+
+    @FXML // This is for the SpitMenuButton floor; // Andrew S
+    private void switchMap()
+    {
+//        SplitMenuButton menu = new SplitMenuButton();
+
+        MenuItem item1 = new MenuItem();
+
+        /*
+        boolean bs2 = false;
+        boolean bs1 = false;
+        boolean gnd = false;
+        boolean flr1 = false;
+        boolean flr2 = false;
+        boolean flr3 = false;
+
+        bs2 = basementtwo.getOnMenuValidation().equals(true);
+        bs1 = basementone.getOnMenuValidation().equals(true);
+        gnd = groundfloor.getOnMenuValidation().equals(true);
+        flr1 = firstfloor.getOnMenuValidation().equals(true);
+        flr2 = secondfloor.getOnMenuValidation().equals(true);
+        flr3 = thirdfloor.getOnMenuValidation().equals(true);
+        */
 
     }
 
@@ -92,7 +192,6 @@ public class NavigationPageController {
             }else{
                 turn = "sharply left";
             }
-
             out = out.concat("When you arrive at " + b.getLongName() + " go " + turn + " towards " + c.getLongName() + "<br>");
         }
         return out;
