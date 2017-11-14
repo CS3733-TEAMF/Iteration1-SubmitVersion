@@ -2,6 +2,7 @@ package sample;
 
 import com.opencsv.CSVWriter;
 import org.omg.CORBA.NO_IMPLEMENT;
+import sun.jvm.hotspot.memory.TenuredSpace;
 
 import java.io.FileWriter;
 import java.sql.*;
@@ -35,15 +36,26 @@ public class testEmbeddedDB {
 
             testEmbeddedDB.createServiceRequestTable();
 
-            testEmbeddedDB.addFoodRequest("dickbutt", "penis", 6969, "6969",
+            Node test = new Node("dickbutt", 4, 4,
+                    4, "test", "test", "test",
+                    "test",'t');
+
+            FoodRequest f = new FoodRequest(test, "penis", 6969, "6969",
                     420, "gimme the g00dSucc", "Joseph Stalin",
                     "14411", "the Bourgoisies head");
 
-            testEmbeddedDB.addAssistanceRequest("assistance", "not a penis", 68686, "4444",
-                    823450, "assistance", 4);
+            AssistanceRequest a = new AssistanceRequest(test, "not a penis", 68686,
+                    "4444", 823450, "assistance", 4);
 
-            testEmbeddedDB.addTransportRequest("test", "test", 1123, "234234",
-                    2, "test", true, "bob");
+            TransportRequest t = new TransportRequest(test, "test", 22222222,
+                    "131", 141414, "assistance", true,
+                    "test", "assistance");
+
+            testEmbeddedDB.addFoodRequest(f);
+
+            testEmbeddedDB.addAssistanceRequest(a);
+
+            testEmbeddedDB.addTransportRequest(t);
 
             testEmbeddedDB.getAllServiceRequests();
 
@@ -178,6 +190,8 @@ public class testEmbeddedDB {
                 } else if(typeofreq.equals("security")){
                     req = new SecurityRequest(n, desc, serviceID, serviceTime, serviceEmployeeID,
                             typeofreq, urgency);
+                } else if(typeofreq.equals("it")){
+                    //deal with an IT request
                 }
 
                 requests.add(req);
@@ -294,9 +308,7 @@ public class testEmbeddedDB {
 
     }
 
-    public static void addFoodRequest(String nodeID, String desc, int serviceID, String  serviceTime,
-                                      int serviceEmployeeId, String reqType, String patientName,
-                                      String timeToBeServed, String order){
+    public static void addFoodRequest(FoodRequest f){
 
         try{
             final String url = "jdbc:derby:Skynet";
@@ -305,9 +317,9 @@ public class testEmbeddedDB {
 
             eee.execute("INSERT into SERVICEREQUESTS (DESTINATION, DESCRIPTION, SERVICEID, " +
                     "SERVICETIME, SERVICEEMPLOYEEID, TYPEOFREQUEST, PATIENTNAME, TIMETOBESERVED,FOODORDER) " +
-                    "VALUES ('" + nodeID + "', '" + desc + "', " + serviceID + ", '" + serviceTime + "'," +
-                    serviceEmployeeId + ",'" + reqType + "','" + patientName + "', '" + timeToBeServed + "','" +
-                    order + "')");
+                    "VALUES ('" + f.destination.getNodeID() + "', '" + f.description + "', " + f.serviceID +
+                    ", '" + f.serviceTime + "'," + f.serviceEmployeeID + ",'" + f.typeOfRequest + "','" +
+                    f.getPatientName() + "', '" + f.getServingTime() + "','" + f.getFoodOrder() + "')");
 
             eee.close();
 
@@ -317,18 +329,31 @@ public class testEmbeddedDB {
 
     }
 
-    public static void addAssistanceRequest(String nodeID, String desc, int serviceID, String serviceTime,
-                                      int serviceEmployeeId, String reqType, int urgency){
+    public static void addAssistanceRequest(AssistanceRequest r){
+        testEmbeddedDB.addRequest(r);
+    }
+
+    public static void addCleaningRequest(CleaningRequest r){
+       testEmbeddedDB.addRequest(r);
+    }
+
+    public static void addSecurityRequest(SecurityRequest r){
+        testEmbeddedDB.addRequest(r);
+    }
+
+    private static void addRequest(ServiceRequest r){
 
         try{
             final String url = "jdbc:derby:Skynet";
             Connection c = DriverManager.getConnection(url);
             Statement q = c.createStatement();
 
+            //SUPER SHIFTY CAST HERE WATCH OUT
             q.execute("INSERT into SERVICEREQUESTS (DESTINATION, DESCRIPTION, SERVICEID, " +
                     "SERVICETIME, SERVICEEMPLOYEEID, TYPEOFREQUEST, URGENCY) " +
-                    "VALUES ('" + nodeID + "', '" + desc + "', " + serviceID + ", '" + serviceTime + "'," +
-                    serviceEmployeeId + ",'" + reqType + "',"+ urgency+ ")");
+                    "VALUES ('" + r.destination.getNodeID() + "', '" + r.description +
+                    "', " + r.serviceID + ", '" + r.serviceTime + "'," +
+                    r.serviceEmployeeID + ",'" + r.typeOfRequest + "',"+ ((AssistanceRequest) r).getUrgency() + ")");
 
             q.close();
 
@@ -338,9 +363,7 @@ public class testEmbeddedDB {
 
     }
 
-    public static void addTransportRequest(String nodeID, String desc, int serviceID, String  serviceTime,
-                                            int serviceEmployeeId, String reqType, boolean arrival,
-                                           String patName){
+    public static void addTransportRequest(TransportRequest t){
 
         try{
             final String url = "jdbc:derby:Skynet";
@@ -349,8 +372,9 @@ public class testEmbeddedDB {
 
             eee.execute("INSERT into SERVICEREQUESTS (DESTINATION, DESCRIPTION, SERVICEID, " +
                     "SERVICETIME, SERVICEEMPLOYEEID, TYPEOFREQUEST, ARRIVAL, PATIENTNAME) " +
-                    "VALUES ('" + nodeID + "', '" + desc + "', " + serviceID + ", '" + serviceTime + "'," +
-                    serviceEmployeeId + ",'" + reqType + "'," + arrival + ", '" + patName + "')");
+                    "VALUES ('" + t.destination.getNodeID() + "', '" + t.description + "', " + t.serviceEmployeeID +
+                    ", '" + t.getServiceTime() + "'," + t.serviceEmployeeID + ",'" + t.typeOfRequest + "'," +
+                    t.getArrival() + ", '" + t.getPatientName() + "')");
 
             eee.close();
 
