@@ -18,7 +18,7 @@ public class Node {
 
 
     //Constructor
-    public Node (String nodeID, int xCoordinate, int yCoordinate,int floor, String building, String nodeType, String longName, String shortName, char teamAssigned){
+    public Node (String nodeID, int xCoordinate, int yCoordinate, int floor, String building, String nodeType, String longName, String shortName, char teamAssigned){
 
         this.nodeID = nodeID;
         this.xCoordinate = xCoordinate;
@@ -111,7 +111,18 @@ public class Node {
         return this.Neighbors;
     }
 
+    public boolean  isType(String input )
+    {
+        return true;
+    }
 
+    public boolean isLocation(String input ){
+        return true;
+    }
+
+    public double distance( int x, int y){
+        return 7;
+    }
 
     /**
      * This function adds a node to the neighbor's vector of this node
