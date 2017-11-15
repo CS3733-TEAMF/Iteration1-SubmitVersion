@@ -17,6 +17,7 @@ public class testEmbeddedDB {
 
     public testEmbeddedDB(){
 
+
         try{
 
             final String url = "jdbc:derby:Skynet";
@@ -58,6 +59,20 @@ public class testEmbeddedDB {
             testEmbeddedDB.addTransportRequest(t);
 
             testEmbeddedDB.getAllServiceRequests();
+
+            //testEmbeddedDB.dropServiceRequests();
+
+            //testEmbeddedDB.createServiceRequestTable();
+
+            /*testEmbeddedDB.addFoodRequest("dickbutt", "penis", 6969, "6969",
+                    420, "gimme the g00dSucc", "Joseph Stalin",
+                    14411, "the Bourgoisies head");
+
+            testEmbeddedDB.addAssistanceRequest("assistance", "not a penis", 68686, "4444",
+                    823450, "assistance", 4);
+
+            testEmbeddedDB.addTransportRequest("test", "test", 1123, "234234",
+                    2, "test", true, "bob");*/
 
             //testEmbeddedDB.writeToCSV();
 
@@ -516,7 +531,7 @@ public class testEmbeddedDB {
     }
 
     public static void addNodes(String nodeID, int xCoord, int yCoord, String floor, String building,
-                         String nodeType, String longName, String shortName, String team){
+                                String nodeType, String longName, String shortName, String team){
         final String url = "jdbc:derby:Skynet";
 
         try{
