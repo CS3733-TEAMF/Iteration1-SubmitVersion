@@ -7,9 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="opencsv-4.0" level="project" />
-    <orderEntry type="library" name="common-lang3" level="project" />
-    <orderEntry type="library" name="activation" level="project" />
-    <orderEntry type="library" name="mail" level="project" />
+    <orderEntry type="library" name="commons-lang3-3" level="application" />
+    <orderEntry type="library" name="opencsv-4.0" level="application" />
+    <orderEntry type="library" name="javax.mail:javax.mail-api:1.6.0" level="application" />
+    <orderEntry type="library" name="derby" level="application" />
   </component>
 </module>
