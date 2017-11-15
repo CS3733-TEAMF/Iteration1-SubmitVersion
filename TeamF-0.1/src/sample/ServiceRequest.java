@@ -2,6 +2,10 @@ package sample;
 
 //import javax.xml.soap.Node;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 //Talal and willis
 public abstract class ServiceRequest {
 
@@ -20,6 +24,20 @@ public abstract class ServiceRequest {
         this.serviceEmployeeID = serviceEmployeeID;
         this.typeOfRequest = typeOfRequest;
     }
+
+    public StringProperty getRequestType()
+    {
+        return new SimpleStringProperty(this.typeOfRequest);
+    }
+
+    public StringProperty getStatus()
+    {
+        String swag = "Okay";
+        return new SimpleStringProperty(swag);
+    }
+
+
+
 
     public void setServiceEmployeeID(int a) {
         return;

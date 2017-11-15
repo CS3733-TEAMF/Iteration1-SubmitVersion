@@ -2,7 +2,7 @@ package sample;
 
 import com.opencsv.CSVWriter;
 import org.omg.CORBA.NO_IMPLEMENT;
-import sun.jvm.hotspot.memory.TenuredSpace;
+//import sun.jvm.hotspot.memory.TenuredSpace;
 
 import java.io.FileWriter;
 import java.sql.*;
@@ -190,8 +190,10 @@ public class testEmbeddedDB {
                 } else if(typeofreq.equals("security")){
                     req = new SecurityRequest(n, desc, serviceID, serviceTime, serviceEmployeeID,
                             typeofreq, urgency);
+
                 } else if(typeofreq.equals("it")){
-                    //deal with an IT request
+                    req = new ItRequest(n, desc, serviceID, serviceTime, serviceEmployeeID,
+                            typeofreq, urgency);
                 }
 
                 requests.add(req);
@@ -330,15 +332,86 @@ public class testEmbeddedDB {
     }
 
     public static void addAssistanceRequest(AssistanceRequest r){
-        testEmbeddedDB.addRequest(r);
+        try{
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement q = c.createStatement();
+
+            q.execute("INSERT into SERVICEREQUESTS (DESTINATION, DESCRIPTION, SERVICEID, " +
+                    "SERVICETIME, SERVICEEMPLOYEEID, TYPEOFREQUEST, URGENCY) " +
+                    "VALUES ('" + r.destination.getNodeID() + "', '" + r.description +
+                    "', " + r.serviceID + ", '" + r.serviceTime + "'," +
+                    r.serviceEmployeeID + ",'" + r.typeOfRequest + "',"+ r.getUrgency() + ")");
+
+            q.close();
+
+        } catch (Exception e){
+            System.out.println("error: " + e.getMessage());
+        }
+
     }
 
     public static void addCleaningRequest(CleaningRequest r){
-       testEmbeddedDB.addRequest(r);
+        try{
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement q = c.createStatement();
+
+            //SUPER SHIFTY CAST HERE WATCH OUT
+            q.execute("INSERT into SERVICEREQUESTS (DESTINATION, DESCRIPTION, SERVICEID, " +
+                    "SERVICETIME, SERVICEEMPLOYEEID, TYPEOFREQUEST, URGENCY) " +
+                    "VALUES ('" + r.destination.getNodeID() + "', '" + r.description +
+                    "', " + r.serviceID + ", '" + r.serviceTime + "'," +
+                    r.serviceEmployeeID + ",'" + r.typeOfRequest + "',"+ r.getUrgency() + ")");
+
+            q.close();
+
+        } catch (Exception e){
+            System.out.println("error: " + e.getMessage());
+        }
+
     }
 
     public static void addSecurityRequest(SecurityRequest r){
-        testEmbeddedDB.addRequest(r);
+        try{
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement q = c.createStatement();
+
+            //SUPER SHIFTY CAST HERE WATCH OUT
+            q.execute("INSERT into SERVICEREQUESTS (DESTINATION, DESCRIPTION, SERVICEID, " +
+                    "SERVICETIME, SERVICEEMPLOYEEID, TYPEOFREQUEST, URGENCY) " +
+                    "VALUES ('" + r.destination.getNodeID() + "', '" + r.description +
+                    "', " + r.serviceID + ", '" + r.serviceTime + "'," +
+                    r.serviceEmployeeID + ",'" + r.typeOfRequest + "',"+ r.getUrgency() + ")");
+
+            q.close();
+
+        } catch (Exception e){
+            System.out.println("error: " + e.getMessage());
+        }
+
+    }
+
+    public static void addItRequest(ItRequest r){
+        try{
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement q = c.createStatement();
+
+            //SUPER SHIFTY CAST HERE WATCH OUT
+            q.execute("INSERT into SERVICEREQUESTS (DESTINATION, DESCRIPTION, SERVICEID, " +
+                    "SERVICETIME, SERVICEEMPLOYEEID, TYPEOFREQUEST, URGENCY) " +
+                    "VALUES ('" + r.destination.getNodeID() + "', '" + r.description +
+                    "', " + r.serviceID + ", '" + r.serviceTime + "'," +
+                    r.serviceEmployeeID + ",'" + r.typeOfRequest + "',"+ r.getUrgency() + ")");
+
+            q.close();
+
+        } catch (Exception e){
+            System.out.println("error: " + e.getMessage());
+        }
+
     }
 
     private static void addRequest(ServiceRequest r){

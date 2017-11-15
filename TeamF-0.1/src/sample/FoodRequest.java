@@ -1,6 +1,6 @@
 package sample;
 
-public class FoodRequest extends ServiceRequest {
+public class  FoodRequest extends ServiceRequest {
     public FoodRequest(Node destination, String description, int serviceID, String serviceTime, int serviceEmployeeID, String typeOfRequest) {
         super(destination, description, serviceID, serviceTime, serviceEmployeeID, typeOfRequest);
     }

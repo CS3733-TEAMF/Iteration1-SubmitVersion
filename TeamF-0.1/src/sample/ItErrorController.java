@@ -17,12 +17,12 @@ public class ItErrorController {
     @FXML
     private Button noIt;
 
-    @FXML
+/*    @FXML
     public void yesRequest(){
         Main.itRequestScreen();
         ServiceRequestController.updateIt();
     }
-
+*/
     @FXML
     public void noRequest(){
         Main.startScreen();

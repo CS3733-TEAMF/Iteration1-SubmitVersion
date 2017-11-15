@@ -1,20 +1,40 @@
 /*It Request Work - Floris and Steph
-* Purpose: to add additional Request for IT personell */
+* Purpose: to add additional Request for IT ServiceRequestell */
 
 
 package sample;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.util.Comparator;
-import java.util.Date;
+
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Properties;
+
+
+
+import sample.testEmbeddedDB;
+
+import javax.xml.ws.Service;
+import java.net.URL;
+import java.util.*;
 import java.text.*;
-import java.util.PriorityQueue;
+
+
+public class ServiceRequestController implements Initializable{
 
 
 
-public class ServiceRequestController {
+
 
     //top menu bar
     @FXML
@@ -26,10 +46,7 @@ public class ServiceRequestController {
 
     public static int ID = 1;   //service ID counter
     Node n1 = new Node("FDEPT00101", 1614, 829, 1, "Tower", "DEPT", "Center for International Medecine", "CIM", 'F');
-    PriorityQueue<ServiceRequest>  priorityQueue = new PriorityQueue<ServiceRequest>(100,
-            Comparator.comparing(ServiceRequest::getServiceID));             //creates priority queue of
-    ServiceRequestList requestList = new ServiceRequestList(priorityQueue);  //service requests, ordered by ID
-
+    ArrayList<ServiceRequest> requestList = new ArrayList<ServiceRequest>();  //list to hold local service requests
 
     //assistance requests
     @FXML
@@ -55,8 +72,12 @@ public class ServiceRequestController {
         assistanceTime.setText(ft.format(date));;                        //sets current time
     }
 
+    private Node assistanceNode;
+
     @FXML
-    public void assistanceThisLocation() {}
+    public void assistanceThisLocation() {
+        assistanceNode = n1;
+    }
 
     @FXML
     public void assistanceChooseLocation() {
@@ -64,10 +85,13 @@ public class ServiceRequestController {
 
     @FXML
     public void assistanceSendRequest() throws MissingFieldException{    //when the Send button is pressed
-        AssistanceRequest newAssist = new AssistanceRequest(n1, assistanceDescription.getText(),
+        AssistanceRequest newAssist = new AssistanceRequest(assistanceNode, assistanceDescription.getText(),
                 Integer.parseInt(assistanceID.getText()), assistanceTime.getText(), 00000,
                 "assistance", Integer.parseInt(assistanceUrgency.getText()));
-        requestList.addRequest(newAssist);               //new service request is made and added to priority queue
+        requestList.add(newAssist);               //new service request is made and added to priority queue
+        testEmbeddedDB.addAssistanceRequest(newAssist);
+        // tableView.getItems().add(newAssist);
+        System.out.println(newAssist.typeOfRequest);
 
         assistanceUrgency.clear();                      //clears textfields
         assistanceDescription.clear();
@@ -106,18 +130,24 @@ public class ServiceRequestController {
         foodTime.setText(ft.format(date));;
     }
 
+    private Node foodNode;
+
     @FXML
-    public void foodThisLocation() {}
+    public void foodThisLocation() {
+        foodNode = n1;
+    }
 
     @FXML
     public void foodChooseLocation() {}
 
     @FXML
     public void foodSendRequest() throws MissingFieldException{
-        FoodRequest newFood = new FoodRequest(n1, foodDescription.getText(), Integer.parseInt(foodID.getText()),
+        FoodRequest newFood = new FoodRequest(foodNode, foodDescription.getText(), Integer.parseInt(foodID.getText()),
                 foodTime.getText(), 00000, "food", foodPatient.getText(),
                         foodServingTime.getText(), foodOrder.getText());
-        requestList.addRequest(newFood);
+        requestList.add(newFood);
+        testEmbeddedDB.addFoodRequest(newFood);
+       // tableView.getItems().add(newFood);
 
         foodPatient.clear();
         foodServingTime.clear();
@@ -154,18 +184,24 @@ public class ServiceRequestController {
         transportTime.setText(ft.format(date));;
     }
 
+    private Node transportNode;
+
     @FXML
-    public void transportThisLocation() {}
+    public void transportThisLocation() {
+        transportNode = n1;
+    }
 
     @FXML
     public void transportChooseLocation() {}
 
     @FXML
     public void transportSendRequest() throws MissingFieldException{
-        TransportRequest newTransport = new TransportRequest(n1, transportDescription.getText(),
+        TransportRequest newTransport = new TransportRequest(transportNode, transportDescription.getText(),
                 Integer.parseInt(transportID.getText()), transportTime.getText(), 00000,
                 "transport", false, transportPatient.getText(), transportType.getText());
-        requestList.addRequest(newTransport);
+        requestList.add(newTransport);
+        testEmbeddedDB.addTransportRequest(newTransport);
+       // tableView.getItems().add(newTransport);
 
         transportPatient.clear();
         transportType.clear();
@@ -199,18 +235,24 @@ public class ServiceRequestController {
         cleanTime.setText(ft.format(date));;
     }
 
+    private Node cleanNode;
+
     @FXML
-    public void cleanThisLocation() {}
+    public void cleanThisLocation() {
+        cleanNode = n1;
+    }
 
     @FXML
     public void cleanChooseLocation() {}
 
     @FXML
     public void cleanSendRequest() throws MissingFieldException{
-        CleaningRequest newClean = new CleaningRequest(n1, cleanDescription.getText(),
+        CleaningRequest newClean = new CleaningRequest(cleanNode, cleanDescription.getText(),
                 Integer.parseInt(cleanID.getText()), cleanTime.getText(), 00000,
                 "cleaning", Integer.parseInt(cleanLevel.getText()));
-        requestList.addRequest(newClean);
+        requestList.add(newClean);
+        testEmbeddedDB.addCleaningRequest(newClean);
+      //  tableView.getItems().add(newClean);
 
         cleanLevel.clear();
         cleanDescription.clear();
@@ -243,18 +285,24 @@ public class ServiceRequestController {
         securityTime.setText(ft.format(date));;
     }
 
+    private Node securityNode;
+
     @FXML
-    public void securityThisLocation() {}
+    public void securityThisLocation() {
+        securityNode = n1;
+    }
 
     @FXML
     public void securityChooseLocation() {}
 
     @FXML
     public void securitySendRequest() throws MissingFieldException{
-        SecurityRequest newSecurity = new SecurityRequest(n1, securityDescription.getText(),
+        SecurityRequest newSecurity = new SecurityRequest(securityNode, securityDescription.getText(),
                 Integer.parseInt(securityID.getText()), securityTime.getText(), 00000,
                 "security", Integer.parseInt(securityLevel.getText()));
-        requestList.addRequest(newSecurity);
+        requestList.add(newSecurity);
+        testEmbeddedDB.addSecurityRequest(newSecurity);
+      //  tableView.getItems().add(newSecurity);
 
         securityLevel.clear();
         securityDescription.clear();
@@ -263,7 +311,7 @@ public class ServiceRequestController {
     }
 
     @FXML
-    private Label itRequestLabel;
+    private TitledPane itPane;
 
     @FXML
     private TextArea itDescription;
@@ -275,16 +323,16 @@ public class ServiceRequestController {
     private TextField itUrgency;
 
     @FXML
-    private static Label itID;
+    private Label itID;
 
     @FXML
-    private static Label itTime;
+    private Label itTime;
 
     @FXML
-    public static Label missingField;
+    public Label missingField;
 
     @FXML
-    public static void updateIt(){
+    public void updateIt(){
         itID.setText(Integer.toString(ID));
         Date date = new Date();
         SimpleDateFormat ft = new SimpleDateFormat ("h:mm a");
@@ -296,19 +344,53 @@ public class ServiceRequestController {
         ItRequest newIt = new ItRequest(n1, itDescription.getText(),
                 Integer.parseInt(itID.getText()), itTime.getText(), 00000,
                 "it", Integer.parseInt(itUrgency.getText()));
-        requestList.addRequest(newIt);
+        requestList.add(newIt);
+        testEmbeddedDB.addItRequest(newIt);
+     //   tableView.getItems().add(newIt);
 
         itUrgency.clear();
         itDescription.clear();
         ID++;
+        itPane.setExpanded(false);
     }
 
-/*
+    @FXML
+    private TableView<ServiceRequest> tableView;
+
     @FXML
     private TableColumn<ServiceRequest, String> requests;
 
     @FXML
-    private TableColumn<String, String> status;
+    private TableColumn<ServiceRequest, String> status;
 
-    public void initialize(URL, url)*/
+    @FXML
+    private Button refresh;
+
+    private ObservableList<ServiceRequest> requestObserve = FXCollections.observableArrayList();
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+//        requests.setCellValueFactory(new PropertyValueFactory<ServiceRequest, String>("Requests"));
+//        status.setCellValueFactory(new PropertyValueFactory<ServiceRequest, String>("Status"));
+        requests.setCellValueFactory(cellData -> cellData.getValue().getRequestType());
+        status.setCellValueFactory(cellData -> cellData.getValue().getStatus());
+        counter = 0;
+    }
+
+
+    private int counter;
+
+    @FXML
+    public void refreshTable() {
+        System.out.println("I am printing");
+        int i = 0;
+        for(i = counter; i < requestList.size(); i++) {
+            requestObserve.add(requestList.get(i));
+            // requests.setText((requestList.get(i)).typeOfRequest);
+        }
+        counter = i;
+        tableView.setItems(requestObserve);
+    }
+
+
 }
