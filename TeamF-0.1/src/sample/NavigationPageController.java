@@ -91,7 +91,7 @@ public class NavigationPageController {
         */
 
         Vector<Node> BannedNodes = new Vector<>();
-        SearchEngine Engine = new SearchEngine(new Map(testEmbeddedDB.getAllNodes(),testEmbeddedDB.getAllEdges(),BannedNodes));
+        SearchEngine Engine = new SearchEngine(new Map(testEmbeddedDB.getAllNodes(),testEmbeddedDB.getAllEdges()));
         for (int i =0; i<Engine.getMap().getMap().size();i++){
 
             System.out.println(i+ " : "+Engine.getMap().getMap().get(i).getLongName());

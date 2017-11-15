@@ -4,6 +4,7 @@
 /*IMPORTANT - EDITS THE TABLES, BE CAREFUL IF FILE IS IN MASTER*/
 /*UNFINISHED - Steph*/
 
+/*
 package sample;
 
 import org.junit.Test;
@@ -50,3 +51,4 @@ public class DBITest {
         testEmbeddedDB.removeEdge("test");
     }
 }
+*/

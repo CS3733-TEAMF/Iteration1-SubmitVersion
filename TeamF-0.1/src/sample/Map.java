@@ -19,11 +19,10 @@ public class Map {
 
 
     //Constructor
-    public Map(Vector<Node> ListOfNodes, Vector<Edge> ListOfEdges,Vector<Node> BannedNodes){
+    public Map(Vector<Node> ListOfNodes, Vector<Edge> ListOfEdges){
 
         Map = ListOfNodes;
         Edges = ListOfEdges;
-        DisabledNodes = BannedNodes;
 
     }
 

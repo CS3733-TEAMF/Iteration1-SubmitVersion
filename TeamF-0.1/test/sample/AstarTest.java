@@ -26,45 +26,45 @@ public class AstarTest {
 
         //test 1 answ a,c,e,g
 
-        Edge aEdge = new Edge(1,a,b);
-        Edge bEdge = new Edge(2,b,d);
-        Edge cEdge = new Edge(3,d,f);
-        Edge dEdge = new Edge(4,f,g);
-        Edge eEdge = new Edge(5,a,c);
-        Edge fEdge = new Edge(6,c,e);
-        Edge gEdge = new Edge(7,e,g);
+        Edge aEdge = new Edge("1",a,b);
+        Edge bEdge = new Edge("2",b,d);
+        Edge cEdge = new Edge("3",d,f);
+        Edge dEdge = new Edge("4",f,g);
+        Edge eEdge = new Edge("5",a,c);
+        Edge fEdge = new Edge("6",c,e);
+        Edge gEdge = new Edge("7",e,g);
 
 
         //test2 answ a,c,d,g
 
-        Edge hEdge = new Edge(8,c,d);
-        Edge iEdge = new Edge(9,d,g);
-        Edge jEdge = new Edge(10,b,f);
+        Edge hEdge = new Edge("8",c,d);
+        Edge iEdge = new Edge("9",d,g);
+        Edge jEdge = new Edge("10",b,f);
+        Vector<Node> googlefish = new Vector<Node>();
+        Vector<Edge> babble = new Vector<Edge>();
 
-        Map MapObj = new Map();
-
-        MapObj.addToMap(a);
-        MapObj.addToMap(b);
-        MapObj.addToMap(c);
-        MapObj.addToMap(d);
-        MapObj.addToMap(e);
-        MapObj.addToMap(f);
-        MapObj.addToMap(g);
-
-
-
-        MapObj.addToEdges(aEdge);
-        MapObj.addToEdges(bEdge);
-        MapObj.addToEdges(cEdge);
-        MapObj.addToEdges(dEdge);
-        MapObj.addToEdges(eEdge);
-        MapObj.addToEdges(fEdge);
-        MapObj.addToEdges(gEdge);
-        MapObj.addToEdges(hEdge);
-        MapObj.addToEdges(iEdge);
-        MapObj.addToEdges(jEdge);
+        googlefish.add(a);
+        googlefish.add(b);
+        googlefish.add(c);
+        googlefish.add(d);
+        googlefish.add(e);
+        googlefish.add(f);
+        googlefish.add(g);
 
 
+
+        babble.add(aEdge);
+        babble.add(bEdge);
+        babble.add(cEdge);
+        babble.add(dEdge);
+        babble.add(eEdge);
+        babble.add(fEdge);
+        babble.add(gEdge);
+        babble.add(hEdge);
+        babble.add(iEdge);
+        babble.add(jEdge);
+
+        Map MapObj = new Map(googlefish, babble);
         MapObj.BuildMap();
 
         Vector<Node> Result1 = new Vector<Node>();
