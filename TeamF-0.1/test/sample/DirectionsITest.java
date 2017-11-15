@@ -56,8 +56,7 @@ public class DirectionsITest {
         Vector<Node> nullNode = new Vector<Node>(10);
         nullNode.add(null);
         //get directions
-        thrown.expect(PathException.class);
-        thrown.expectMessage("Path is invalid");
+        thrown.expect(ArrayIndexOutOfBoundsException.class);
         NavigationPageController.directions(nullNode);
     }
 
@@ -69,8 +68,7 @@ public class DirectionsITest {
         Node n1 = new Node("FDEPT00101", 1614, 829, 1, "Tower", "DEPT", "Center for International Medecine", "CIM", 'F');
         oneNode.add(n1);
         //getdirections
-        thrown.expect(PathException.class);
-        thrown.expectMessage("Path is invalid");
+        thrown.expect(ArrayIndexOutOfBoundsException.class);
         NavigationPageController.directions(oneNode);
     }
 

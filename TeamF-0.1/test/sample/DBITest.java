@@ -2,7 +2,7 @@
 * Purpose: To test connection between Database and Nodes*/
 /*Work done by Griffin Roth previously, considered to satisfy requirements*/
 /*IMPORTANT - EDITS THE TABLES, BE CAREFUL IF FILE IS IN MASTER*/
-/*ALL PASS - Steph*/
+/*UNFINISHED - Steph*/
 
 package sample;
 

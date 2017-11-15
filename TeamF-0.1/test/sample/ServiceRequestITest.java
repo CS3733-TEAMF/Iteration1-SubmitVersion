@@ -34,4 +34,6 @@ public class ServiceRequestITest {
     //Security tests
     //Successfully added to database
     //Throws exception for invalid entry
+
+    //test date and ID are updated??
 }
