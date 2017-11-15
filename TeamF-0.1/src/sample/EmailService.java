@@ -101,10 +101,21 @@ public class EmailService implements Data {
                 "    <!--<![endif]-->\n" +
                 "    <!--[if mso]><xml>  <o:OfficeDocumentSettings>    <o:AllowPNG/>    <o:PixelsPerInch>96</o:PixelsPerInch>  </o:OfficeDocumentSettings></xml><![endif]-->\n" +
                 "    <!--[if lte mso 11]><style type=\"text/css\">  .outlook-group-fix {    width:100% !important;  }</style><![endif]-->\n" +
+                "    <!--[if !mso]><!-->\n" +
+                "    <link href=\"https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700\" rel=\"stylesheet\" type=\"text/css\">\n" +
+                "    <link href=\"https://fonts.googleapis.com/css?family=PT+Serif\" rel=\"stylesheet\" type=\"text/css\">\n" +
+                "    <style type=\"text/css\">\n" +
+                "        @import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);\n" +
+                "        @import url(https://fonts.googleapis.com/css?family=PT+Serif);\n" +
+                "    </style>\n" +
+                "    <!--<![endif]-->\n" +
                 "    <style type=\"text/css\">\n" +
                 "        @media only screen and (min-width:480px) {\n" +
                 "            .mj-column-per-100 {\n" +
                 "                width: 100%!important;\n" +
+                "            }\n" +
+                "            .mj-column-per-50 {\n" +
+                "                width: 50%!important;\n" +
                 "            }\n" +
                 "        }\n" +
                 "    </style>\n" +
@@ -113,38 +124,7 @@ public class EmailService implements Data {
                 "<body style=\"background: #FFFFFF;\">\n" +
                 "    <div class=\"mj-container\" style=\"background-color:#FFFFFF;\">\n" +
                 "        <!--[if mso | IE]>      <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\" align=\"center\" style=\"width:600px;\">        <tr>          <td style=\"line-height:0px;font-size:0px;mso-line-height-rule:exactly;\">      <![endif]-->\n" +
-                "        <div style=\"margin:0px auto;max-width:600px;\">\n" +
-                "            <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;\" align=\"center\" border=\"0\">\n" +
-                "                <tbody>\n" +
-                "                    <tr>\n" +
-                "                        <td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:9px 0px 9px 0px;\">\n" +
-                "                            <!--[if mso | IE]>      <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">        <tr>          <td style=\"vertical-align:top;width:600px;\">      <![endif]-->\n" +
-                "                            <div class=\"mj-column-per-100 outlook-group-fix\" style=\"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;\">\n" +
-                "                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n" +
-                "                                    <tbody>\n" +
-                "                                        <tr>\n" +
-                "                                            <td style=\"word-wrap:break-word;font-size:0px;padding:0px 0px 0px 0px;\" align=\"center\">\n" +
-                "                                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;border-spacing:0px;\" align=\"center\" border=\"0\">\n" +
-                "                                                    <tbody>\n" +
-                "                                                        <tr>\n" +
-                "                                                            <td style=\"width:180px;\"><img alt=\"\" title=\"\" height=\"auto\" src=\"https://topolio.s3-eu-west-1.amazonaws.com/uploads/5a088766bdb4e/1510510340.jpg\" style=\"border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:auto;\" width=\"180\"></td>\n" +
-                "                                                        </tr>\n" +
-                "                                                    </tbody>\n" +
-                "                                                </table>\n" +
-                "                                            </td>\n" +
-                "                                        </tr>\n" +
-                "                                    </tbody>\n" +
-                "                                </table>\n" +
-                "                            </div>\n" +
-                "                            <!--[if mso | IE]>      </td></tr></table>      <![endif]-->\n" +
-                "                        </td>\n" +
-                "                    </tr>\n" +
-                "                </tbody>\n" +
-                "            </table>\n" +
-                "        </div>\n" +
-                "        <!--[if mso | IE]>      </td></tr></table>      <![endif]-->\n" +
-                "        <!--[if mso | IE]>      <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\" align=\"center\" style=\"width:600px;\">        <tr>          <td style=\"line-height:0px;font-size:0px;mso-line-height-rule:exactly;\">      <![endif]-->\n" +
-                "        <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#0161B2;font-size:0px;width:100%;\" border=\"0\">\n" +
+                "        <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;\" border=\"0\">\n" +
                 "            <tbody>\n" +
                 "                <tr>\n" +
                 "                    <td>\n" +
@@ -158,11 +138,14 @@ public class EmailService implements Data {
                 "                                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n" +
                 "                                                    <tbody>\n" +
                 "                                                        <tr>\n" +
-                "                                                            <td style=\"word-wrap:break-word;font-size:0px;padding:0px 20px 0px 20px;\" align=\"center\">\n" +
-                "                                                                <div style=\"cursor:auto;color:#000000;font-family:Georgia, sans-serif;font-size:11px;line-height:22px;text-align:center;\">\n" +
-                "                                                                    <p><span style=\"color:#ffffff;\"><span style=\"font-size:22px;\">Your Directions for the Brigham &amp; Women&apos;s Hospital</span></span>\n" +
-                "                                                                    </p>\n" +
-                "                                                                </div>\n" +
+                "                                                            <td style=\"word-wrap:break-word;font-size:0px;padding:0px 0px 0px 0px;\" align=\"center\">\n" +
+                "                                                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;border-spacing:0px;\" align=\"center\" border=\"0\">\n" +
+                "                                                                    <tbody>\n" +
+                "                                                                        <tr>\n" +
+                "                                                                            <td style=\"width:414px;\"><img alt=\"\" title=\"\" height=\"auto\" src=\"https://topolio.s3-eu-west-1.amazonaws.com/uploads/5a0628a618fc0/1510709544.jpg\" style=\"border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:auto;\" width=\"414\"></td>\n" +
+                "                                                                        </tr>\n" +
+                "                                                                    </tbody>\n" +
+                "                                                                </table>\n" +
                 "                                                            </td>\n" +
                 "                                                        </tr>\n" +
                 "                                                    </tbody>\n" +
@@ -180,7 +163,7 @@ public class EmailService implements Data {
                 "        </table>\n" +
                 "        <!--[if mso | IE]>      </td></tr></table>      <![endif]-->\n" +
                 "        <!--[if mso | IE]>      <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\" align=\"center\" style=\"width:600px;\">        <tr>          <td style=\"line-height:0px;font-size:0px;mso-line-height-rule:exactly;\">      <![endif]-->\n" +
-                "        <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#0161B2;font-size:0px;width:100%;\" border=\"0\">\n" +
+                "        <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#2C1ABE;font-size:0px;width:100%;\" border=\"0\">\n" +
                 "            <tbody>\n" +
                 "                <tr>\n" +
                 "                    <td>\n" +
@@ -188,16 +171,16 @@ public class EmailService implements Data {
                 "                            <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;\" align=\"center\" border=\"0\">\n" +
                 "                                <tbody>\n" +
                 "                                    <tr>\n" +
-                "                                        <td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:9px 0px 9px 0px;\">\n" +
+                "                                        <td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:34px 0px 34px 0px;\">\n" +
                 "                                            <!--[if mso | IE]>      <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">        <tr>          <td style=\"vertical-align:top;width:600px;\">      <![endif]-->\n" +
                 "                                            <div class=\"mj-column-per-100 outlook-group-fix\" style=\"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;\">\n" +
                 "                                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n" +
                 "                                                    <tbody>\n" +
                 "                                                        <tr>\n" +
-                "                                                            <td style=\"word-wrap:break-word;font-size:0px;padding:100px 20px 100px 20px;\" align=\"left\">\n" +
-                "                                                                <div style=\"cursor:auto;color:#000000;font-family:Georgia, sans-serif;font-size:11px;line-height:22px;text-align:left;\">\n" +
-                "                                                                    <p><span style=\"font-size:14px;\"><span style=\"color:#ffffff;\">Directions:<br> " + directions + "</span></span>\n" +
-                "                                                                        <br>&#xA0;</p>\n" +
+                "                                                            <td style=\"word-wrap:break-word;font-size:0px;padding:0px 20px 0px 20px;\" align=\"center\">\n" +
+                "                                                                <div style=\"cursor:auto;color:#000000;font-family:PT Serif, Georgia, serif;font-size:11px;line-height:22px;text-align:center;\">\n" +
+                "                                                                    <p><span style=\"color:#ffffff;\"><span style=\"font-size:26px;\">Your Brigham &amp; Women&apos;s Hospital Directions</span></span>\n" +
+                "                                                                    </p>\n" +
                 "                                                                </div>\n" +
                 "                                                            </td>\n" +
                 "                                                        </tr>\n" +
@@ -224,11 +207,78 @@ public class EmailService implements Data {
                 "                            <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;\" align=\"center\" border=\"0\">\n" +
                 "                                <tbody>\n" +
                 "                                    <tr>\n" +
-                "                                        <td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:9px 0px 9px 0px;\">\n" +
+                "                                        <td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:64px 0px 64px 0px;\">\n" +
+                "                                            <!--[if mso | IE]>      <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">        <tr>          <td style=\"vertical-align:top;width:300px;\">      <![endif]-->\n" +
+                "                                            <div class=\"mj-column-per-50 outlook-group-fix\" style=\"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;\">\n" +
+                "                                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n" +
+                "                                                    <tbody>\n" +
+                "                                                        <tr>\n" +
+                "                                                            <td style=\"word-wrap:break-word;font-size:0px;padding:0px 20px 0px 20px;\" align=\"left\">\n" +
+                "                                                                <div style=\"cursor:auto;color:#000000;font-family:PT Serif, Georgia, serif;font-size:11px;line-height:22px;text-align:left;\">\n" +
+                "                                                                    <p><span style=\"font-size:11px;\">Your Directions: <br> " + directions + "</span></p>\n" +
+                "                                                                </div>\n" +
+                "                                                            </td>\n" +
+                "                                                        </tr>\n" +
+                "                                                    </tbody>\n" +
+                "                                                </table>\n" +
+                "                                            </div>\n" +
+                "                                            <!--[if mso | IE]>      </td><td style=\"vertical-align:top;width:300px;\">      <![endif]-->\n" +
+                "                                            <div class=\"mj-column-per-50 outlook-group-fix\" style=\"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;\">\n" +
+                "                                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n" +
+                "                                                    <tbody>\n" +
+                "                                                        <tr>\n" +
+                "                                                            <td style=\"word-wrap:break-word;font-size:0px;padding:0px 0px 0px 0px;\" align=\"center\">\n" +
+                "                                                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;border-spacing:0px;\" align=\"center\" border=\"0\">\n" +
+                "                                                                    <tbody>\n" +
+                "                                                                        <tr>\n" +
+                "                                                                            <td style=\"width:138px;\"><img alt=\"\" title=\"\" height=\"auto\" src=\"https://upload.wikimedia.org/wikipedia/en/thumb/8/80/Brigham_and_Womens_Hospital_logo.svg/1200px-Brigham_and_Womens_Hospital_logo.svg.png\" style=\"border:none;border-radius:0px;display:block;font-size:13px;outline:none;text-decoration:none;width:100%;height:auto;\" width=\"138\"></td>\n" +
+                "                                                                        </tr>\n" +
+                "                                                                    </tbody>\n" +
+                "                                                                </table>\n" +
+                "                                                            </td>\n" +
+                "                                                        </tr>\n" +
+                "                                                    </tbody>\n" +
+                "                                                </table>\n" +
+                "                                            </div>\n" +
+                "                                            <!--[if mso | IE]>      </td></tr></table>      <![endif]-->\n" +
+                "                                        </td>\n" +
+                "                                    </tr>\n" +
+                "                                </tbody>\n" +
+                "                            </table>\n" +
+                "                        </div>\n" +
+                "                    </td>\n" +
+                "                </tr>\n" +
+                "            </tbody>\n" +
+                "        </table>\n" +
+                "        <!--[if mso | IE]>      </td></tr></table>      <![endif]-->\n" +
+                "        <!--[if mso | IE]>      <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\" align=\"center\" style=\"width:600px;\">        <tr>          <td style=\"line-height:0px;font-size:0px;mso-line-height-rule:exactly;\">      <![endif]-->\n" +
+                "        <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#2C1ABE;font-size:0px;width:100%;\" border=\"0\">\n" +
+                "            <tbody>\n" +
+                "                <tr>\n" +
+                "                    <td>\n" +
+                "                        <div style=\"margin:0px auto;max-width:600px;\">\n" +
+                "                            <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;\" align=\"center\" border=\"0\">\n" +
+                "                                <tbody>\n" +
+                "                                    <tr>\n" +
+                "                                        <td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:39px 0px 39px 0px;\">\n" +
                 "                                            <!--[if mso | IE]>      <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">        <tr>          <td style=\"vertical-align:top;width:600px;\">      <![endif]-->\n" +
                 "                                            <div class=\"mj-column-per-100 outlook-group-fix\" style=\"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;\">\n" +
                 "                                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n" +
                 "                                                    <tbody>\n" +
+                "                                                        <tr>\n" +
+                "                                                            <td style=\"word-wrap:break-word;font-size:0px;padding:0px 20px 0px 20px;\" align=\"center\">\n" +
+                "                                                                <div style=\"cursor:auto;color:#000000;font-family:PT Serif, Georgia, serif;font-size:11px;line-height:22px;text-align:center;\">\n" +
+                "                                                                    <p><span style=\"color:#ffffff;\"><span style=\"font-size:28px;\">Your Map:</span></span>\n" +
+                "                                                                    </p>\n" +
+                "                                                                </div>\n" +
+                "                                                            </td>\n" +
+                "                                                        </tr>\n" +
+                "                                                        <tr>\n" +
+                "                                                            <td style=\"word-wrap:break-word;font-size:0px;padding:10px 25px;padding-top:12px;padding-bottom:12px;\">\n" +
+                "                                                                <p style=\"font-size:1px;margin:0px auto;border-top:1px solid #000;width:100%;\"></p>\n" +
+                "                                                                <!--[if mso | IE]><table role=\"presentation\" align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:1px;margin:0px auto;border-top:1px solid #000;width:100%;\" width=\"600\"><tr><td style=\"height:0;line-height:0;\"> </td></tr></table><![endif]-->\n" +
+                "                                                            </td>\n" +
+                "                                                        </tr>\n" +
                 "                                                        <tr>\n" +
                 "                                                            <td style=\"word-wrap:break-word;font-size:0px;padding:0px 0px 0px 0px;\" align=\"center\">\n" +
                 "                                                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;border-spacing:0px;\" align=\"center\" border=\"0\">\n" +
@@ -238,6 +288,39 @@ public class EmailService implements Data {
                 "                                                                        </tr>\n" +
                 "                                                                    </tbody>\n" +
                 "                                                                </table>\n" +
+                "                                                            </td>\n" +
+                "                                                        </tr>\n" +
+                "                                                        <tr>\n" +
+                "                                                            <td style=\"word-wrap:break-word;font-size:0px;padding:10px 25px;padding-top:10px;padding-right:10px;\">\n" +
+                "                                                                <p style=\"font-size:1px;margin:0px auto;border-top:1px solid #000;width:100%;\"></p>\n" +
+                "                                                                <!--[if mso | IE]><table role=\"presentation\" align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:1px;margin:0px auto;border-top:1px solid #000;width:100%;\" width=\"600\"><tr><td style=\"height:0;line-height:0;\"> </td></tr></table><![endif]-->\n" +
+                "                                                            </td>\n" +
+                "                                                        </tr>\n" +
+                "                                                        <tr>\n" +
+                "                                                            <td style=\"word-wrap:break-word;font-size:0px;padding:0px 20px 0px 20px;\" align=\"center\">\n" +
+                "                                                                <div style=\"cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:22px;text-align:center;\">\n" +
+                "                                                                    <p><span style=\"color:#ffffff;\"><span style=\"font-size:11px;\">Contact Information:</span></span>\n" +
+                "                                                                    </p>\n" +
+                "                                                                    <p><span style=\"color:#ffffff;\"><span style=\"font-size:11px;\">617-732-5500</span></span>\n" +
+                "                                                                    </p>\n" +
+                "                                                                    <p><span style=\"color:#ffffff;\"><span style=\"font-size:11px;\">75 Francis Street<br>Boston, MA 02115 USA</span></span>\n" +
+                "                                                                    </p>\n" +
+                "                                                                </div>\n" +
+                "                                                            </td>\n" +
+                "                                                        </tr>\n" +
+                "                                                        <tr>\n" +
+                "                                                            <td style=\"word-wrap:break-word;font-size:0px;padding:10px 25px;padding-top:10px;padding-right:10px;\">\n" +
+                "                                                                <p style=\"font-size:1px;margin:0px auto;border-top:1px solid #000;width:100%;\"></p>\n" +
+                "                                                                <!--[if mso | IE]><table role=\"presentation\" align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:1px;margin:0px auto;border-top:1px solid #000;width:100%;\" width=\"600\"><tr><td style=\"height:0;line-height:0;\"> </td></tr></table><![endif]-->\n" +
+                "                                                            </td>\n" +
+                "                                                        </tr>\n" +
+                "                                                        <tr>\n" +
+                "                                                            <td style=\"word-wrap:break-word;font-size:0px;padding:0px 20px 0px 20px;\" align=\"center\">\n" +
+                "                                                                <div style=\"cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:22px;text-align:center;\">\n" +
+                "                                                                    <p><a href=\"http://www.brighamandwomens.org/\"><span style=\"color:#ffffff;\">Go to&#xA0;Brigham &amp; Women&apos;s Hospital Website</span></a></p>\n" +
+                "                                                                    <p><span style=\"color:#ffffff;\">You can find your map attached to this email</span></p>\n" +
+                "                                                                    <p><span style=\"color:#ffffff;\">Automated Message, do not reply</span></p>\n" +
+                "                                                                </div>\n" +
                 "                                                            </td>\n" +
                 "                                                        </tr>\n" +
                 "                                                    </tbody>\n" +
