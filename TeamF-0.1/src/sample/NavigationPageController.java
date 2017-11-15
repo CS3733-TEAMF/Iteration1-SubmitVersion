@@ -63,30 +63,95 @@ public class NavigationPageController {
     // The go button next to the destination text field, starts pathfinding algorithm, direction print, map drawing
     @FXML
     public void go() throws IOException,InterruptedException{
-        Vector<Node> Vec = new Vector<Node>(10);
-        Node n1 = new Node("FDEPT00101", 1614, 829, 1, "Tower", "DEPT", "Center for International Medecine", "CIM", 'F');
-        Vec.addElement(n1);
-        Node n2 = new Node("FHALL00201", 1640, 850, 1, "Tower", "HALL", "Chapel Hall Point 1", "CHP1", 'F');
-        Vec.addElement(n2);
-        Node n3 = new Node("FHALL00301", 1788, 850, 1, "Tower", "HALL", "Chapel Hall Point 2", "CHP2", 'F');
-        Vec.addElement(n3);
-        Node n4 = new Node("FHALL00701", 1759, 900, 1, "Tower", "HALL", "Chapel Hall Entrance", "CHE", 'F');
-        Vec.addElement(n4);
-        Node n5 = new Node("FHALL01301", 1760, 952, 1, "Tower", "HALL", "International Hall Point 2", "IHP2", 'F');
-        Vec.addElement(n5);
-        Node n6 = new Node("FSERV00101", 1724, 930, 1, "Tower", "SERV", "Multifaith Chapel", "MFC", 'F');
-        Vec.addElement(n6);
 
-        Vector<Node> InverseVec = new Vector<Node>(10);
 
-        InverseVec.addElement(n6);
-        InverseVec.addElement(n5);
-        InverseVec.addElement(n4);
-        InverseVec.addElement(n3);
-        InverseVec.addElement(n3);
-        InverseVec.addElement(n2);
-        InverseVec.addElement(n1);
-        drawDirections(InverseVec);
+        Vector<Node> dbnodes = new Vector<Node>();
+
+
+        for (int i =0;i<testEmbeddedDB.getAllNodes().size();i++){
+
+            dbnodes.add(testEmbeddedDB.getAllNodes().get(i));
+        }
+
+
+        Vector <Edge> EdgesBad = new Vector<>();
+
+        Vector <Edge> EdgesGood = new Vector<>();
+
+        for (int i =0;i<testEmbeddedDB.getAllEdges().size();i++){
+
+            EdgesBad.add(testEmbeddedDB.getAllEdges().get(i));
+        }
+
+        for(int i =0;i<EdgesBad.size();i++){
+
+            String ID;
+            String StID;
+            String EndID;
+            Node Start = null;
+            Node End = null;
+
+            ID = EdgesBad.get(i).getEdgeID();
+            StID = EdgesBad.get(i).getStart().getNodeID();
+            EndID = EdgesBad.get(i).getEnd().getNodeID();
+
+            for(int j = 0; j< dbnodes.size();j++){
+
+                if(dbnodes.get(j).getNodeID().equals(StID)){
+                    Start = dbnodes.get(j);
+
+                }else if(dbnodes.get(j).getNodeID().equals(EndID)){
+
+                    End = dbnodes.get(j);
+                }
+            }
+
+            Edge e = new Edge(ID,Start,End);
+
+
+            EdgesGood.add(e);
+        }
+
+        Map CuurMap = new Map(dbnodes, EdgesGood);
+
+
+
+        CuurMap.BuildMap();
+
+
+        for (int i =0; i<CuurMap.getMap().size();i++){
+
+            System.out.println((i+1)+ " : "+CuurMap.getMap().get(i).getLongName());
+
+            for (int j =0; j<CuurMap.getMap().get(i).getNeighbors().size();j++){
+
+                System.out.println( "      =====> "+CuurMap.getMap().get(i).getNeighbors().get(j).getLongName());
+            }
+        }
+
+        SearchEngine Engine = new SearchEngine(CuurMap.getMap());
+
+        Vector<Node> SearchLocations = Engine.SearchPath(destination.getText());
+
+
+
+        //KIOSK LOCATION
+        Node MinNode = CuurMap.getMap().get(0);
+        Double MinDistance=1000000.0;
+
+        for(int i =0; i<SearchLocations.size();i++ ){
+            if(MinDistance  > CuurMap.TotalDistance(CuurMap.AStar(CuurMap.getMap().get(0),SearchLocations.get(i)))){
+                MinDistance = CuurMap.TotalDistance(CuurMap.AStar(CuurMap.getMap().get(0),SearchLocations.get(i)));
+                MinNode = SearchLocations.get(i);
+            }
+        }
+
+
+
+         Vector<Node> Path =CuurMap.AStar(CuurMap.getMap().get(0),MinNode);
+
+
+        drawDirections(Path);
     }
 
     // Method to clear the path on the map when the user presses clear map
@@ -105,23 +170,6 @@ public class NavigationPageController {
     @FXML
     public void sendMsg() throws Exception{
         Vector<Node> msgVec = new Vector<Node>(10);
-
-        //here we would add the node elements to the thing however it goes, rn I'm adding manually
-        Node n1 = new Node("FDEPT00101", 1614, 829, 1, "Tower", "DEPT", "Center for International Medecine", "CIM", 'F');
-        msgVec.addElement(n1);
-        Node n2 = new Node("FHALL00201", 1640, 850, 1, "Tower", "HALL", "Chapel Hall Point 1", "CHP1", 'F');
-        msgVec.addElement(n2);
-        Node n3 = new Node("FHALL00301", 1788, 850, 1, "Tower", "HALL", "Chapel Hall Point 2", "CHP2", 'F');
-        msgVec.addElement(n3);
-        Node n4 = new Node("FHALL00701", 1759, 900, 1, "Tower", "HALL", "Chapel Hall Entrance", "CHE", 'F');
-        msgVec.addElement(n4);
-        Node n5 = new Node("FHALL01301", 1760, 952, 1, "Tower", "HALL", "International Hall Point 2", "IHP2", 'F');
-        msgVec.addElement(n5);
-        Node n6 = new Node("FSERV00101", 1724, 930, 1, "Tower", "SERV", "Multifaith Chapel", "MFC", 'F');
-        msgVec.addElement(n6);
-
-        EmailService emailService = new EmailService("teamFCS3733@gmail.com", "FuschiaFairiesSoftEng");
-        emailService.sendEmail(NavigationPageController.directions(msgVec), email.getText());
     }
 
     // Button to return to the welcome screen
@@ -200,6 +248,3 @@ public class NavigationPageController {
         System.out.println("Image edited and saved");
     }
 }
-/*sample.UI.GeneratedImages ".sample.UI.GeneratedImages.path"
-        src\sample\UI\GeneratedImages*/
-//sample/UI/GeneratedImages/pathMFC-CIM.png

@@ -3,6 +3,7 @@ package sample;
 import com.opencsv.CSVWriter;
 import java.io.FileWriter;
 import java.sql.*;
+import java.util.Vector;
 
 
 public class testEmbeddedDB {
@@ -18,15 +19,15 @@ public class testEmbeddedDB {
             final String url = "jdbc:derby:Skynet";
             c = DriverManager.getConnection(url);
 
-            testEmbeddedDB.dropTables();
+            //testEmbeddedDB.dropTables();
 
-            testEmbeddedDB.createTable();
+            //testEmbeddedDB.createTable();
 
-            testEmbeddedDB.fillNodesTable();
+            //testEmbeddedDB.fillNodesTable();
 
             //testEmbeddedDB.createPrimKey();
 
-            testEmbeddedDB.fillEdgesTable();
+            //testEmbeddedDB.fillEdgesTable();
 
             //testEmbeddedDB.writeToCSV();
 
@@ -70,6 +71,109 @@ public class testEmbeddedDB {
         } catch (Exception e){
             System.out.println("error: " + e.getMessage());
         }
+    }
+
+    public static Vector<Node> getAllNodes(){
+        //ArrayList<Node> allNodes = new ArrayList<Node>();
+        Vector<Node> allNodes = new Vector<Node>();
+        try{
+            Node n;
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement s = c.createStatement();
+
+            ResultSet r = s.executeQuery("SELECT * FROM NODES");
+
+            while(r.next()) {
+                String nodeID = r.getString("nodeID");
+                int xcord = r.getInt("xcoord");
+                int ycoord = r.getInt("ycoord");
+                int floor = Integer.parseInt(Character.toString(r.getString("floor").charAt(0)));
+                String building = r.getString("building");
+                String nodetype = r.getString("nodeType");
+                String longname = r.getString("longname");
+                String shortname = r.getString("shortname");
+                char team = r.getString("teamassigned").charAt(0);
+
+
+                n = new Node(nodeID, xcord, ycoord, floor, building, nodetype, longname, shortname, team);
+
+                n = testEmbeddedDB.getNode(r.getString("nodeID"));
+
+                allNodes.add(n);
+                //System.out.println("nodeID: " + name);
+            }
+
+        } catch (Exception e){
+            System.out.println("errorqqqqqqq: " + e.getMessage());
+        }
+
+        return allNodes;
+
+    }
+
+    public static Node getNode(String nodeID){
+        Node n = null;
+
+        try{
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement s = c.createStatement();
+
+            ResultSet r = s.executeQuery("SELECT * FROM NODES WHERE NODEID = '"+ nodeID + "'");
+
+            while(r.next()){
+                String ID = r.getString("nodeID");
+                int xcord = r.getInt("xcoord");
+                int ycoord = r.getInt("ycoord");
+                int floor = Integer.parseInt(Character.toString(r.getString("floor").charAt(0)));
+                String building = r.getString("building");
+                String nodetype = r.getString("nodeType");
+                String longname = r.getString("longname");
+                String shortname = r.getString("shortname");
+                char team = r.getString("teamassigned").charAt(0);
+
+                n = new Node(ID, xcord, ycoord, floor, building, nodetype, longname, shortname, team);
+            }
+
+        } catch (Exception e){
+            System.out.println("error: " + e.getMessage());
+        }
+
+        return n;
+    }
+
+    public static Vector<Edge> getAllEdges(){
+        //ArrayList<Node> allNodes = new ArrayList<Node>();
+        Vector<Edge> allEdges = new Vector<Edge>();
+        try{
+            Edge e;
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement s = c.createStatement();
+
+            ResultSet r = s.executeQuery("SELECT * FROM EDGES");
+
+            while(r.next()) {
+                String edgeID = r.getString("edgeid");
+                String start = r.getString("startnode");
+                String end = r.getString("endnode");
+
+                Node startNode = testEmbeddedDB.getNode(start);
+                Node endNode = testEmbeddedDB.getNode(end);
+
+                e = new Edge(edgeID, startNode, endNode);
+
+                allEdges.add(e);
+                //System.out.println("nodeID: " + name);
+            }
+
+        } catch (Exception e){
+            System.out.println("error: " + e.getMessage());
+        }
+
+        return allEdges;
+
     }
 
     public static void createTable(){

@@ -1,6 +1,7 @@
 package sample;
 
 
+import javax.swing.tree.DefaultTreeCellEditor;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -18,12 +19,10 @@ public class Map {
 
 
     //Constructor
-    public Map(){
 
-        Map = new Vector<Node>();
-        Edges = new Vector<Edge>();
-        DisabledNodes = new Vector<Node>();
-
+    public Map(Vector<Node> Map, Vector<Edge> Edges){
+        this.Map = Map;
+        this.Edges = Edges;
     }
 
 
@@ -68,6 +67,25 @@ public class Map {
     }
 
 
+    /**
+     * This is the Euclidean Distance function, it is a helper method for A*
+     * </p>
+     * @param   Path  list of nodes
+     * @return  Returns the total
+     */
+
+    public double TotalDistance(Vector<Node> Path){
+
+        double totalDist =0.0;
+
+        for(int i =0; i<Path.size()-1; i++) {
+
+            totalDist += HeuristicCost(Path.get(i), Path.get(i+1));
+        }
+
+        return  totalDist;
+
+    }
 
 
 
@@ -156,7 +174,6 @@ public class Map {
      */
 
     public double HeuristicCost(Node Start, Node End){
-
         return (Math.sqrt((Math.abs(Start.getxCoordinate() - End.getxCoordinate())*Math.abs(Start.getxCoordinate() - End.getxCoordinate()) + Math.abs(Start.getyCoordinate() - End.getyCoordinate())*Math.abs(Start.getyCoordinate() - End.getyCoordinate()))));
     }
 
