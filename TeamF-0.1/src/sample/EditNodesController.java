@@ -66,7 +66,7 @@ public class EditNodesController {
        }
     }
     public void removeNodeButton(){
-        testEmbeddedDB.removeEdge(nodeIDField.getText());
+        testEmbeddedDB.removeNode(nodeIDField.getText());
     }
 
 

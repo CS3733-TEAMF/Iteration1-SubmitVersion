@@ -11,7 +11,7 @@ public class AdminPageController {
 
     @FXML
     public void edit(){
-
+        Main.mapEditScreen();
     }
     @FXML
     public void serviceRequest() {Main.serviceScreen();}

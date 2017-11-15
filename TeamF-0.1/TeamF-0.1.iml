@@ -50,5 +50,9 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="derby" level="application" />
+    <orderEntry type="library" name="commons-lang3-3.6" level="application" />
+    <orderEntry type="library" name="opencsv-4.0" level="application" />
+    <orderEntry type="library" name="javax.mail:javax.mail-api:1.6.0" level="application" />
   </component>
 </module>

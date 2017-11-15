@@ -304,6 +304,31 @@ public class testEmbeddedDB {
         return n;
     }
 
+    public static Edge getEdge(String edgeID){
+        Edge n = null;
+
+        try{
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement s = c.createStatement();
+
+            ResultSet r = s.executeQuery("SELECT * FROM EDGES WHERE EDGEID = '"+ edgeID + "'");
+
+            while(r.next()){
+                String id = r.getString("edgeID");
+                Node startNode = getNode(r.getString("startNode"));
+                Node endNode = getNode(r.getString("endNode"));
+
+                n = new Edge(id, startNode, endNode);
+            }
+
+        } catch (Exception e){
+            System.out.println("error: " + e.getMessage());
+        }
+
+        return n;
+    }
+
     public static Vector<Edge> getAllEdges(){
         //ArrayList<Node> allNodes = new ArrayList<Node>();
         Vector<Edge> allEdges = new Vector<Edge>();

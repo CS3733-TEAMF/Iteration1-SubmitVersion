@@ -22,6 +22,9 @@ public class Main extends Application {
     private static Scene service;
     private static Scene itError;
     private static Scene itRequest;
+    private static Scene mapEdit;
+    private static Scene nodeEdit;
+    private static Scene edgeEdit;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -31,7 +34,10 @@ public class Main extends Application {
         map = new Scene(FXMLLoader.load(getClass().getResource("UI/NavigationScreen.fxml")), 1024, 768);
         admin = new Scene(FXMLLoader.load(getClass().getResource("UI/AdminControls.fxml")), 1024, 768);
         service = new Scene(FXMLLoader.load(getClass().getResource("UI/Service_Request_Menu.fxml")), 1024, 768);
-//        itError = new Scene(FXMLLoader.load(getClass().getResource("UI/It_Error.fxml")), 500, 202);
+        mapEdit = new Scene(FXMLLoader.load(getClass().getResource("UI/MapEditingScreen.fxml")), 1024,768);
+        nodeEdit = new Scene(FXMLLoader.load(getClass().getResource("UI/EditNodesWindow.fxml")), 600,400);
+        edgeEdit = new Scene(FXMLLoader.load(getClass().getResource("UI/EditEdgesWindow.fxml")), 600,400);
+        //        itError = new Scene(FXMLLoader.load(getClass().getResource("UI/It_Error.fxml")), 500, 202);
 //        itRequest = new Scene(FXMLLoader.load(getClass().getResource("UI/ItRequest.fxml")), 500, 500);
         //Parent root = FXMLLoader.load(getClass().getResource("UI/StartPage.fxml"));
         stage.setTitle("Team F Hospital GPS");
@@ -75,6 +81,22 @@ public class Main extends Application {
         stage.setScene(itRequest);
         stage.centerOnScreen();
     }
+
+    public static void mapEditScreen(){
+        stage.setScene(mapEdit);
+        stage.centerOnScreen();
+    }
+
+    public static void nodeEditScreen(){
+        stage.setScene(nodeEdit);
+        stage.centerOnScreen();
+    }
+
+    public static void edgeEditScreen(){
+        stage.setScene(edgeEdit);
+        stage.centerOnScreen();
+    }
+
 
     public static void main(String[] args) throws IOException{
         Vector<Node> Vec = new Vector<Node>(10);

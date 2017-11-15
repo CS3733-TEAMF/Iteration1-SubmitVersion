@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MapEditPageController">
    <children>
       <ScrollPane layoutX="-1.0" layoutY="-1.0" prefHeight="768.0" prefWidth="770.0">
          <content>
@@ -80,12 +80,12 @@
             </AnchorPane>
          </content></ScrollPane>
       <Slider layoutX="614.0" layoutY="20.0" showTickLabels="true" showTickMarks="true" />
-      <Button layoutX="770.0" layoutY="654.0" mnemonicParsing="false" prefHeight="114.0" prefWidth="254.0" style="-fx-background-color: #8bdb9c;" text="Edit Path" underline="true">
+      <Button layoutX="770.0" layoutY="654.0" mnemonicParsing="false" onAction="#editEdges" prefHeight="114.0" prefWidth="254.0" style="-fx-background-color: #8bdb9c;" text="Edit Path" underline="true">
          <font>
             <Font size="36.0" />
          </font>
       </Button>
-      <Button layoutX="770.0" layoutY="424.0" mnemonicParsing="false" prefHeight="114.0" prefWidth="254.0" text="Add Node" underline="true">
+      <Button layoutX="770.0" layoutY="424.0" mnemonicParsing="false" onAction="#editNodes" prefHeight="114.0" prefWidth="254.0" text="Add Node" underline="true">
          <font>
             <Font size="36.0" />
          </font>
