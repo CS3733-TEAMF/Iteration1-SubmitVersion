@@ -56,9 +56,9 @@ public class testEmbeddedDB {
 
             testEmbeddedDB.getAllServiceRequests();*/
 
-            //testEmbeddedDB.dropServiceRequests();
+            testEmbeddedDB.dropServiceRequests();
 
-            //testEmbeddedDB.createServiceRequestTable();
+            testEmbeddedDB.createServiceRequestTable();
 
             /*testEmbeddedDB.addFoodRequest("dickbutt", "penis", 6969, "6969",
                     420, "gimme the g00dSucc", "Joseph Stalin",
