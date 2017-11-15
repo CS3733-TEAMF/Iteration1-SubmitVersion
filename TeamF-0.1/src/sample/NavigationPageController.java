@@ -63,6 +63,7 @@ public class NavigationPageController {
     // The go button next to the destination text field, starts pathfinding algorithm, direction print, map drawing
     @FXML
     public void go() throws IOException,InterruptedException{
+        /*
         Vector<Node> Vec = new Vector<Node>(10);
         Node n1 = new Node("FDEPT00101", 1614, 829, 1, "Tower", "DEPT", "Center for International Medecine", "CIM", 'F');
         Vec.addElement(n1);
@@ -87,6 +88,29 @@ public class NavigationPageController {
         InverseVec.addElement(n2);
         InverseVec.addElement(n1);
         drawDirections(InverseVec);
+        */
+
+        Vector<Node> BannedNodes = new Vector<>();
+        SearchEngine Engine = new SearchEngine(new Map(testEmbeddedDB.getAllNodes(),testEmbeddedDB.getAllEdges(),BannedNodes));
+        for (int i =0; i<Engine.getMap().getMap().size();i++){
+
+            System.out.println(i+ " : "+Engine.getMap().getMap().get(i).getLongName());
+        }
+
+        for (int i =0; i<Engine.getMap().getEdges().size();i++){
+
+            System.out.println(i+ " : "+Engine.getMap().getEdges().get(i).getEnd().getLongName());
+        }
+
+        for (int i =0; i<Engine.getMap().getEdges().size();i++){
+
+            System.out.println(i+ " : "+Engine.getMap().getEdges().get(i).getStart().getLongName());
+        }
+
+
+        Engine.getMap().BuildMap();
+
+        drawDirections(Engine.SearchPath(destination.getText()));
     }
 
     // Method to clear the path on the map when the user presses clear map

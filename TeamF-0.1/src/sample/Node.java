@@ -18,7 +18,7 @@ public class Node {
 
 
     //Constructor
-    public Node (String nodeID, int xCoordinate, int yCoordinate,int floor, String building, String nodeType, String longName, String shortName, char teamAssigned){
+    public Node (String nodeID, int xCoordinate, int yCoordinate, int floor, String building, String nodeType, String longName, String shortName, char teamAssigned){
 
         this.nodeID = nodeID;
         this.xCoordinate = xCoordinate;
