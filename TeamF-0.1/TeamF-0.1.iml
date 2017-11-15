@@ -8,9 +8,47 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="commons-lang3-3" level="application" />
-    <orderEntry type="library" name="opencsv-4.0" level="application" />
-    <orderEntry type="library" name="javax.mail:javax.mail-api:1.6.0" level="application" />
-    <orderEntry type="library" name="derby" level="application" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../javax.mail.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/Downloads/commons-lang3-3.6/commons-lang3-3.6" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="file://$USER_HOME$/Downloads/commons-lang3-3.6/commons-lang3-3.6/apidocs" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="file://$USER_HOME$/Downloads/commons-lang3-3.6/commons-lang3-3.6" />
+        </SOURCES>
+        <jarDirectory url="file://$USER_HOME$/Downloads/commons-lang3-3.6/commons-lang3-3.6" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Downloads/commons-lang3-3.6/commons-lang3-3.6" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/opencsv-4.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/junit-4.12.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
