@@ -63,6 +63,7 @@ public class NavigationPageController {
     // The go button next to the destination text field, starts pathfinding algorithm, direction print, map drawing
     @FXML
     public void go() throws IOException,InterruptedException{
+        /*
         Vector<Node> Vec = new Vector<Node>(10);
         Node n1 = new Node("FDEPT00101", 1614, 829, 1, "Tower", "DEPT", "Center for International Medecine", "CIM", 'F');
         Vec.addElement(n1);
@@ -87,12 +88,35 @@ public class NavigationPageController {
         InverseVec.addElement(n2);
         InverseVec.addElement(n1);
         drawDirections(InverseVec);
+        */
+
+        Vector<Node> BannedNodes = new Vector<>();
+        SearchEngine Engine = new SearchEngine(new Map(testEmbeddedDB.getAllNodes(),testEmbeddedDB.getAllEdges(),BannedNodes));
+        for (int i =0; i<Engine.getMap().getMap().size();i++){
+
+            System.out.println(i+ " : "+Engine.getMap().getMap().get(i).getLongName());
+        }
+
+        for (int i =0; i<Engine.getMap().getEdges().size();i++){
+
+            System.out.println(i+ " : "+Engine.getMap().getEdges().get(i).getEnd().getLongName());
+        }
+
+        for (int i =0; i<Engine.getMap().getEdges().size();i++){
+
+            System.out.println(i+ " : "+Engine.getMap().getEdges().get(i).getStart().getLongName());
+        }
+
+
+        Engine.getMap().BuildMap();
+
+        drawDirections(Engine.SearchPath(destination.getText()));
     }
 
     // Method to clear the path on the map when the user presses clear map
     @FXML
     public void clear() throws FileNotFoundException{
-        map.setImage(new Image(new FileInputStream("./TeamF-0.1/src/sample/UI/Icons/01_thefirstfloor.png")));
+        map.setImage(new Image(new FileInputStream(".src.sample.UI.Icons.01_thefirstfloor.png")));
     }
 
     //sets invalid email label when necessary for errorhandling
@@ -120,8 +144,8 @@ public class NavigationPageController {
         Node n6 = new Node("FSERV00101", 1724, 930, 1, "Tower", "SERV", "Multifaith Chapel", "MFC", 'F');
         msgVec.addElement(n6);
 
-        EmailService emailService = new EmailService("teamFCS3733@gmail.com", "FuschiaFairiesSoftEng");
-        emailService.sendEmail(NavigationPageController.directions(msgVec), email.getText());
+        //EmailService emailService = new EmailService("teamFCS3733@gmail.com", "FuschiaFairiesSoftEng");
+        //emailService.sendEmail(NavigationPageController.directions(msgVec), email.getText());
     }
 
     // Button to return to the welcome screen
@@ -193,13 +217,12 @@ public class NavigationPageController {
         }
 
         // Saving the image in a new file, uses the departure location and destination in the name of the map
-        ImageIO.write(firstFloor, "PNG", new File("./TeamF-0.1/src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png"));
+        ImageIO.write(firstFloor, "PNG", new File("path" + nameDep + "-" + nameDest + ".png"));
         Thread.sleep(500); // Wait before reading and setting the image as the new map
         // Set the saved image as the new map
-        map.setImage(new Image(new FileInputStream("./TeamF-0.1/src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png")));
+        map.setImage(new Image(new FileInputStream("path" + nameDep + "-" + nameDest + ".png")));
         System.out.println("Image edited and saved");
     }
 }
 /*sample.UI.GeneratedImages ".sample.UI.GeneratedImages.path"
         src\sample\UI\GeneratedImages*/
-//sample/UI/GeneratedImages/pathMFC-CIM.png
