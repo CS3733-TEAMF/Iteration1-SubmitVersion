@@ -29,7 +29,7 @@ public class Node {
         this.longName = longName;
         this.shortName = shortName;
         this.teamAssigned = teamAssigned;
-        this.Neighbors = new Vector<>();
+        this.Neighbors = new Vector<Node>();
 
     }
 

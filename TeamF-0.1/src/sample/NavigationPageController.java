@@ -5,14 +5,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Vector;
 
 public class NavigationPageController {
@@ -241,10 +239,19 @@ public class NavigationPageController {
         }
 
         // Saving the image in a new file, uses the departure location and destination in the name of the map
-        ImageIO.write(firstFloor, "PNG", new File("./TeamF-0.1/src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png"));
-        Thread.sleep(500); // Wait before reading and setting the image as the new map
+        ImageIO.write(firstFloor, "PNG", new File("path" + nameDep + "-" + nameDest + ".png"));
+
+        //clearFile("./TeamF-0.1/src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png");
+        /*FileWriter data = new FileWriter("./TeamF-0.1/src/sample/Data/Data.txt", false);
+        PrintWriter writer2 = new PrintWriter(data);
+        writer2.printf("%s","./TeamF-0.1/src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png");
+        writer2.close();
+        data.close();*/
         // Set the saved image as the new map
-        map.setImage(new Image(new FileInputStream("./TeamF-0.1/src/sample/UI/GeneratedImages/path" + nameDep + "-" + nameDest + ".png")));
+        Data.data.map = map.getImage();
+        Data.data.currentMap = "path" + nameDep + "-" + nameDest + ".png";
+        Thread.sleep(2000); // Wait before reading and setting the image as the new map
+        map.setImage(new Image(new FileInputStream("path" + nameDep + "-" + nameDest + ".png")));
         System.out.println("Image edited and saved");
     }
 }
