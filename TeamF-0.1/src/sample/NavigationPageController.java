@@ -87,7 +87,6 @@ public class NavigationPageController implements Data {
         InverseVec.addElement(n2);
         InverseVec.addElement(n1);
         drawDirections(InverseVec);
-        */
 
         Vector<Node> BannedNodes = new Vector<>();
         SearchEngine Engine = new SearchEngine(new Map(testEmbeddedDB.getAllNodes(),testEmbeddedDB.getAllEdges(),BannedNodes));
