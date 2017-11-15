@@ -1,12 +1,8 @@
 package sample;
 
 import com.opencsv.CSVWriter;
-import org.omg.CORBA.NO_IMPLEMENT;
-//import sun.jvm.hotspot.memory.TenuredSpace;
-
 import java.io.FileWriter;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Vector;
 
 
@@ -19,51 +15,66 @@ public class testEmbeddedDB {
 
         try{
 
+            //these two lines are a last ditch effort to make the database work
+            //delete it completely (from the project) and run these lines
+            //final String url = "jdbc:derby:Skynet;create=true";
+            //Connection c = DriverManager.getConnection(url);
+
             final String url = "jdbc:derby:Skynet";
             c = DriverManager.getConnection(url);
 
-            //testEmbeddedDB.dropTables();
+            testEmbeddedDB.dropTables();
 
-            //testEmbeddedDB.createTable();
+            testEmbeddedDB.createTable();
 
-            //testEmbeddedDB.fillNodesTable();
+            testEmbeddedDB.fillNodesTable();
 
             //testEmbeddedDB.createPrimKey();
 
-            //testEmbeddedDB.fillEdgesTable();
+            testEmbeddedDB.fillEdgesTable();
 
-            testEmbeddedDB.dropServiceRequests();
+            /*Node test = new Node("dickbutt", 4, 4,
+                    4, "test", "test", "test",
+                    "test",'t');
 
-            testEmbeddedDB.createServiceRequestTable();
+            FoodRequest f = new FoodRequest(test, "penis", 6969, "6969",
+                    420, "gimme the g00dSucc", "Joseph Stalin",
+                    "14411", "the Bourgoisies head");
 
-//            Node test = new Node("dickbutt", 4, 4,
-//                    4, "test", "test", "test",
-//                    "test",'t');
-//
-//            FoodRequest f = new FoodRequest(test, "penis", 6969, "6969",
-//                    420, "gimme the g00dSucc", "Joseph Stalin",
-//                    "14411", "the Bourgoisies head");
-//
-//            AssistanceRequest a = new AssistanceRequest(test, "not a penis", 68686,
-//                    "4444", 823450, "assistance", 4);
-//
-//            TransportRequest t = new TransportRequest(test, "test", 22222222,
-//                    "131", 141414, "assistance", true,
-//                    "test", "assistance");
+            AssistanceRequest a = new AssistanceRequest(test, "not a penis", 68686,
+                    "4444", 823450, "assistance", 4);
 
-//            testEmbeddedDB.addFoodRequest(f);
-//
-//            testEmbeddedDB.addAssistanceRequest(a);
-//
-//            testEmbeddedDB.addTransportRequest(t);
-//
-//            testEmbeddedDB.getAllServiceRequests();
+            TransportRequest t = new TransportRequest(test, "test", 22222222,
+                    "131", 141414, "assistance", true,
+                    "test", "assistance");
+
+            testEmbeddedDB.addFoodRequest(f);
+
+            testEmbeddedDB.addAssistanceRequest(a);
+
+            testEmbeddedDB.addTransportRequest(t);
+
+            testEmbeddedDB.getAllServiceRequests();*/
+
+            //testEmbeddedDB.dropServiceRequests();
+
+            //testEmbeddedDB.createServiceRequestTable();
+
+            /*testEmbeddedDB.addFoodRequest("dickbutt", "penis", 6969, "6969",
+                    420, "gimme the g00dSucc", "Joseph Stalin",
+                    14411, "the Bourgoisies head");
+
+            testEmbeddedDB.addAssistanceRequest("assistance", "not a penis", 68686, "4444",
+                    823450, "assistance", 4);
+
+            testEmbeddedDB.addTransportRequest("test", "test", 1123, "234234",
+                    2, "test", true, "bob");*/
 
             //testEmbeddedDB.writeToCSV();
 
             System.out.println("done.");
 
-
+            c.close();
 
         } catch (Exception e){
             System.out.println("Error Creating the Database");
@@ -99,7 +110,21 @@ public class testEmbeddedDB {
             System.out.println("Edges dropped.");
 
         } catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+            System.out.println("errorqqqqqqqq: " + e.getMessage());
+        }
+    }
+
+    public static void dropNodes(){
+        System.out.println("literalliiiiiy got here");
+        try{
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement s = c.createStatement();
+            s.execute("DROP TABLE NODES");
+            System.out.println("Nodes dropped.");
+
+        } catch (Exception e){
+            System.out.println("errorqqqqiiiiiiiqqqq: " + e.getMessage());
         }
     }
 
@@ -244,37 +269,6 @@ public class testEmbeddedDB {
 
         return allNodes;
 
-    }
-
-    public static Node getNode(String nodeID){
-        Node n = null;
-
-        try{
-            final String url = "jdbc:derby:Skynet";
-            Connection c = DriverManager.getConnection(url);
-            Statement s = c.createStatement();
-
-            ResultSet r = s.executeQuery("SELECT * FROM NODES WHERE NODEID = '"+ nodeID + "'");
-
-            while(r.next()){
-                String ID = r.getString("nodeID");
-                int xcord = r.getInt("xcoord");
-                int ycoord = r.getInt("ycoord");
-                int floor = Integer.parseInt(Character.toString(r.getString("floor").charAt(0)));
-                String building = r.getString("building");
-                String nodetype = r.getString("nodeType");
-                String longname = r.getString("longname");
-                String shortname = r.getString("shortname");
-                char team = r.getString("teamassigned").charAt(0);
-
-                n = new Node(ID, xcord, ycoord, floor, building, nodetype, longname, shortname, team);
-            }
-
-        } catch (Exception e){
-            System.out.println("error: " + e.getMessage());
-        }
-
-        return n;
     }
 
     public static Vector<Edge> getAllEdges(){
@@ -454,7 +448,37 @@ public class testEmbeddedDB {
         } catch (Exception e){
             System.out.println("error: " + e.getMessage());
         }
+    }
 
+    public static Node getNode(String nodeID){
+        Node n = null;
+
+        try{
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement s = c.createStatement();
+
+            ResultSet r = s.executeQuery("SELECT * FROM NODES WHERE NODEID = '"+ nodeID + "'");
+
+            while(r.next()){
+                String ID = r.getString("nodeID");
+                int xcord = r.getInt("xcoord");
+                int ycoord = r.getInt("ycoord");
+                int floor = Integer.parseInt(Character.toString(r.getString("floor").charAt(0)));
+                String building = r.getString("building");
+                String nodetype = r.getString("nodeType");
+                String longname = r.getString("longname");
+                String shortname = r.getString("shortname");
+                char team = r.getString("teamassigned").charAt(0);
+
+                n = new Node(ID, xcord, ycoord, floor, building, nodetype, longname, shortname, team);
+            }
+
+        } catch (Exception e){
+            System.out.println("error: " + e.getMessage());
+        }
+
+        return n;
     }
 
     public static void createTable(){
@@ -501,7 +525,7 @@ public class testEmbeddedDB {
         try{
             Connection c = DriverManager.getConnection(url);
             l = new CSVLoader(c);
-            l.loadCSV("TeamF-0.1/src/sample/Data/MapFNodes.csv", "NODES", true);
+            l.loadCSV("TeamF-0.1/src/sample/Data/newNodes.csv", "NODES", true);
 
             c.close();
 
@@ -535,7 +559,7 @@ public class testEmbeddedDB {
         try{
             Connection c = DriverManager.getConnection(url);
             l = new CSVLoader(c);
-            l.loadCSV("TeamF-0.1/src/sample/Data/MapFEdges.csv", "EDGES", true);
+            l.loadCSV("TeamF-0.1/src/sample/Data/newEdges.csv", "EDGES", true);
 
             c.close();
 

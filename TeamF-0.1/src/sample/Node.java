@@ -18,7 +18,7 @@ public class Node {
 
 
     //Constructor
-    public Node (String nodeID, int xCoordinate, int yCoordinate,int floor, String building, String nodeType, String longName, String shortName, char teamAssigned){
+    public Node (String nodeID, int xCoordinate, int yCoordinate, int floor, String building, String nodeType, String longName, String shortName, char teamAssigned){
 
         this.nodeID = nodeID;
         this.xCoordinate = xCoordinate;
@@ -39,7 +39,7 @@ public class Node {
         return nodeID;
     }
 
-    public void setNodeID(String  nodeID) {
+    public void setNodeID(String nodeID) {
         this.nodeID = nodeID;
     }
 
@@ -111,17 +111,8 @@ public class Node {
         return this.Neighbors;
     }
 
-    public boolean  isType(String input )
-    {
-        return true;
-    }
-
-    public boolean isLocation(String input ){
-        return true;
-    }
-
-    public double distance( int x, int y){
-        return 7;
+    public void setNeighbors(Vector<Node> neighbors) {
+        Neighbors = neighbors;
     }
 
     /**
@@ -132,7 +123,7 @@ public class Node {
      */
 
     public void addNeighbors(Node neighbor) {
-        this.Neighbors.add(neighbor);
+        this.Neighbors.add(0,neighbor);
     }
 
     /**

@@ -22,13 +22,13 @@ public class StartPageController {
 
     @FXML
     public void search(){
-        System.out.print(searchBox.getText());
+        //System.out.print(searchBox.getText());
         Main.mapScreen();
     }
 
     @FXML
     public void help(){
-        Main.itErrorScreen();
+        //Main.itErrorScreen();
     }
 
     @FXML
