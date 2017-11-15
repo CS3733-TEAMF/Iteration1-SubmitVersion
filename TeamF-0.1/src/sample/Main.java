@@ -103,11 +103,9 @@ public class Main extends Application {
         System.out.print(NavigationPageController.directions(Vec));
         System.out.print(NavigationPageController.directions(InverseVec));
 
-        testEmbeddedDB db = new testEmbeddedDB();
-
         NavigationPageController controller = new NavigationPageController();
 
-
+        //testEmbeddedDB db = new testEmbeddedDB();
 
 
         //controller.drawDirections(Vec);

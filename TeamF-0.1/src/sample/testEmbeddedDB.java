@@ -1,8 +1,6 @@
 package sample;
 
 import com.opencsv.CSVWriter;
-import org.omg.CORBA.NO_IMPLEMENT;
-import sun.jvm.hotspot.memory.TenuredSpace;
 
 import java.io.FileWriter;
 import java.sql.*;
@@ -20,24 +18,28 @@ public class testEmbeddedDB {
 
         try{
 
-            final String url = "jdbc:derby:Skynet";
-            c = DriverManager.getConnection(url);
+            //these two lines are a last ditch effort to make the database work
+            //delete it completely (from the project) and run these lines
+            //final String url = "jdbc:derby:Skynet;create=true";
+            //Connection c = DriverManager.getConnection(url);
 
-            //testEmbeddedDB.dropTables();
+            //testEmbeddedDB.dropEdges();
 
-            //testEmbeddedDB.createTable();
+            //testEmbeddedDB.dropNodes();
 
-            //testEmbeddedDB.fillNodesTable();
-
-            //testEmbeddedDB.createPrimKey();
-
-            //testEmbeddedDB.fillEdgesTable();
-
-            testEmbeddedDB.dropServiceRequests();
+            //testEmbeddedDB.dropServiceRequests();
 
             testEmbeddedDB.createServiceRequestTable();
 
-            Node test = new Node("dickbutt", 4, 4,
+            //testEmbeddedDB.createTable();
+
+            testEmbeddedDB.fillNodesTable();
+
+            //testEmbeddedDB.createPrimKey();
+
+            testEmbeddedDB.fillEdgesTable();
+
+            /*Node test = new Node("dickbutt", 4, 4,
                     4, "test", "test", "test",
                     "test",'t');
 
@@ -58,7 +60,7 @@ public class testEmbeddedDB {
 
             testEmbeddedDB.addTransportRequest(t);
 
-            testEmbeddedDB.getAllServiceRequests();
+            testEmbeddedDB.getAllServiceRequests();*/
 
             //testEmbeddedDB.dropServiceRequests();
 
@@ -102,19 +104,31 @@ public class testEmbeddedDB {
         }
     }
 
-    public static void dropTables(){
+    public static void dropEdges(){
+        System.out.println("literally got here");
         try{
             final String url = "jdbc:derby:Skynet";
             Connection c = DriverManager.getConnection(url);
             Statement s = c.createStatement();
-            s.execute("DROP TABLE Nodes");
-            System.out.println("Nodes dropped.");
-
-            s.execute("DROP TABLE Edges");
+            s.execute("DROP TABLE EDGES");
             System.out.println("Edges dropped.");
 
         } catch (Exception e){
-            System.out.println("error: " + e.getMessage());
+            System.out.println("errorqqqqqqqq: " + e.getMessage());
+        }
+    }
+
+    public static void dropNodes(){
+        System.out.println("literalliiiiiy got here");
+        try{
+            final String url = "jdbc:derby:Skynet";
+            Connection c = DriverManager.getConnection(url);
+            Statement s = c.createStatement();
+            s.execute("DROP TABLE NODES");
+            System.out.println("Nodes dropped.");
+
+        } catch (Exception e){
+            System.out.println("errorqqqqiiiiiiiqqqq: " + e.getMessage());
         }
     }
 
