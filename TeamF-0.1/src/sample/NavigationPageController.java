@@ -43,6 +43,8 @@ public class NavigationPageController {
     @FXML
     private static Label invalidEmailText;
 
+    private Vector<Node> path = new Vector<Node>();
+
     @FXML
     public void dragMap(){
         //map.setX();
@@ -148,7 +150,7 @@ public class NavigationPageController {
 
          Vector<Node> Path =CuurMap.AStar(CuurMap.getMap().get(0),MinNode);
 
-
+        path = Path;
         drawDirections(Path);
     }
 
@@ -167,7 +169,10 @@ public class NavigationPageController {
     // User clicks send email button
     @FXML
     public void sendMsg() throws Exception{
-        Vector<Node> msgVec = new Vector<Node>(10);
+        //Vector<Node> msgVec = new Vector<Node>(10);
+        EmailService emailService = new EmailService("teamFCS3733@gmail.com", "FuschiaFairiesSoftEng");
+        //go();
+        emailService.sendEmail(NavigationPageController.directions(path), email.getText());
     }
 
     // Button to return to the welcome screen

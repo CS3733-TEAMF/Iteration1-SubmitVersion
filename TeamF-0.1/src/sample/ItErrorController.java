@@ -19,7 +19,7 @@ public class ItErrorController {
 
     @FXML
     public void yesRequest(){
-        Main.itRequestScreen();
+        //Main.itRequestScreen();
         ServiceRequestController.updateIt();
     }
 

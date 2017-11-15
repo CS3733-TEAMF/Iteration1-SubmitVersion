@@ -1,7 +1,5 @@
 package sample;
 
-import com.sun.mail.smtp.SMTPMessage;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -14,6 +12,8 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
+import com.sun.mail.smtp.SMTPMessage;
+import javax.mail.internet.MimeMessage;
 
 // Created by Stephanie and Floris, updated 11/14/17 to include images
 // Note: Antivirus and firewalls can cause problems with sending emails
