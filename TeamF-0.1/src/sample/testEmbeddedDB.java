@@ -31,9 +31,9 @@ public class testEmbeddedDB {
 
             //testEmbeddedDB.writeToCSV();
 
-            System.out.println("done.");
+            //System.out.println("done.");
 
-
+            c.close();
 
         } catch (Exception e){
             System.out.println("Error Creating the Database");
@@ -220,7 +220,7 @@ public class testEmbeddedDB {
         try{
             Connection c = DriverManager.getConnection(url);
             l = new CSVLoader(c);
-            l.loadCSV("TeamF-0.1/src/sample/Data/MapFNodes.csv", "NODES", true);
+            l.loadCSV("TeamF-0.1/src/sample/Data/newNodes.csv", "NODES", true);
 
             c.close();
 
@@ -254,7 +254,7 @@ public class testEmbeddedDB {
         try{
             Connection c = DriverManager.getConnection(url);
             l = new CSVLoader(c);
-            l.loadCSV("TeamF-0.1/src/sample/Data/MapFEdges.csv", "EDGES", true);
+            l.loadCSV("TeamF-0.1/src/sample/Data/newEdges.csv", "EDGES", true);
 
             c.close();
 
