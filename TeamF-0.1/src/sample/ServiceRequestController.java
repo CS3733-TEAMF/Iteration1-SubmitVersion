@@ -377,19 +377,72 @@ public class ServiceRequestController implements Initializable{
         counter = 0;
     }
 
-
     private int counter;
 
     @FXML
+    private Button deletebutt;
+
+    public void deleterequest()
+    {
+        ObservableList<ServiceRequest> selectedRows, allrequests;
+        allrequests = tableView.getItems();
+
+        //this gives us the rows that were selected
+        selectedRows = tableView.getSelectionModel().getSelectedItems();
+
+        //loop over the selected rows and remove the Person objects from the table
+        for (ServiceRequest req: selectedRows)
+        {
+            allrequests.remove(req);
+        }
+    }
+
+
+    @FXML
     public void refreshTable() {
-        System.out.println("I am printing");
         int i = 0;
-        for(i = counter; i < requestList.size(); i++) {
+        //using data from database
+        Vector requestsFromDatabase = testEmbeddedDB.getAllServiceRequests();
+        ArrayList<ServiceRequest> arrayOfRequestsFromDatabase = new ArrayList<ServiceRequest>(requestsFromDatabase);
+        //System.out.println(arrayOfRequestsFromDatabase.size());
+        // for(i = counter; i < requestsFromDatabase.size(); i++) {
+            // arrayOfRequestsFromDatabase.add(requestsFromDatabase.get(i));
+        // }
+      /*for(i = counter; i < requestsFromDatabase.size(); i++) {
+            arrayOfRequestsFromDatabase.add(requestsFromDatabase.get(i));
+        }*/
+  /*    System.out.println("The size of the array is:");
+      System.out.println("                      ");
+      System.out.println(((int)arrayOfRequestsFromDatabase.size()));
+
+      */
+//  if (!(arrayOfRequestsFromDatabase.get(0) == null))
+//      {
+//          for(i = counter; i < arrayOfRequestsFromDatabase.size(); i++) {
+//              System.out.println(arrayOfRequestsFromDatabase.get(i));
+//              if (!(arrayOfRequestsFromDatabase.get(i).getRequestType() == null))
+//              {
+//                  requestObserve.add(arrayOfRequestsFromDatabase.get(i));
+//              }
+//
+//          }
+//          counter = i;
+//          tableView.setItems(requestObserve);
+//      }
+//
+//
+      for (i = counter; i < arrayOfRequestsFromDatabase.size();i++) {
+          requestObserve.add(arrayOfRequestsFromDatabase.get(i));
+      }
+
+      counter = i;
+      tableView.setItems(requestObserve);
+
+        /*for(i = counter; i < requestList.size(); i++) {
             requestObserve.add(requestList.get(i));
             // requests.setText((requestList.get(i)).typeOfRequest);
-        }
-        counter = i;
-        tableView.setItems(requestObserve);
+        }*/
+
     }
 
 

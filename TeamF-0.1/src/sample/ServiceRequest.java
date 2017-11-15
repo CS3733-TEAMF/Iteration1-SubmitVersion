@@ -58,7 +58,7 @@ public abstract class ServiceRequest {
     public int getServiceEmployeeID() {
         return this.serviceEmployeeID;
     }
-    public String getTypeInt() {
+    public String getType() {
         return this.typeOfRequest;
     }
 

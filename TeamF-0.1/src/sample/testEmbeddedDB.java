@@ -36,28 +36,28 @@ public class testEmbeddedDB {
 
             testEmbeddedDB.createServiceRequestTable();
 
-            Node test = new Node("dickbutt", 4, 4,
-                    4, "test", "test", "test",
-                    "test",'t');
+//            Node test = new Node("dickbutt", 4, 4,
+//                    4, "test", "test", "test",
+//                    "test",'t');
+//
+//            FoodRequest f = new FoodRequest(test, "penis", 6969, "6969",
+//                    420, "gimme the g00dSucc", "Joseph Stalin",
+//                    "14411", "the Bourgoisies head");
+//
+//            AssistanceRequest a = new AssistanceRequest(test, "not a penis", 68686,
+//                    "4444", 823450, "assistance", 4);
+//
+//            TransportRequest t = new TransportRequest(test, "test", 22222222,
+//                    "131", 141414, "assistance", true,
+//                    "test", "assistance");
 
-            FoodRequest f = new FoodRequest(test, "penis", 6969, "6969",
-                    420, "gimme the g00dSucc", "Joseph Stalin",
-                    "14411", "the Bourgoisies head");
-
-            AssistanceRequest a = new AssistanceRequest(test, "not a penis", 68686,
-                    "4444", 823450, "assistance", 4);
-
-            TransportRequest t = new TransportRequest(test, "test", 22222222,
-                    "131", 141414, "assistance", true,
-                    "test", "assistance");
-
-            testEmbeddedDB.addFoodRequest(f);
-
-            testEmbeddedDB.addAssistanceRequest(a);
-
-            testEmbeddedDB.addTransportRequest(t);
-
-            testEmbeddedDB.getAllServiceRequests();
+//            testEmbeddedDB.addFoodRequest(f);
+//
+//            testEmbeddedDB.addAssistanceRequest(a);
+//
+//            testEmbeddedDB.addTransportRequest(t);
+//
+//            testEmbeddedDB.getAllServiceRequests();
 
             //testEmbeddedDB.writeToCSV();
 
@@ -171,27 +171,27 @@ public class testEmbeddedDB {
 
                 n = testEmbeddedDB.getNode(dest);
 
-                if(typeofreq.equals("food")){
+                if(typeofreq.contains("food")){
                     req = new FoodRequest(n, desc, serviceID, serviceTime, serviceEmployeeID,
                             typeofreq, patName, timeToBeServed, order);
 
-                } else if(typeofreq.equals("assistance")){
+                } else if(typeofreq.contains("assistance")){
                     req = new AssistanceRequest(n, desc, serviceID, serviceTime, serviceEmployeeID,
                             typeofreq, urgency);
 
-                } else if(typeofreq.equals("transport")){
+                } else if(typeofreq.contains("transport")){
                     req = new TransportRequest(n, desc, serviceID, serviceTime, serviceEmployeeID,
                             typeofreq, arrival, patName, typeOfTransport);
 
-                } else if(typeofreq.equals("cleaning")){
+                } else if(typeofreq.contains("cleaning")){
                     req = new CleaningRequest(n, desc, serviceID, serviceTime, serviceEmployeeID,
                             typeofreq, urgency);
 
-                } else if(typeofreq.equals("security")){
+                } else if(typeofreq.contains("security")){
                     req = new SecurityRequest(n, desc, serviceID, serviceTime, serviceEmployeeID,
                             typeofreq, urgency);
 
-                } else if(typeofreq.equals("it")){
+                } else if(typeofreq.contains("it")){
                     req = new ItRequest(n, desc, serviceID, serviceTime, serviceEmployeeID,
                             typeofreq, urgency);
                 }
